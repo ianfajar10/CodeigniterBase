@@ -10,8 +10,8 @@ $routes = Services::routes();
  * Router Setup
  * --------------------------------------------------------------------
  */
-$routes->setDefaultNamespace('App\Controllers\Base');
-$routes->setDefaultController('Dashboard');
+$routes->setDefaultNamespace('App\Controllers');
+$routes->setDefaultController('Core');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -29,7 +29,11 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Dashboard::index');
+$routes->get('/', 'Core::index');
+
+//---------- Sidebar ----------//
+$routes->get('/dashboard', 'Dashboard::index');
+$routes->get('/profile', 'Profile::index');
 
 /*
  * --------------------------------------------------------------------
