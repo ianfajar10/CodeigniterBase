@@ -8,6 +8,13 @@ class Core extends BaseController
 {
     public function index()
     {
-        return view('_base/core');
+        $modules = (new Modules)->index();
+        $data = [
+            'name' => 'core',
+            'title' => null,
+            'modules' => $modules
+        ];
+        return view('_base/core', $data);
     }
+
 }
