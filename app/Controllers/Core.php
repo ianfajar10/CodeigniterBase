@@ -17,4 +17,9 @@ class Core extends BaseController
         return view('_base/core', $data);
     }
 
+    public function dashboard()
+    {
+        $modules = (new Dashboard)->index();
+        return $modules;
+    }
 }
