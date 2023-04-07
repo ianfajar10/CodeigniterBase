@@ -9,8 +9,10 @@ class Modules extends BaseController
     public function index()
     {
         $data = [
-            'dashboard' => ['Beranda', 'bi bi-grid'],
-            'profile' => ['Profil', 'bi bi-person']
+            'sidebars' => [
+                'dashboard' => ['Beranda', 'bi bi-grid'],
+                'profile' => ['Profil', 'bi bi-person']
+            ]
         ];
         return ($data);
     }

@@ -2,7 +2,7 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-        <?php foreach ($modules as $key => $module) { ?>
+        <?php foreach ($modules['sidebars'] as $key => $module) { ?>
             <li class="nav-item">
                 <a class="nav-link <?php echo (uri_string() == $key ? '' : 'collapsed') ?>" href="<?php echo (base_url() . $key) ?>">
                     <i class="<?php echo $module[1] ?>"></i>
