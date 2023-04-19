@@ -1,7 +1,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="<?php echo base_url().'dashboard' ?>" class="logo d-flex align-items-center">
+        <a href="<?php echo base_url() . 'dashboard' ?>" class="logo d-flex align-items-center">
             <img src="assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">BootstrapBase</span>
         </a>
@@ -182,7 +182,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="<?php echo (base_url() . 'profile') ?>">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
@@ -212,7 +212,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center" href="<?php echo (base_url() . 'auth/logout') ?>">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Sign Out</span>
                         </a>
