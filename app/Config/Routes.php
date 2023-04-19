@@ -33,6 +33,7 @@ $routes->get('/', 'Core::dashboard', ['filter' => 'defaultRoute']);
 
 //---------- Modules ----------//
 $routes->get('/dashboard', 'Dashboard::index');
+$routes->get('/menu-list', 'MenuList::index');
 $routes->get('/profile', 'Profile::index');
 
 /*
