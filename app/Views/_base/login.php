@@ -32,7 +32,7 @@
 <body class="d-flex align-items-center justify-content-center 100vh">
 
     <div class="card col-4">
-        <center>
+        <center class="mt-4">
             <?php
             $session = session();
             $login = $session->getFlashdata('login');
@@ -58,13 +58,13 @@
             <form method="post" class="row g-3" action="<?php echo (base_url() . 'auth/valid_login') ?>">
                 <div class="col-md-12">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Nama Pengguna">
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Nama Pengguna" required>
                         <label for="username">Nama Pengguna</label>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-floating">
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Kata Sandi">
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Kata Sandi" required>
                         <label for="password">Kata Sandi</label>
                     </div>
                 </div>

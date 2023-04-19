@@ -64,7 +64,7 @@ class Router implements RouterInterface
      *
      * @var string
      */
-    protected $indexPage = 'index.php';
+    protected $indexPage = '';
 
     /**
      * Whether dashes in URI's should be converted

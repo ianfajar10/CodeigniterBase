@@ -40,31 +40,31 @@
             <form class="row g-3" id="ajax_form">
                 <div class="col-md-12">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan Nama Lengkap">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan Nama Lengkap" required>
                         <label for="name">Nama Lengkap</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Nama Pengguna">
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Nama Pengguna" required>
                         <label for="username">Nama Pengguna</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Kata Sandi">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Kata Sandi" required>
                         <label for="password">Kata Sandi</label>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-floating">
-                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Konfirmasi Kata Sandi">
+                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Konfirmasi Kata Sandi" required>
                         <label for="confirm">Konfirmasi Kata Sandi</label>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-floating">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" required>
                         <label for="email">Email</label>
                     </div>
                 </div>
