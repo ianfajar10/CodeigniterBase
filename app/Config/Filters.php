@@ -21,7 +21,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'defaultRoute'    => \App\Filters\DefaultRoute::class
+        'defaultRoute'  => \App\Filters\DefaultRoute::class,
+        'isLogin'       => \App\Filters\IsLogin::class
     ];
 
     /**
