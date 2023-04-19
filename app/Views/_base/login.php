@@ -30,25 +30,27 @@
 </head>
 
 <body class="d-flex align-items-center justify-content-center 100vh">
-    <?php
-    $session = session();
-    $login = $session->getFlashdata('login');
-    $username = $session->getFlashdata('username');
-    $password = $session->getFlashdata('password');
-    ?>
-    <?php if ($username) { ?>
-        <p style="color:red"><?php echo $username ?></p>
-    <?php } ?>
-
-    <?php if ($password) { ?>
-        <p style="color:red"><?php echo $password ?></p>
-    <?php } ?>
-
-    <?php if ($login) { ?>
-        <p style="color:green"><?php echo $login ?></p>
-    <?php } ?>
 
     <div class="card col-4">
+        <center>
+            <?php
+            $session = session();
+            $login = $session->getFlashdata('login');
+            $username = $session->getFlashdata('username');
+            $password = $session->getFlashdata('password');
+            ?>
+            <?php if ($username) { ?>
+                <p style="color:red"><?php echo $username ?></p>
+            <?php } ?>
+
+            <?php if ($password) { ?>
+                <p style="color:red"><?php echo $password ?></p>
+            <?php } ?>
+
+            <?php if ($login) { ?>
+                <p style="color:green"><?php echo $login ?></p>
+            <?php } ?>
+        </center>
         <div class="card-body">
             <h5 class="card-title">Masuk</h5>
 
