@@ -63,8 +63,10 @@ class Auth extends BaseController
 
             //masukan data ke database
             $this->userModel->save([
+                'name' => $data['name'],
                 'username' => $data['username'],
                 'password' => $password,
+                'email' => $data['email'],
                 'role' => 2
             ]);
 
@@ -97,11 +99,12 @@ class Auth extends BaseController
                 //jika benar, arahkan user masuk ke aplikasi 
                 $sessLogin = [
                     'isLogin' => true,
+                    'name' => $user['name'],
                     'username' => $user['username'],
                     'role' => $user['role']
                 ];
                 $this->session->set($sessLogin);
-                return redirect()->to('dashboard');
+                return redirect()->to('/', );
             }
         } else {
             //jika username tidak ditemukan, balikkan ke halaman login
