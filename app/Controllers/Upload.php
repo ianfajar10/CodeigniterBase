@@ -13,7 +13,6 @@ class Upload extends BaseController
         $modules = (new Modules)->index();
         $model = new FileModel();
         
-        $model = new FileModel();
         if (!$this->validate([])) {
             $data = [
                 'name' => 'profile',
