@@ -37,7 +37,7 @@ class Upload extends BaseController
         ]);
 
         if ($validation == FALSE) {
-            return $this->index();
+            return redirect()->to('upload')->with('gagal', 'Periksa kembali dokumen!');;
         } else {
             $upload = $this->request->getFile('file_upload');
             $upload->move(WRITEPATH . '../public/assets/images/');
