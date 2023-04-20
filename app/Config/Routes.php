@@ -34,8 +34,11 @@ $routes->get('/', 'Core::dashboard', ['filter' => 'defaultRoute']);
 //---------- Modules ----------//
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/profile', 'Profile::index', ['filter' => 'isLogin']);
+
 $routes->get('/register', 'Auth::register');
 $routes->get('/login', 'Auth::login');
+
+$routes->get('/upload', 'Upload::index');
 
 /*
  * --------------------------------------------------------------------

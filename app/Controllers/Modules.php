@@ -11,6 +11,7 @@ class Modules extends BaseController
         $data = [
             'sidebars' => [
                 'dashboard' => ['Beranda', 'bi bi-grid'],
+                'upload' => ['Unggah', 'bi bi-pencil-square'],
                 'profile' => ['Profil', 'bi bi-person']
             ]
         ];
