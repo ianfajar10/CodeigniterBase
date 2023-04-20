@@ -6,7 +6,7 @@
 
 <div>
     <h5>Profil</h5>
-    <p><?= $session->get('name'); ?></p>
+    <p><?= $session->get('name'); ?>
 </div>
 
 <?= $this->endSection() ?>

@@ -12,6 +12,7 @@ class Modules extends BaseController
             'sidebars' => [
                 'dashboard' => ['Beranda', 'bi bi-grid'],
                 'menu-list' => ['Daftar Menu', 'bi bi-book"'],
+                'upload' => ['Unggah', 'bi bi-pencil-square'],
                 'profile' => ['Profil', 'bi bi-person']
             ]
         ];

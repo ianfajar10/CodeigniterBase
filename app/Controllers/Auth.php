@@ -57,18 +57,18 @@ class Auth extends BaseController
             return $this->response->setJSON($data);
         } else {
             //jika tdk ada error 
-
-            //hash password digabung dengan salt
             $password = md5($data['password']);
 
             //masukan data ke database
-            $this->userModel->save([
+            $data = [
                 'name' => $data['name'],
                 'username' => $data['username'],
                 'password' => $password,
                 'email' => $data['email'],
                 'role' => 2
-            ]);
+            ];
+
+            $this->userModel->save_data($data);
 
             $data = [
                 'success' => true,
@@ -86,10 +86,11 @@ class Auth extends BaseController
         $data = $this->request->getPost();
 
         //ambil data user di database yang usernamenya sama 
-        $user = $this->userModel->where('username', $data['username'])->first();
+        $user = $this->userModel->check_login($data);
 
         //cek apakah username ditemukan
         if ($user) {
+            $user = $user[0];
             //cek password
             //jika salah arahkan lagi ke halaman login
             if ($user['password'] != md5($data['password'])) {
@@ -104,7 +105,7 @@ class Auth extends BaseController
                     'role' => $user['role']
                 ];
                 $this->session->set($sessLogin);
-                return redirect()->to('/', );
+                return redirect()->to('/');
             }
         } else {
             //jika username tidak ditemukan, balikkan ke halaman login

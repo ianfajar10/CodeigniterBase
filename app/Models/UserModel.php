@@ -18,4 +18,16 @@ class UserModel extends Model
     ];
 
     protected $useTimestamps = true;
+
+    public function check_login($data)
+    {
+        $query = $this->where('username', $data['username'])->find();
+        return $query;
+    }
+
+    public function save_data($data)
+    {
+        $query = $this->insert($data);
+        return $query;
+    }
 }

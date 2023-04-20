@@ -30,7 +30,6 @@
 </head>
 
 <body class="d-flex align-items-center justify-content-center 100vh">
-
     <div class="card col-4">
         <center class="mt-4">
             <?php
