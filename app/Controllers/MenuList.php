@@ -13,11 +13,26 @@ class MenuList extends BaseController
 
         $modules = (new Modules)->index();
         $data = [
-            'name' => 'menu-list',
+            'name' => 'menulist',
             'title' => 'Daftar Menu',
             'file' => $file->get_files(),
             'modules' => $modules
         ];
         return view('_content/_views/view_menu_list', $data);
+    }
+
+    public function detail($params)
+    {
+        $file = new FileModel();
+
+        $modules = (new Modules)->index();
+        $data = [
+            'name' => 'menulist',
+            'title' => 'Detail Menu',
+            'file' => $file->get_files($params),
+            'rating' => 5,
+            'modules' => $modules
+        ];
+        return view('_content/_views/view_menu_list_detail', $data);
     }
 }
