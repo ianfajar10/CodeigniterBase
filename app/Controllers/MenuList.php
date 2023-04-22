@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\FileModel;
 
-class MenuList extends BaseController
+class Menulist extends BaseController
 {
     public function index()
     {
