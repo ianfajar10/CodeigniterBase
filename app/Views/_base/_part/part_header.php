@@ -3,7 +3,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="<?php echo base_url() . 'dashboard' ?>" class="logo d-flex align-items-center">
-            <img src="assets/img/logo.png" alt="">
+            <img src="<?= base_url() . 'assets/img/logo.png' ?>" alt="">
             <span class="d-none d-lg-block">BootstrapBase</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -169,7 +169,7 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt0XikLERJ8A3kTEC6_j9lMiLFu7-27j_AyA&usqp=CAU" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2"><?= strlen($session->get('name')) > 12 ? substr($session->get('name'), 0, 12) . '...' : $session->get('name'); ?></span>
                 </a>
 

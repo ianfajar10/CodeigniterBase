@@ -53,7 +53,7 @@
     <div class="col-lg-12 margin-tb">
         <table class="table table-bordered">
             <tr>
-                <th>No</th>
+                <th>Aksi</th>
                 <th>Nama</th>
                 <th>Deskripsi</th>
                 <th>Gambar</th>
