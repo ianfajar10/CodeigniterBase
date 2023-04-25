@@ -6,6 +6,14 @@ use App\Controllers\BaseController;
 
 class Dashboard extends BaseController
 {
+    protected
+    $session;
+
+    public function __construct()
+    {
+        $this->session = \Config\Services::session();
+    }
+
     public function index()
     {
         $modules = (new Modules)->index();
@@ -14,6 +22,8 @@ class Dashboard extends BaseController
             'title' => 'Beranda',
             'modules' => $modules
         ];
+
+
         return view('_content/_views/view_dashboard', $data);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CartModel;
 use App\Models\UserModel;
 
 class Auth extends BaseController
@@ -88,6 +89,9 @@ class Auth extends BaseController
         //ambil data user di database yang usernamenya sama 
         $user = $this->userModel->check_login($data);
 
+        //ambil cart user login
+        $cart = new CartModel();
+
         //cek apakah username ditemukan
         if ($user) {
             $user = $user[0];
@@ -102,7 +106,8 @@ class Auth extends BaseController
                     'isLogin' => true,
                     'name' => $user['name'],
                     'username' => $user['username'],
-                    'role' => $user['role']
+                    'role' => $user['role'],
+                    'cart' => count($cart->list_cart_user($user['username']))
                 ];
                 $this->session->set($sessLogin);
                 return redirect()->to('/');

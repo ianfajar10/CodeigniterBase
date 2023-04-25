@@ -19,6 +19,16 @@ class FileModel extends Model
         }
     }
 
+    public function get_files_by_search($query = null)
+    {
+        if ($query == null) {
+            return $this->findAll();
+        } else {
+            $query = $this->like('name', $query)->find();
+            return $query;
+        }
+    }
+
     public function save_file($data)
     {
         $query = $this->db->table($this->table)->insert($data);

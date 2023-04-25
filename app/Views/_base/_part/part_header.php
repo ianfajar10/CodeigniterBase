@@ -3,15 +3,15 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="<?php echo base_url() . 'dashboard' ?>" class="logo d-flex align-items-center">
-            <img src="<?= base_url(). 'assets/img/logo.png' ?>" alt="">
+            <img src="<?= base_url() . 'assets/img/logo.png' ?>" alt="">
             <span class="d-none d-lg-block">Trifecta Coffee</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
 
     <div class="search-bar">
-        <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <form class="search-form d-flex align-items-center" method="POST" action="<?php echo (base_url() . 'menulist/search') ?>">
+            <input type="search" name="query" placeholder="Cari.." title="Enter search keyword">
             <button type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
     </div>
@@ -25,6 +25,11 @@
                 </a>
             </li>
 
+            <a class="nav-link nav-icon <?= $session->get('name') ? ($session->get('username') == 'admin' ? 'visually-hidden' : '') : 'visually-hidden' ?>" href="#">
+                <i class="bi bi-cart"></i>
+                <span class="badge bg-primary badge-number"><?= $session->get('cart') ?></span>
+            </a>
+
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -34,27 +39,29 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <span>Halo, $rating</span>
+                        <span>Halo, </span>
                         <h6><?= $session->get('name'); ?></h6>
                     </li>
+
                     <li>
                         <hr class="dropdown-divider">
                     </li>
 
-                    <li>
+                    <li class="<?= $session->get('name') ? '' : 'visually-hidden' ?>">
                         <a class="dropdown-item d-flex align-items-center" href="<?php echo (base_url() . 'profile') ?>">
                             <i class="bi bi-person"></i>
                             <span>Profil Saya</span>
                         </a>
                     </li>
-                    <li>
+
+                    <li class="<?= $session->get('name') ? '' : 'visually-hidden' ?>">
                         <hr class="dropdown-divider">
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="<?php echo (base_url() . 'auth/logout') ?>">
+                        <a class="dropdown-item d-flex align-items-center" href="<?= $session->get('name') ? (base_url() . 'auth/logout') : (base_url() . 'login') ?>">
                             <i class="bi bi-box-arrow-right"></i>
-                            <span>Keluar</span>
+                            <span><?= $session->get('name') ? 'Keluar' : 'Masuk' ?></span>
                         </a>
                     </li>
 
