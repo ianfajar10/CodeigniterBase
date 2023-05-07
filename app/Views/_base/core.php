@@ -93,6 +93,20 @@
 
     <script src="<?= base_url() . 'assets/js/main.js' ?>"></script>
     <script src="<?= base_url() . 'assets/vendor/bootstrap/js/input-numspin.min.js' ?>"></script>
+    <script>
+        $('input.numberformat').keyup(function(event) {
+
+            // skip for arrow keys
+            if (event.which >= 37 && event.which <= 40) return;
+
+            // format number
+            $(this).val(function(index, value) {
+                return value
+                    .replace(/\D/g, "")
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            });
+        });
+    </script>
 
 </body>
 

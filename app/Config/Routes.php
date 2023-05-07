@@ -41,6 +41,7 @@ $routes->get('/register', 'Auth::register');
 $routes->get('/login', 'Auth::login');
 
 $routes->get('/upload', 'Upload::index');
+$routes->get('/discount', 'Discount::index');
 
 /*
  * --------------------------------------------------------------------

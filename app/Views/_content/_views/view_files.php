@@ -25,16 +25,22 @@
         ?>
         <?= form_open_multipart(base_url('upload/process')); ?>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label>Nama</label>
                 <div class="form-group">
                     <input type="text" name="name" class="form-control">
                 </div>
             </div>
-            <div class="col-md-6">
-                <label>File</label>
+            <div class="col-md-5">
+                <label>Foto</label>
                 <div class="form-group">
                     <input type="file" name="file_upload" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label>Harga</label>
+                <div class="form-group">
+                    <input name="price" class="form-control numberformat">
                 </div>
             </div>
         </div>
@@ -64,22 +70,22 @@
                     <table class="table datatable">
                         <thead>
                             <tr>
-                                <th scope="col">No</th>
+                                <!-- <th scope="col">No</th> -->
                                 <th scope="col">Nama</th>
                                 <th scope="col">Deskripsi</th>
                                 <th scope="col">Gambar</th>
-                                <th scope="col">Tipe</th>
+                                <th scope="col">Harga</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no = 0 ?>
+                            <!-- <?php $no = 0 ?> -->
                             <?php foreach ($file as $row) : ?>
                                 <tr>
-                                    <td><?= $no = $no + 1; ?></td>
+                                    <!-- <td><?= $no = $no + 1; ?></td> -->
                                     <td><?= $row['name']; ?></td>
                                     <td><?= $row['description'] ? $row['description'] : '-' ?></td>
                                     <td><img src="<?= base_url('../public/assets/images/' . $row['file']); ?>" width="100"></td>
-                                    <td><?= $row['type']; ?></td>
+                                    <td>Rp<?= number_format($row['price'], 0, ',', '.'); ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -88,5 +94,6 @@
             </div>
         </div>
     </div>
+</div>
 
-    <?= $this->endSection() ?>
+<?= $this->endSection() ?>

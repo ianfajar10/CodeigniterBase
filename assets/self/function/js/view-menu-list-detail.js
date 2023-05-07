@@ -44,50 +44,62 @@ $(".btn-submit-cart").on("click", function () {
     $(".value-spin-number").val($(".btn-spin-number").val());
     $(".value-spin-number").attr("disabled", true);
 
-    $.ajax({
-        type: "POST",
-        url: base_url + ('cart/process'),
-        data: {
-            'user_id': user_id,
-            'file_id': file_id,
-            'quantity': $(".value-spin-number").val()
-        },
-        beforeSend: function (xhr) {
+    if (user_id) {
+        $(".div-value-spin-number").show();
+        $(".value-spin-number").val($(".btn-spin-number").val());
+        $(".value-spin-number").attr("disabled", true);
 
-        },
-        success: function (response) {
-            if (response.success) {
-                Swal.fire({
-                    title: "Menyimpan..",
-                    text: "Menyimpan pesanan kedalam keranjang.",
-                    timer: 2000,
-                    showConfirmButton: false,
-                    willOpen: function () {
-                        Swal.showLoading()
-                    }
-                }).then(function () {
+        $.ajax({
+            type: "POST",
+            url: base_url + ('cart/process'),
+            data: {
+                'user_id': user_id,
+                'file_id': file_id,
+                'quantity': $(".value-spin-number").val()
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: function (response) {
+                if (response.success) {
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil!',
-                        showConfirmButton: false,
-                        text: response.msg,
+                        title: "Menyimpan..",
+                        text: "Menyimpan pesanan kedalam keranjang.",
                         timer: 2000,
+                        showConfirmButton: false,
+                        willOpen: function () {
+                            Swal.showLoading()
+                        }
                     }).then(function () {
-                        location.reload();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil!',
+                            showConfirmButton: false,
+                            text: response.msg,
+                            timer: 2000,
+                        }).then(function () {
+                            location.reload();
+                        })
                     })
-                })
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: response.msg,
-                })
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: response.msg,
+                    })
+                }
+
             }
-            
-        }
-    });
-    $(".div-value-spin-number").removeClass('visually-hidden');
-    $(".div-spin-number").hide();
+        });
+        $(".div-value-spin-number").removeClass('visually-hidden');
+        $(".div-spin-number").hide();
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Maaf!',
+            text: 'Harap masuk untuk melanjutkan!',
+        })
+    }
 });
 
 $(".btn-delete-value-cart").on("click", function () {

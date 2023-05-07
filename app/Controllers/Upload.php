@@ -38,10 +38,12 @@ class Upload extends BaseController
         if ($validation == FALSE) {
             return redirect()->to('upload')->with('gagal', 'Periksa kembali dokumen!');;
         } else {
+            $price = str_replace(".", "", $this->request->getPost('price'));
             $upload = $this->request->getFile('file_upload');
             $upload->move(WRITEPATH . '../public/assets/images/');
             $data = array(
                 'name'  => $this->request->getPost('name'),
+                'price'  => $price,
                 'description'  => $this->request->getPost('description'),
                 'file' => $upload->getName(),
                 'type' => $upload->getClientMimeType()

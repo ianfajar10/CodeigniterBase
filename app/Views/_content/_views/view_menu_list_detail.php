@@ -12,7 +12,14 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title"><?= $row['name'] ? $row['name'] : '-' ?></h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="card-title"><?= $row['name'] ? $row['name'] : '-' ?></h5>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="card-title d-flex align-items-end flex-column fst-italic"><?= $row['price'] ? 'Rp' . number_format($row['price'], 0, ',', '.') : '-' ?></h5>
+                        </div>
+                    </div>
                     <p class="card-text text-align: justify;"><?= $row['description'] ? $row['description'] : '-' ?></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="ratings">
