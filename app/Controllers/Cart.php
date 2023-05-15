@@ -4,17 +4,37 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\CartModel;
+use App\Models\UserModel;
 
 class Cart extends BaseController
 {
     protected
         $cartModel,
+        $userModel,
         $session;
 
     public function __construct()
     {
         $this->cartModel = new CartModel();
+        $this->userModel = new UserModel();
         $this->session = \Config\Services::session();
+    }
+
+    public function index()
+    {
+        $modules = (new Modules)->index();
+        $id_user = ['username' => $this->session->get('username')];
+        $user = $this->userModel->check_login($id_user)[0];
+        $cart = new CartModel();
+        $data = [
+            'name' => 'cart',
+            'title' => 'Keranjang',
+            'file' => $cart->list_cart_user($user['username']),
+            'count_cart' => count($cart->list_cart_user($user['username'])),
+            'modules' => $modules
+        ];
+        // dd($data['file']);
+        return view('_content/_views/view_cart', $data);
     }
 
     public function process()

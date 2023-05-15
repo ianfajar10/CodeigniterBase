@@ -16,7 +16,8 @@ class Modules extends BaseController
             'menulist/search' => ['Pencarian Menu ' . '(' . $query . ')', '-'],
             'upload' => ['Unggah', 'bi bi-pencil-square'],
             'discount' => ['Potongan Harga', 'bi bi-tag'],
-            'profile' => ['Profil', 'bi bi-person']
+            'profile' => ['Profil', 'bi bi-person'],
+            'cart' => ['Keranjang', 'bi bi-cart'],
         ];
         if ($check_role == 1) {
             //ADMIN
@@ -30,6 +31,7 @@ class Modules extends BaseController
             $data['sidebars'] = [
                 'dashboard' => ['Beranda', 'bi bi-grid'],
                 'menulist' => ['Daftar Menu', 'bi bi-book"'],
+                'cart' => ['Keranjang', 'bi bi-cart'],
                 'profile' => ['Profil', 'bi bi-person']
             ];
         }

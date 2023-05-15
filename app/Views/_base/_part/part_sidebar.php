@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <?php foreach ($modules['sidebars'] as $key => $module) { ?>
-            <li class="nav-item <?php echo ($key == 'profile' ? 'visually-hidden' : null) ?>">
+            <li class="nav-item <?php echo (($key == 'profile') || ($key == 'cart') ? 'visually-hidden' : null) ?>">
                 <a class="nav-link <?php echo (uri_string() == $key ? '' : 'collapsed') ?>" href="<?php echo (base_url() . $key) ?>">
                     <i class="<?php echo $module[1] ?>"></i>
                     <span><?php echo $module[0] ?></span>

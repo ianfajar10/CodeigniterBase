@@ -25,7 +25,7 @@
                 </a>
             </li>
 
-            <a class="nav-link nav-icon <?= $session->get('name') ? ($session->get('username') == 'admin' ? 'visually-hidden' : '') : 'visually-hidden' ?>" href="#">
+            <a class="nav-link nav-icon <?= $session->get('name') ? ($session->get('username') == 'admin' ? 'visually-hidden' : '') : 'visually-hidden' ?>" href="<?php echo (base_url() . 'cart') ?>">
                 <i class="bi bi-cart"></i>
                 <span class="badge bg-primary badge-number"><?= $session->get('cart') ?></span>
             </a>

@@ -19,13 +19,20 @@ class CartModel extends Model
         $user_file_id = $this->where('user_id', $data['user_id'])->where('file_id', $data['file_id'])->find();
 
         if ($user_file_id) {
-            $this->where('user_id', $data['user_id'])
-                ->where('file_id', $data['file_id'])
-                ->set([
-                    'quantity' => $data['quantity']
-                ])
-                ->update();
-            return true;
+            if($data['quantity'] !== '0'){
+                $this->where('user_id', $data['user_id'])
+                    ->where('file_id', $data['file_id'])
+                    ->set([
+                        'quantity' => $data['quantity']
+                    ])
+                    ->update();
+                    return true;
+                } else {
+                    $this->where('user_id', $data['user_id'])
+                    ->where('file_id', $data['file_id'])
+                    ->delete();
+                    return true;
+            }
         } else {
             $this->insert($data);
             return true;
@@ -41,7 +48,7 @@ class CartModel extends Model
 
     public function list_cart_user($params = null)
     {
-        $query = $this->where('user_id', $params)->find();
+        $query = $this->join('tbl_files', 'tbl_files.id = tbl_carts.file_id', 'left')->where('user_id', $params)->find();
         return $query;
     }
 }
