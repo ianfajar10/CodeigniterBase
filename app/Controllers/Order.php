@@ -1,0 +1,85 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Models\OrderDetailModel;
+use App\Models\OrderModel;
+use App\Models\UserModel;
+
+class Order extends BaseController
+{
+    protected
+        $orderModel,
+        $orderDetailModel,
+        $userModel,
+        $session;
+
+    public function __construct()
+    {
+        $this->orderDetailModel = new OrderDetailModel();
+        $this->orderModel = new OrderModel();
+        $this->userModel = new UserModel();
+        $this->session = \Config\Services::session();
+    }
+
+    public function index()
+    {
+        $modules = (new Modules)->index();
+        $id_user = ['username' => $this->session->get('username')];
+        $user = $this->userModel->check_login($id_user)[0];
+
+        $data = [
+            'name' => 'order',
+            'title' => 'Pemesanan',
+            'file' => $this->orderModel->list_history_order_user($user['username']),
+            'count_cart' => count($this->orderModel->list_history_order_user($user['username'])),
+            'modules' => $modules
+        ];
+        // dd($data['file']);
+        return view('_content/_views/view_order', $data);
+    }
+
+    public function process()
+    {
+        $params = $this->request->getPost();
+
+        $data = [
+            'id' => $params['no_order'],
+            'user_id' => $params['user_id'],
+            'total' => $params['total'],
+            'status' => $params['status'],
+        ];
+
+        $save = $this->orderModel->save_data($data);
+
+        $quantity = $params['quantity'];
+        $price = $params['price'];
+
+        foreach ($params['item'] as $key => $value) {
+            $data2 = [
+                'order_id' => $params['no_order'],
+                'file_id' => $value,
+                'quantity' => $quantity[$key],
+                'price' => $price[$key],
+            ];
+    
+            $save = $this->orderDetailModel->save_data_detail($data2);
+        }
+
+
+        if ($save) {
+
+            $response = [
+                'success' => true,
+                'msg' => 'Pesanan berhasil dibuat!.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'msg' => 'Pesanan gagal dibuat!.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+}

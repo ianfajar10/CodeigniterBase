@@ -10,6 +10,9 @@
                 <h5 class="mb-0">Ada memiliki <?= $count_cart ?> item pada keranjang</h5>
             </div>
             <div class="card-body">
+                <?php $item = array() ?>
+                <?php $quantity = array() ?>
+                <?php $price = array() ?>
                 <?php $total_item = 0 ?>
                 <?php $total_price = 0 ?>
                 <!-- Single item -->
@@ -29,7 +32,7 @@
                         <div class="col-lg-5 col-md-5 mb-4 mb-lg-0">
                             <!-- Data -->
                             <p><strong><?= $row['name'] ? $row['name'] : '-' ?></strong></p>
-                            <button type="button" onclick="myFunction(<?= $row['file_id'] ?>)" class="btn btn-danger btn-md me-1 mb-2 btn-submit-cart" data-mdb-toggle="tooltip" title="Remove item">
+                            <button type="button" onclick="deleteItem(<?= $row['file_id'] ?>)" class="btn btn-danger btn-md me-1 mb-2 btn-submit-cart" data-mdb-toggle="tooltip" title="Remove item">
                                 <i class="fas fa-trash"></i>
                             </button>
                             <!-- Data -->
@@ -55,6 +58,9 @@
                         </div>
                     </div>
                     <!-- Single item -->
+                    <?php array_push($item, $row['file_id']) ?>
+                    <?php array_push($quantity, $row['quantity']) ?>
+                    <?php array_push($price, $row['price']) ?>
                     <?php $total_item = $total_item + $row['quantity'] ?>
                     <?php $total_price = $total_price + ($row['price'] * $row['quantity']) ?>
                     <hr class="my-4" />
@@ -82,8 +88,10 @@
                         <span><strong><?= $total_price ?></strong></span>
                     </li>
                 </ul>
+                <input id="no_order" type="text" value="<?= date("Ymdhi") ?>" hidden>
+                <input id="total" type="text" value="<?= $total_price ?>" hidden>
 
-                <button type="button" class="btn btn-primary btn-lg btn-block">
+                <button type="button" onclick="confirmOrder($item = [<?= implode(', ', $item) ?>], $quantity = [<?= implode(', ', $quantity) ?>], $price = [<?= implode(', ', $price) ?>])" class="btn btn-primary btn-lg btn-block">
                     Lanjut Pesan
                 </button>
             </div>
@@ -94,8 +102,10 @@
 <script>
     var user_id = $('#user_id').val();
     var base_url = $('#base_url').val();
+    var no_order = $('#no_order').val();
+    var total = $('#total').val();
 
-    function myFunction($file_id) {
+    function deleteItem($file_id) {
         if (user_id) {
 
             $.ajax({
@@ -112,7 +122,7 @@
                 success: function(response) {
                     if (response.success) {
                         Swal.fire({
-                            title: "Menupdate..",
+                            title: "Mengupdate..",
                             text: "Mengupdate pesanan",
                             timer: 2000,
                             showConfirmButton: false,
@@ -140,6 +150,76 @@
 
                 }
             });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Maaf!',
+                text: 'Harap masuk untuk melanjutkan!',
+            })
+        }
+    }
+
+    function confirmOrder($item, $quantity, $price) {
+        if (user_id) {
+
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Anda yakin untuk memproses pesanan? Anda tidak dapat mengubah pesanan kembali setelah proses ini.",
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Yakin',
+                cancelButtonText: `Batal`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: base_url + ('order/process'),
+                        data: {
+                            'no_order': no_order,
+                            'user_id': user_id,
+                            'total': total,
+                            'status': 'menunggu_pembayaran',
+                            'item': $item,
+                            'quantity': $quantity,
+                            'price': $price,
+                        },
+                        beforeSend: function(xhr) {
+
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                Swal.fire({
+                                    title: "Menyimpan..",
+                                    text: "Menyimpan pesanan",
+                                    timer: 2000,
+                                    showConfirmButton: false,
+                                    willOpen: function() {
+                                        Swal.showLoading()
+                                    }
+                                }).then(function() {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Berhasil!',
+                                        showConfirmButton: false,
+                                        text: response.msg,
+                                        timer: 2000,
+                                    }).then(function() {
+                                        location.reload();
+                                    })
+                                })
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Gagal!',
+                                    text: response.msg,
+                                })
+                            }
+
+                        }
+                    })
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            })
         } else {
             Swal.fire({
                 icon: 'error',

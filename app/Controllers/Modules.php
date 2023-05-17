@@ -18,6 +18,7 @@ class Modules extends BaseController
             'discount' => ['Potongan Harga', 'bi bi-tag'],
             'profile' => ['Profil', 'bi bi-person'],
             'cart' => ['Keranjang', 'bi bi-cart'],
+            'order' => ['Histori Pemesanan', 'bi bi-clock-history'],
         ];
         if ($check_role == 1) {
             //ADMIN
@@ -32,7 +33,8 @@ class Modules extends BaseController
                 'dashboard' => ['Beranda', 'bi bi-grid'],
                 'menulist' => ['Daftar Menu', 'bi bi-book"'],
                 'cart' => ['Keranjang', 'bi bi-cart'],
-                'profile' => ['Profil', 'bi bi-person']
+                'profile' => ['Profil', 'bi bi-person'],
+                'order' => ['Histori Pemesanan', 'bi bi-clock-history'],
             ];
         }
         return ($data);

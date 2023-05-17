@@ -51,4 +51,11 @@ class CartModel extends Model
         $query = $this->join('tbl_files', 'tbl_files.id = tbl_carts.file_id', 'left')->where('user_id', $params)->find();
         return $query;
     }
+
+    public function list_history_cart_user($params = null)
+    {
+        $query = $this->join('tbl_files', 'tbl_files.id = tbl_carts.file_id', 'left')
+        ->where('user_id', $params)->find();
+        return $query;
+    }
 }
