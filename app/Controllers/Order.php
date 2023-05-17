@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CartModel;
 use App\Models\OrderDetailModel;
 use App\Models\OrderModel;
 use App\Models\UserModel;
@@ -9,13 +10,15 @@ use App\Models\UserModel;
 class Order extends BaseController
 {
     protected
-        $orderModel,
+        $cartModel,
         $orderDetailModel,
+        $orderModel,
         $userModel,
         $session;
 
     public function __construct()
     {
+        $this->cartModel = new CartModel();
         $this->orderDetailModel = new OrderDetailModel();
         $this->orderModel = new OrderModel();
         $this->userModel = new UserModel();
@@ -65,9 +68,20 @@ class Order extends BaseController
     
             $save = $this->orderDetailModel->save_data_detail($data2);
         }
-
-
+        
         if ($save) {
+            foreach ($params['item'] as $key => $value) {
+                $data = [
+                    'user_id' => $params['user_id'],
+                    'file_id' => $value
+                ];
+                $this->cartModel->delete_cart($data);
+            }
+            
+            $data = [
+                'cart' => count($this->cartModel->list_cart_user($params['user_id']))
+            ];
+            $this->session->set($data);
 
             $response = [
                 'success' => true,

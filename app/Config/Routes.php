@@ -35,7 +35,7 @@ $routes->get('/', 'Core::dashboard', ['filter' => 'defaultRoute']);
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/profile', 'Profile::index', ['filter' => 'isLogin']);
 $routes->get('/menulist', 'Menulist::index');
-$routes->get('/cart', 'Cart::index');
+$routes->get('/cart', 'Cart::index', ['filter' => 'isLogin']);
 $routes->get('/order', 'Order::index');
 
 $routes->get('/menulist/detail', 'Menulist::detail');

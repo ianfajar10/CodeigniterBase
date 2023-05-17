@@ -58,4 +58,12 @@ class CartModel extends Model
         ->where('user_id', $params)->find();
         return $query;
     }
+
+    public function delete_cart($data)
+    {
+        $this->where('user_id', $data['user_id'])
+        ->where('file_id', $data['file_id'])
+        ->delete();
+        return true;
+    }
 }
