@@ -19,6 +19,7 @@ class Modules extends BaseController
             'profile' => ['Profil', 'bi bi-person'],
             'cart' => ['Keranjang', 'bi bi-cart'],
             'order' => ['Histori Pemesanan', 'bi bi-clock-history'],
+            'order/detail' => ['Detail Order', '-'],
         ];
         if ($check_role == 1) {
             //ADMIN
@@ -29,13 +30,22 @@ class Modules extends BaseController
                 'profile' => ['Profil', 'bi bi-person']
             ];
         } else {
-            $data['sidebars'] = [
-                'dashboard' => ['Beranda', 'bi bi-grid'],
-                'menulist' => ['Daftar Menu', 'bi bi-book"'],
-                'cart' => ['Keranjang', 'bi bi-cart'],
-                'profile' => ['Profil', 'bi bi-person'],
-                'order' => ['Histori Pemesanan', 'bi bi-clock-history'],
-            ];
+            if ($check_role != null) {
+                $data['sidebars'] = [
+                    'dashboard' => ['Beranda', 'bi bi-grid'],
+                    'menulist' => ['Daftar Menu', 'bi bi-book"'],
+                    'cart' => ['Keranjang', 'bi bi-cart'],
+                    'profile' => ['Profil', 'bi bi-person'],
+                    'order' => ['Histori Pemesanan', 'bi bi-clock-history'],
+                ];
+            } else {
+                $data['sidebars'] = [
+                    'dashboard' => ['Beranda', 'bi bi-grid'],
+                    'menulist' => ['Daftar Menu', 'bi bi-book"'],
+                    'cart' => ['Keranjang', 'bi bi-cart'],
+                    'profile' => ['Profil', 'bi bi-person'],
+                ];
+            }
         }
         return ($data);
     }

@@ -24,7 +24,7 @@ class OrderModel extends Model
     
     public function list_history_order_user($params = null)
     {
-        $query = $this->where('user_id', $params)->where('status', '<>', NULL)->find();
+        $query = $this->where('user_id', $params)->where('status IS NOT NULL')->orderBy('date', 'desc')->find();
         return $query;
     }
 }

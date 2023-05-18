@@ -35,11 +35,26 @@ class Order extends BaseController
             'name' => 'order',
             'title' => 'Pemesanan',
             'file' => $this->orderModel->list_history_order_user($user['username']),
-            'count_cart' => count($this->orderModel->list_history_order_user($user['username'])),
+            'count_order' => count($this->orderModel->list_history_order_user($user['username'])),
             'modules' => $modules
         ];
         // dd($data['file']);
         return view('_content/_views/view_order', $data);
+    }
+
+    public function detail($params)
+    {
+        $modules = (new Modules)->index();
+        $data = [
+            'name' => 'orderdetail',
+            'title' => 'Detail Order',
+            'file' => $this->orderDetailModel->get_item_order($params),
+            'modules' => $modules,
+            'params' => [
+                'order_id' => $params
+            ]
+        ];
+        return view('_content/_views/view_order_detail', $data);
     }
 
     public function process()

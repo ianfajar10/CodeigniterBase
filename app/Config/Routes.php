@@ -36,9 +36,10 @@ $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/profile', 'Profile::index', ['filter' => 'isLogin']);
 $routes->get('/menulist', 'Menulist::index');
 $routes->get('/cart', 'Cart::index', ['filter' => 'isLogin']);
-$routes->get('/order', 'Order::index');
+$routes->get('/order', 'Order::index', ['filter' => 'isLogin']);
 
 $routes->get('/menulist/detail', 'Menulist::detail');
+$routes->get('/order/detail', 'Order::detail');
 
 $routes->get('/register', 'Auth::register');
 $routes->get('/login', 'Auth::login');

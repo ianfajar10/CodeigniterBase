@@ -20,4 +20,12 @@ class OrderDetailModel extends Model
         $this->insert($data2);
         return true;
     }
+
+    public function get_item_order($params)
+    {
+        $query = $this->join('tbl_files', 'tbl_files.id = tbl_order_detail.file_id', 'left')
+        ->where('order_id', $params)
+        ->find();
+        return $query;
+    }
 }
