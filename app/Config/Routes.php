@@ -41,10 +41,11 @@ $routes->get('/order', 'Order::index', ['filter' => 'isLogin']);
 $routes->get('/menulist/detail', 'Menulist::detail');
 $routes->get('/order/detail', 'Order::detail');
 
+$routes->get('/noaccess', 'Noaccess::index');
 $routes->get('/register', 'Auth::register');
 $routes->get('/login', 'Auth::login');
 
-$routes->get('/upload', 'Upload::index');
+$routes->get('/upload', 'Upload::index', ['filter' => 'isAdmin']);
 $routes->get('/discount', 'Discount::index');
 
 /*

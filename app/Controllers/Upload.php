@@ -52,4 +52,27 @@ class Upload extends BaseController
             return redirect()->to('./upload')->with('berhasil', 'Data Berhasil di Simpan');
         }
     }
+
+    public function delete_file(){
+        $model = new FileModel();
+        $params = $this->request->getPost();
+
+        $get_data = $model->get_files($params['file_id'])[0];
+        unlink('public\assets\images' . DIRECTORY_SEPARATOR . $get_data['file']);
+        $delete = $model->delete_files($get_data['id']);
+        if ($delete) {
+
+            $response = [
+                'success' => true,
+                'msg' => 'Menu berhasil dihapus.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'msg' => 'Menu gagal dihapus.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
 }

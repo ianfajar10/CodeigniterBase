@@ -34,4 +34,11 @@ class FileModel extends Model
         $query = $this->db->table($this->table)->insert($data);
         return $query;
     }
+
+    public function delete_files($id)
+    {
+        $this->where('id', $id)
+        ->delete();
+        return true;
+    }
 }

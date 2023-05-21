@@ -71,6 +71,7 @@
                         <thead>
                             <tr>
                                 <!-- <th scope="col">No</th> -->
+                                <th scope="col">Aksi</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Deskripsi</th>
                                 <th scope="col">Gambar</th>
@@ -82,6 +83,11 @@
                             <?php foreach ($file as $row) : ?>
                                 <tr>
                                     <!-- <td><?= $no = $no + 1; ?></td> -->
+                                    <td>
+                                        <button type="button" onclick="deleteItem(<?= $row['id'] ?>)" class="btn btn-danger btn-md me-1 mb-2" data-mdb-toggle="tooltip" title="Hapus menu">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
                                     <td><?= $row['name']; ?></td>
                                     <td><?= $row['description'] ? $row['description'] : '-' ?></td>
                                     <td><img src="<?= base_url('../public/assets/images/' . $row['file']); ?>" width="100"></td>
@@ -95,5 +101,51 @@
         </div>
     </div>
 </div>
+<script>
+    var base_url = $('#base_url').val();
 
+    function deleteItem($file_id) {
+        console.log($file_id)
+        $.ajax({
+            type: "POST",
+            url: base_url + ('upload/delete_file'),
+            data: {
+                'file_id': $file_id
+            },
+            beforeSend: function(xhr) {
+
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        title: "Menghapus..",
+                        text: "Menghapus menu",
+                        timer: 2000,
+                        showConfirmButton: false,
+                        willOpen: function() {
+                            Swal.showLoading()
+                        }
+                    }).then(function() {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil!',
+                            showConfirmButton: false,
+                            text: response.msg,
+                            timer: 2000,
+                        }).then(function() {
+                            location.reload();
+                        })
+                    })
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: response.msg,
+                    })
+                }
+
+            }
+        });
+    }
+</script>
 <?= $this->endSection() ?>

@@ -3,6 +3,25 @@
 <?= $this->section('content') ?>
 
 <div>
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Slides with captions -->
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -44,5 +63,24 @@
         </button>
     </div><!-- End Slides with captions -->
 </div>
-
+<script>
+    var user_id = $('#user_id').val();
+    var base_url = $('#base_url').val();
+    $(document).ready(function() {
+        if (user_id && user_id !== 'admin') {
+            $.ajax({
+                type: "POST",
+                url: base_url + ('order/check_new_user'),
+                data: {
+                    'user_id': user_id
+                },
+                success: function(response) {
+                    if (!response.success) {
+                        $('#myModal').modal('show');
+                    }
+                }
+            });
+        }
+    });
+</script>
 <?= $this->endSection() ?>

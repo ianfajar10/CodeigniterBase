@@ -111,4 +111,22 @@ class Order extends BaseController
 
         return $this->response->setJSON($response);
     }
+
+    public function check_new_user()
+    {
+        $params = $this->request->getPost();
+        $query = $this->orderModel->list_history_order_user($params['user_id']);
+        
+        if ($query) {
+            $response = [
+                'success' => true,
+            ];
+        } else {
+            $response = [
+                'success' => false,
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
 }
