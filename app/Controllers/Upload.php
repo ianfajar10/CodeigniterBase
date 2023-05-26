@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\FileModel;
-use CodeIgniter\Controller;
 
 class Upload extends BaseController
 {

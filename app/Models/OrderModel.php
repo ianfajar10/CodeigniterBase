@@ -13,6 +13,7 @@ class OrderModel extends Model
         "user_id",
         "total",
         "status",
+        "disc_id",
         "date"
     ];
 
@@ -24,7 +25,11 @@ class OrderModel extends Model
     
     public function list_history_order_user($params = null)
     {
-        $query = $this->where('user_id', $params)->where('status IS NOT NULL')->orderBy('date', 'desc')->find();
+        $query = $this->select('tbl_orders.id, user_id, total, status, discount, date')->join('tbl_discs', 'tbl_discs.id = tbl_orders.disc_id', 'left')
+        ->where('user_id', $params)
+        ->where('status IS NOT NULL')
+        ->orderBy('date', 'desc')
+        ->find();
         return $query;
     }
 }

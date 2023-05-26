@@ -105,7 +105,6 @@
     var base_url = $('#base_url').val();
 
     function deleteItem($file_id) {
-        console.log($file_id)
         $.ajax({
             type: "POST",
             url: base_url + ('upload/delete_file'),

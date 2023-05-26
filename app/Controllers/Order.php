@@ -38,7 +38,6 @@ class Order extends BaseController
             'count_order' => count($this->orderModel->list_history_order_user($user['username'])),
             'modules' => $modules
         ];
-        // dd($data['file']);
         return view('_content/_views/view_order', $data);
     }
 
@@ -66,6 +65,7 @@ class Order extends BaseController
             'user_id' => $params['user_id'],
             'total' => $params['total'],
             'status' => $params['status'],
+            'disc_id' => $params['is_new'] === 'true' ? '1' : '0'
         ];
 
         $save = $this->orderModel->save_data($data);
@@ -78,7 +78,7 @@ class Order extends BaseController
                 'order_id' => $params['no_order'],
                 'file_id' => $value,
                 'quantity' => $quantity[$key],
-                'price' => $price[$key],
+                'price' => $price[$key] * $quantity[$key],
             ];
     
             $save = $this->orderDetailModel->save_data_detail($data2);
@@ -119,11 +119,11 @@ class Order extends BaseController
         
         if ($query) {
             $response = [
-                'success' => true,
+                'success' => false,
             ];
         } else {
             $response = [
-                'success' => false,
+                'success' => true,
             ];
         }
 

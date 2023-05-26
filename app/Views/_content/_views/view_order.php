@@ -13,7 +13,13 @@
                 <div class="card mt-2">
                     <ul class="list-group list-group-flush">
                         <?php foreach ($file as $row) : ?>
-                            <li onclick="showOrder(<?= $row['id'] ?>)" class="list-group-item"><span class="fs-6 fw-bold">No. Pesanan <?= $row['id'] ?></span><br>Waktu Pemesanan <?= $row['date'] ?><br><span class="fst-italic fw-bold">Total Rp.<?= number_format(($row['total']), 0, ',', '.') ?></span><br><span class="fst-italic"><?= $row['status'] ?></span></li>
+                            <li onclick="showOrder(<?= $row['id'] ?>)" class="list-group-item">
+                                <span class="fs-6 fw-bold">No. Pesanan <?= $row['id'] ?></span>
+                                <br>Waktu Pemesanan <?= $row['date'] ?><br>
+                                <span class="fs-6 fw-bold <?= $row['discount'] ? '' : 'd-none' ?>">Diskon (Rp.<?= number_format(($row['discount']), 0, ',', '.')?>)</span><br>
+                                <span class="fst-italic fw-bold">Total Rp.<?= number_format(($row['total'] - $row['discount']), 0, ',', '.') ?></span>
+                                <br><span class="fst-italic"><?= $row['status'] ?></span>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>

@@ -69,7 +69,7 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div class="card mb-4">
+        <div class="card mb-4 <?= $total_item === 0 ? 'visually-hidden' : '' ?>">
             <div class="card-header py-3">
                 <h5 class="mb-0">Rincian Pemesanan</h5>
             </div>
@@ -79,19 +79,27 @@
                         Total Produk
                         <span><?= $total_item ?></span>
                     </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                        Total Harga
+                        <span>Rp<?= number_format($total_price, 0, ',', '.') ?></span>
+                    </li>
+                    <li id="discount_baru" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                        Diskon Pengguna Baru
+                        <span>Rp10.000</span>
+                    </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                         <div>
                             <strong>Total Bayar</strong>
                         </div>
-                        <span><strong><?= $total_price ?></strong></span>
+                        <span><strong id="total_price"></strong></span>
                     </li>
                 </ul>
-                <input id="no_order" type="text" value="<?= date("Ymdhi") ?>" hidden>
+                <input id="no_order" type="text" value="<?= date("Ymdhis") ?>" hidden>
                 <input id="total" type="text" value="<?= $total_price ?>" hidden>
 
-                <button type="button" onclick="confirmOrder($item = [<?= implode(', ', $item) ?>], $quantity = [<?= implode(', ', $quantity) ?>], $price = [<?= implode(', ', $price) ?>])" class="btn btn-primary btn-lg btn-block">
+                <button type="button" onclick="confirmOrder($item = [<?= implode(', ', $item) ?>], $quantity = [<?= implode(', ', $quantity) ?>], $price = [<?= implode(', ', $price) ?>])" class="btn btn-primary btn-lg btn-block <?= $total_price === null ? 'visually-hidden' : '' ?>">
                     Lanjut Pesan
                 </button>
             </div>
@@ -104,6 +112,7 @@
     var base_url = $('#base_url').val();
     var no_order = $('#no_order').val();
     var total = $('#total').val();
+    var is_new = false;
 
     function deleteItem($file_id) {
         if (user_id) {
@@ -161,7 +170,6 @@
 
     function confirmOrder($item, $quantity, $price) {
         if (user_id) {
-
             Swal.fire({
                 title: 'Konfirmasi',
                 text: "Anda yakin untuk memproses pesanan? Anda tidak dapat mengubah pesanan kembali setelah proses ini.",
@@ -181,6 +189,7 @@
                             'item': $item,
                             'quantity': $quantity,
                             'price': $price,
+                            'is_new': is_new
                         },
                         beforeSend: function(xhr) {
 
@@ -228,6 +237,27 @@
             })
         }
     }
+
+    $(document).ready(function() {
+        if (user_id && user_id !== 'admin') {
+            $.ajax({
+                type: "POST",
+                url: base_url + ('order/check_new_user'),
+                data: {
+                    'user_id': user_id
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $('#total_price').text('Rp' + (total - 10000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
+                        is_new = true
+                    } else {
+                        $('#discount_baru').addClass('visually-hidden');
+                        $('#total_price').text('Rp' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
+                    }
+                }
+            });
+        }
+    });
 </script>
 
 <?= $this->endSection() ?>
