@@ -18,7 +18,7 @@
                                 <br>Waktu Pemesanan <?= $row['date'] ?><br>
                                 <span class="fs-6 fw-bold <?= $row['discount'] ? '' : 'd-none' ?>">Diskon (Rp.<?= number_format(($row['discount']), 0, ',', '.')?>)</span><br>
                                 <span class="fst-italic fw-bold">Total Rp.<?= number_format(($row['total'] - $row['discount']), 0, ',', '.') ?></span>
-                                <br><span class="fst-italic"><?= $row['status'] ?></span>
+                                <br><span class="fst-italic"><?= $row['status'] == 'menunggu_pembayaran' ? 'Menunggu Pembayaran' : 'Pembayaran Diterima' ?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>

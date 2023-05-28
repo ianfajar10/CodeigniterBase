@@ -48,7 +48,10 @@ class CartModel extends Model
 
     public function list_cart_user($params = null)
     {
-        $query = $this->join('tbl_files', 'tbl_files.id = tbl_carts.file_id', 'left')->where('user_id', $params)->find();
+        $query = $this->select('tbl_carts.*, tbl_files.name, tbl_files.description, tbl_files.file, tbl_files.type, tbl_files.disc_id, (tbl_files.price - (tbl_discs.discount * tbl_files.price)) AS price')->join('tbl_files', 'tbl_files.id = tbl_carts.file_id', 'left')
+        ->join('tbl_discs', 'tbl_discs.id = tbl_files.disc_id', 'left')
+        ->where('user_id', $params)
+        ->find();
         return $query;
     }
 

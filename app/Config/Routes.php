@@ -47,6 +47,7 @@ $routes->get('/login', 'Auth::login');
 
 $routes->get('/upload', 'Upload::index', ['filter' => 'isAdmin']);
 $routes->get('/discount', 'Discount::index');
+$routes->get('/orderadmin', 'Order::index_admin');
 
 /*
  * --------------------------------------------------------------------

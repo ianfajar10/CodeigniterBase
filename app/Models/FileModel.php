@@ -22,9 +22,11 @@ class FileModel extends Model
     public function get_files($params = null)
     {
         if ($params == null) {
-            return $this->findAll();
+            $query = $this->select('tbl_files.id, name, description, file, type, price, tbl_discs.discount')->join('tbl_discs', 'tbl_discs.id = tbl_files.disc_id', 'left')->findAll();
+            // dd($this->getLastQuery());
+            return $query;
         } else {
-            $query = $this->where('id', $params)->find();
+            $query = $this->select('tbl_files.id, name, description, file, type, price, tbl_discs.discount')->join('tbl_discs', 'tbl_discs.id = tbl_files.disc_id', 'left')->where('tbl_files.id', $params)->find();
             return $query;
         }
     }
@@ -32,9 +34,11 @@ class FileModel extends Model
     public function get_files_by_search($query = null)
     {
         if ($query == null) {
-            return $this->findAll();
+            $query = $this->select('tbl_files.id, name, description, file, type, price, tbl_discs.discount')->join('tbl_discs', 'tbl_discs.id = tbl_files.disc_id', 'left')->findAll();
+            return $query;
         } else {
-            $query = $this->like('name', $query)->find();
+            $query =
+            $this->select('tbl_files.id, name, description, file, type, price, tbl_discs.discount')->join('tbl_discs', 'tbl_discs.id = tbl_files.disc_id', 'left')->like('name', $query)->find();
             return $query;
         }
     }

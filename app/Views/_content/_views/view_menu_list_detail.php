@@ -17,7 +17,8 @@
                             <h5 class="card-title"><?= $row['name'] ? $row['name'] : '-' ?></h5>
                         </div>
                         <div>
-                            <h5 class="card-title d-flex align-items-end flex-column fst-italic"><?= $row['price'] ? 'Rp' . number_format($row['price'], 0, ',', '.') : '-' ?></h5>
+                            <h5 class="card-title d-flex align-items-end flex-column fst-italic <?= $row['discount'] != '0' ? 'text-decoration-line-through' : '' ?>"><?= $row['price'] ? 'Rp' . number_format($row['price'], 0, ',', '.') : '-' ?></h5>
+                            <?= $row['discount'] != '0' ? '<span class="badge bg-light text-dark fst-italic">'. 'Rp' . number_format($row['price']-($row['price']*$row['discount']), 0, ',', '.') .'</span>' : '' ?>
                         </div>
                     </div>
                     <p class="card-text text-align: justify;"><?= $row['description'] ? $row['description'] : '-' ?></p>

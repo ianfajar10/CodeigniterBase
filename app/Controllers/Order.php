@@ -129,4 +129,39 @@ class Order extends BaseController
 
         return $this->response->setJSON($response);
     }
+
+    public function index_admin()
+    {
+        $modules = (new Modules)->index();
+
+        $data = [
+            'name' => 'orderadmin',
+            'title' => 'Pemesanan',
+            'file' => $this->orderModel->list_history_order_user(),
+            'modules' => $modules
+        ];
+        return view('_content/_views/view_order_admin', $data);
+    }
+
+    public function update_status()
+    {
+        $model = new OrderModel();
+        $params = $this->request->getPost();
+
+        $save = $model->update_status($params['status'], $params['order_id']);
+        if ($save) {
+
+            $response = [
+                'success' => true,
+                'msg' => 'Status pembayaran berhasil disimpan.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'msg' => 'Status pembayaran gagal disimpan.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
 }
