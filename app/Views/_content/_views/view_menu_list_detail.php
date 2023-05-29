@@ -24,17 +24,18 @@
                     <p class="card-text text-align: justify;"><?= $row['description'] ? $row['description'] : '-' ?></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="ratings">
-                            <i class='<?= (count($like)/$rating*5 >= 1 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
-                            <i class='<?= (count($like)/$rating*5 >= 2 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
-                            <i class='<?= (count($like)/$rating*5 >= 3 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
-                            <i class='<?= (count($like)/$rating*5 >= 4 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
-                            <i class='<?= (count($like)/$rating*5 >= 5 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
-                            <?php if ($rating == 0) { ?>
+                            <?php if (count($rating) == 0) { ?>
                                 <span class="fst-italic">(Belum ada penilaian)</span>
+                            <?php } else { ?>
+                                <i class='<?= (count($like) / count($rating) * 5 >= 1 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
+                                <i class='<?= (count($like) / count($rating) * 5 >= 2 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
+                                <i class='<?= (count($like) / count($rating) * 5 >= 3 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
+                                <i class='<?= (count($like) / count($rating) * 5 >= 4 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
+                                <i class='<?= (count($like) / count($rating) * 5 >= 5 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
                             <?php } ?>
                         </div>
-                        <?php if ($rating > 0) { ?>
-                            <h5 class="review-count"><?= $rating ?> Penilaian</h5>
+                        <?php if (count($rating) > 0) { ?>
+                            <h5 class="review-count"><?= count($rating) ?> Penilaian</h5>
                         <?php } ?>
                     </div>
                     <div class="mt-3">

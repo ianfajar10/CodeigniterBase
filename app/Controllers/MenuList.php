@@ -45,7 +45,7 @@ class Menulist extends BaseController
             'name' => 'menulist',
             'title' => 'Detail Menu',
             'file' => $file->get_files($params),
-            'rating' => count($rate->count_rating($new_params)),
+            'rating' => $rate->count_rating($new_params),
             'like' => $rate->check_user($new_params, 'like'),
             'dislike' => $rate->check_user($new_params, 'dislike'),
             'modules' => $modules,
