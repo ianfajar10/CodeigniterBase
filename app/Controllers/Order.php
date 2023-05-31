@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\CartModel;
+use App\Models\DiscountModel;
 use App\Models\OrderDetailModel;
 use App\Models\OrderModel;
 use App\Models\UserModel;
@@ -14,6 +15,7 @@ class Order extends BaseController
         $orderDetailModel,
         $orderModel,
         $userModel,
+        $discountModel,
         $session;
 
     public function __construct()
@@ -22,6 +24,7 @@ class Order extends BaseController
         $this->orderDetailModel = new OrderDetailModel();
         $this->orderModel = new OrderModel();
         $this->userModel = new UserModel();
+        $this->discountModel = new DiscountModel();
         $this->session = \Config\Services::session();
     }
 
@@ -65,7 +68,7 @@ class Order extends BaseController
             'user_id' => $params['user_id'],
             'total' => $params['total'],
             'status' => $params['status'],
-            'disc_id' => $params['is_new'] === 'true' ? '1' : '0'
+            'disc_id' => $params['is_new'] === 'true' ? 'PENGGUNABARU' : '0'
         ];
 
         $save = $this->orderModel->save_data($data);
@@ -120,11 +123,26 @@ class Order extends BaseController
         if ($query) {
             $response = [
                 'success' => false,
+                'msg' => 'Maaf, anda tidak memenuhi syarat sebagai pengguna baru.'
             ];
         } else {
-            $response = [
-                'success' => true,
-            ];
+            if ($params['code']) {
+                $check_code = $this->discountModel->get_code($params['code']);
+                if (count($check_code) > 0) {
+                    $response = [
+                        'success' => true,
+                        'msg' => 'Selamat, kode bisa digunakan.'
+                    ];
+                } else {
+                    $response = [
+                        'success' => false,
+                        'msg' => 'Maaf, kode tidak bisa digunakan.'
+                    ];
+                }
+            }
+            // $response = [
+            //     'success' => true,
+            // ];
         }
 
         return $this->response->setJSON($response);

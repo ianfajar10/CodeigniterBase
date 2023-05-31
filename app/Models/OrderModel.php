@@ -27,7 +27,7 @@ class OrderModel extends Model
     {
         $var = "(SELECT GROUP_CONCAT(concat(tbl_files.name, ' ('), concat(tod.quantity, ')') SEPARATOR ',') FROM tbl_order_detail tod left JOIN tbl_files ON tbl_files.id = tod.file_id WHERE tod.order_id = tbl_orders.id) AS item";
         if ($params == null) {
-            $query = $this->select('tbl_orders.id, user_id, total, status, discount, date, ' . $var)->join('tbl_discs', 'tbl_discs.id = tbl_orders.disc_id', 'left')
+            $query = $this->select('tbl_orders.id, user_id, (SELECT SUM(quantity) FROM tbl_order_detail WHERE tbl_order_detail.order_id = tbl_orders.id) AS total_item, total AS total_price, status, discount, (total - discount) AS price_after_diskon, ' . $var)->join('tbl_discs', 'tbl_discs.id = tbl_orders.disc_id', 'left')
             ->where('status IS NOT NULL')
             ->orderBy('date', 'desc')
             ->findAll();

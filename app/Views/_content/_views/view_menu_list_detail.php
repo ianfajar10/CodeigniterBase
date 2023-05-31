@@ -39,11 +39,11 @@
                         <?php } ?>
                     </div>
                     <div class="mt-3">
-                        <button class="btn <?= count($like) > 0 ? 'btn-primary' : 'btn-outline-primary' ?>" type="button" onclick="handleLike('like')" <?= count($like) > 0 ? 'disabled' : '' ?>><i class="bi bi-hand-thumbs-up"></i> Suka</button>
-                        <button class="btn <?= count($dislike) > 0 ? 'btn-primary' : 'btn-outline-primary' ?>" type="button" onclick="handleLike('dislike')" <?= count($dislike) > 0 ? 'disabled' : '' ?>><i class="bi bi-hand-thumbs-down"></i> Tidak Suka</button>
+                        <button class="btn btn-outline-primary btn-add-cart" type="submit"><i class="bi bi-cart"></i> Tambah ke Keranjang</button>
                     </div>
                     <div class="mt-3">
-                        <button class="btn btn-outline-primary btn-add-cart" type="submit">Tambah</button>
+                        <button class="btn <?= count($check_like) > 0 ? 'btn-primary' : 'btn-outline-primary' ?>" type="button" onclick="handleLike('like')" <?= count($check_like) > 0 ? 'disabled' : '' ?>><i class="bi bi-hand-thumbs-up"></i> Suka</button>
+                        <button class="btn <?= count($check_dislike) > 0 ? 'btn-primary' : 'btn-outline-primary' ?>" type="button" onclick="handleLike('dislike')" <?= count($check_dislike) > 0 ? 'disabled' : '' ?>><i class="bi bi-hand-thumbs-down"></i> Tidak Suka</button>
                     </div>
                     <div class="row mt-3 div-spin-number visually-hidden">
                         <div class="col-8">
@@ -70,6 +70,28 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Komentar</h5>
+                            <div class="form-floating mb-3 mt-3 <?= count($check_comment) == 0 ? (count($check_like) > 0 || count($check_dislike) > 0 ? '' : 'visually-hidden') : 'visually-hidden' ?>">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="comments" value="" style="height: 100px;"></textarea>
+                                <label for="floatingTextarea">Masukkan komentar disini..</label>
+                                <button type="button" onclick="handleKirim()" class="btn btn-primary mt-2">Kirim</button>
+                            </div>
+                            <div class="mt-2">
+                                <!-- List group with Advanced Contents -->
+                                <div class="list-group">
+                                    <?= count($comment) == 0 ? 'Belum ada komentar' : '' ?>
+                                    <?php foreach ($comment as $row2) : ?>
+                                        <a class="list-group-item list-group-item-action" aria-current="true">
+                                            <p class="mb-1"><?= $row2['comment'] ?></p>
+                                            <small class="fw-bold"><?= $row2['user_id'] ?>.</small>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div><!-- End List group Advanced Content -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,7 +105,6 @@
 
     function handleLike($rate) {
         if (user_id) {
-            console.log(user_id, file_id);
 
             $.ajax({
                 type: "POST",
@@ -101,6 +122,60 @@
                         Swal.fire({
                             title: "Menilai..",
                             text: "Memberi Penilaian",
+                            timer: 2000,
+                            showConfirmButton: false,
+                            willOpen: function() {
+                                Swal.showLoading()
+                            }
+                        }).then(function() {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil!',
+                                showConfirmButton: false,
+                                text: response.msg,
+                                timer: 2000,
+                            }).then(function() {
+                                location.reload();
+                            })
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: response.msg,
+                        })
+                    }
+
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Maaf!',
+                text: 'Harap masuk untuk melanjutkan!',
+            })
+        }
+    }
+
+    function handleKirim() {
+        if (user_id) {
+
+            $.ajax({
+                type: "POST",
+                url: base_url + ('menulist/comment_process'),
+                data: {
+                    'user_id': user_id,
+                    'file_id': file_id,
+                    'comment': $('#comments').val()
+                },
+                beforeSend: function(xhr) {
+
+                },
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire({
+                            title: "Mengkomentari..",
+                            text: "Memberi Komentar",
                             timer: 2000,
                             showConfirmButton: false,
                             willOpen: function() {

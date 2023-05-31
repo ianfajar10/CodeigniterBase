@@ -20,7 +20,8 @@ class Modules extends BaseController
             'cart' => ['Keranjang', 'bi bi-cart'],
             'order' => ['Histori Pemesanan', 'bi bi-clock-history'],
             'order/detail' => ['Detail Order', '-'],
-            'orderadmin' => ['Pemesanan', 'bi bi-book']
+            'orderadmin' => ['Pemesanan', 'bi bi-book'],
+            'report' => ['Laporan', 'bi bi-file-earmark-bar-graph-fill"']
         ];
         if ($check_role == 1) {
             //ADMIN
@@ -29,7 +30,8 @@ class Modules extends BaseController
                 'upload' => ['Unggah', 'bi bi-pencil-square'],
                 'discount' => ['Potongan Harga', 'bi bi-tag'],
                 'profile' => ['Profil', 'bi bi-person'],
-                'orderadmin' => ['Pemesanan', 'bi bi-book']
+                'orderadmin' => ['Pemesanan', 'bi bi-book'],
+                'report' => ['Laporan', 'bi bi-file-earmark-bar-graph-fill"']
             ];
         } else {
             if ($check_role != null) {

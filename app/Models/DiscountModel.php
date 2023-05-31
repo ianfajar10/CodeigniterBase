@@ -18,4 +18,9 @@ class DiscountModel extends Model
         return $this->select('(discount * 100) as label, id as value')
         ->where('discount < 1')->findAll();
     }
+
+    public function get_code($params)
+    {
+        return $this->where('id', $params)->find();
+    }
 }

@@ -46,8 +46,11 @@ class Menulist extends BaseController
             'title' => 'Detail Menu',
             'file' => $file->get_files($params),
             'rating' => $rate->count_rating($new_params),
-            'like' => $rate->check_user($new_params, 'like'),
-            'dislike' => $rate->check_user($new_params, 'dislike'),
+            'check_like' => $rate->check_user($new_params, 'like'),
+            'check_dislike' => $rate->check_user($new_params, 'dislike'),
+            'check_comment' => $rate->check_user($new_params, 'comment'),
+            'comment' => $rate->get_comment($new_params),
+            'like' => $rate->get_like($new_params),
             'modules' => $modules,
             'params' => [
                 'id' => $params
@@ -106,6 +109,35 @@ class Menulist extends BaseController
             $response = [
                 'success' => false,
                 'msg' => 'Gagal memberi penilaian.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    public function comment_process()
+    {
+        $rate = new RateModel();
+
+        $params = $this->request->getPost();
+
+        $data = [
+            'user_id' => $params['user_id'],
+            'file_id' => $params['file_id'],
+            'comment' => $params['comment'],
+        ];
+
+        $save = $rate->save_data($data);
+
+        if ($save) {
+            $response = [
+                'success' => true,
+                'msg' => 'Berhasil memberi komentar.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'msg' => 'Gagal memberi komentar.'
             ];
         }
 

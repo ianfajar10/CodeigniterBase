@@ -26,10 +26,10 @@
                             <?php $no = $no + 1; ?>
                             <td><?= $row['id']; ?></td>
                             <td><?= $row['user_id']; ?></td>
-                            <td><?= $row['total']; ?></td>
-                            <td><?= $row['total']; ?></td>
+                            <td><?= $row['total_item']; ?></td>
+                            <td><?= $row['total_price']; ?></td>
                             <td><?= $row['discount'] ? $row['discount'] : '-'; ?></td>
-                            <td><?= $row['discount'] ? $row['discount'] : '-'; ?></td>
+                            <td><?= $row['price_after_diskon'] ? ($row['price_after_diskon'] < 0 ? 0 : $row['price_after_diskon']) : '-'; ?></td>
                             <td>
                                 <select class="form-select" aria-label="Default select">
                                     <option <?= $row['status'] === '' ? 'selected' : '' ?> value="-">Pilih status</option>
