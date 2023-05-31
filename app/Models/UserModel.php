@@ -30,4 +30,11 @@ class UserModel extends Model
         $query = $this->insert($data);
         return $query;
     }
+
+    public function list_user()
+    {
+        $query = $this->where('username !=', 'admin')->findAll();
+        // dd($this->getLastQuery());
+        return $query;
+    }
 }

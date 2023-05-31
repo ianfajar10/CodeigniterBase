@@ -40,31 +40,31 @@
             <form class="row g-3" id="ajax_form">
                 <div class="col-md-12">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan Nama Lengkap" required>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan Nama Lengkap">
                         <label for="name">Nama Lengkap</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Nama Pengguna" required>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Nama Pengguna">
                         <label for="username">Nama Pengguna</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Kata Sandi" required>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Kata Sandi">
                         <label for="password">Kata Sandi</label>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-floating">
-                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Konfirmasi Kata Sandi" required>
+                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Konfirmasi Kata Sandi">
                         <label for="confirm">Konfirmasi Kata Sandi</label>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-floating">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" required>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
                         <label for="email">Email</label>
                     </div>
                 </div>
@@ -99,17 +99,28 @@
                                 window.location.href = "<?php echo (base_url() . 'login') ?>";
                             })
                         } else {
-                            let res = response.msg
-                            const error = []
-                            for (const [key, value] of Object.entries(res)) {
-                                error.push(`<li>${value}</li>`)
+                            if (response.msg) {
+                                let res = response.msg
+                                const error = []
+                                for (const [key, value] of Object.entries(res)) {
+                                    error.push(`<li>${value}</li>`)
+                                }
+                                let error_msg = error.join('')
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Maaf..',
+                                    html: error_msg
+                                })
+                            } else if (response.msg2) {
+                                let res = response.msg2
+                                let error_msg = res
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Maaf..',
+                                    html: error_msg
+                                })
                             }
-                            let error_msg = error.join('')
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Maaf..',
-                                html: error_msg
-                            })
+                            $('#send_form').html('Buat');
                         }
                     }
                 });

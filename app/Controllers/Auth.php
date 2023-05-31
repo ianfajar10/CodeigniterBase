@@ -50,6 +50,38 @@ class Auth extends BaseController
         //tangkap data dari form 
         $data = $this->request->getPost();
 
+        if ($data['name'] == null) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Nama tidak boleh kosong!'
+            ];
+            return $this->response->setJSON($data);
+        } else if ($data['username'] == null) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Nama pengguna tidak boleh kosong!'
+            ];
+            return $this->response->setJSON($data);
+        } else if ($data['password'] == null) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Kata sandi tidak boleh kosong!'
+            ];
+            return $this->response->setJSON($data);
+        } else if ($data['confirm'] == null) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Konfirmasi kata sandi tidak boleh kosong!'
+            ];
+            return $this->response->setJSON($data);
+        } else if ($data['email'] == null) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Email tidak boleh kosong!'
+            ];
+            return $this->response->setJSON($data);
+        }
+
         //jalankan validasi
         $this->validation->run($data, 'register');
 

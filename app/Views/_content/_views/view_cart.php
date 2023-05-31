@@ -52,7 +52,7 @@
 
                             <!-- Price -->
                             <p class="text-start text-md-center">
-                                <strong>Rp <?= number_format(($row['price'] * $row['quantity']), 0, ',', '.'); ?></strong>
+                                <strong>Rp <?= number_format(($row['price']), 0, ',', '.'); ?></strong>
                             </p>
                             <!-- Price -->
                         </div>

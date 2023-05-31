@@ -2,6 +2,8 @@
 
 <?= $this->section('content') ?>
 
+<?php $session = session() ?>
+
 <?php foreach ($file as $row) : ?>
     <input type="hidden" id="file_id" value="<?= $params['id'] ?>">
     <!-- Card with an image on left -->
@@ -38,10 +40,10 @@
                             <h5 class="review-count"><?= count($rating) ?> Penilaian</h5>
                         <?php } ?>
                     </div>
-                    <div class="mt-3">
+                    <div class="mt-3 <?= ($session->get('username') == 'admin' ? 'visually-hidden' : '') ?>">
                         <button class="btn btn-outline-primary btn-add-cart" type="submit"><i class="bi bi-cart"></i> Tambah ke Keranjang</button>
                     </div>
-                    <div class="mt-3">
+                    <div class="mt-3 <?= ($session->get('username') == 'admin' ? 'visually-hidden' : '') ?>">
                         <button class="btn <?= count($check_like) > 0 ? 'btn-primary' : 'btn-outline-primary' ?>" type="button" onclick="handleLike('like')" <?= count($check_like) > 0 ? 'disabled' : '' ?>><i class="bi bi-hand-thumbs-up"></i> Suka</button>
                         <button class="btn <?= count($check_dislike) > 0 ? 'btn-primary' : 'btn-outline-primary' ?>" type="button" onclick="handleLike('dislike')" <?= count($check_dislike) > 0 ? 'disabled' : '' ?>><i class="bi bi-hand-thumbs-down"></i> Tidak Suka</button>
                     </div>

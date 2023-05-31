@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\OrderModel;
+use App\Models\UserModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -20,7 +21,7 @@ class Report extends BaseController
         return view('_content/_views/view_report', $data);
     }
     
-    public function download()
+    public function download_order()
     {
         $model = new OrderModel();
         $dataOrder = $model->list_history_order_user();
@@ -59,6 +60,42 @@ class Report extends BaseController
         // tulis dalam format .xlsx
         $writer = new Xlsx($spreadsheet);
         $fileName = 'Data Penjualan ' . date("Y-m-d");
+
+        // Redirect hasil generate xlsx ke web client
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+    }
+
+    public function download_user()
+    {
+        $model = new UserModel();
+        $dataUser = $model->list_user();
+
+        $spreadsheet = new Spreadsheet();
+
+        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(30);
+
+        $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'NAMA')
+            ->setCellValue('B1', 'EMAIL')
+            ->setCellValue('C1', 'MULAI DAFTAR');
+
+        $column = 2;
+        foreach ($dataUser as $data) {
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $column, $data['name'])
+                ->setCellValue('B' . $column, $data['email'])
+                ->setCellValue('C' . $column, $data['created_at']);
+            $column++;
+        }
+        // tulis dalam format .xlsx
+        $writer = new Xlsx($spreadsheet);
+        $fileName = 'Data Pengguna ' . date("Y-m-d");
 
         // Redirect hasil generate xlsx ke web client
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

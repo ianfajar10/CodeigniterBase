@@ -28,10 +28,11 @@ class Modules extends BaseController
             $data['sidebars'] = [
                 'dashboard' => ['Beranda', 'bi bi-grid'],
                 'upload' => ['Unggah', 'bi bi-pencil-square'],
+                'menulist' => ['Daftar Menu', 'bi bi-book"'],
                 'discount' => ['Potongan Harga', 'bi bi-tag'],
                 'profile' => ['Profil', 'bi bi-person'],
                 'orderadmin' => ['Pemesanan', 'bi bi-book'],
-                'report' => ['Laporan', 'bi bi-file-earmark-bar-graph-fill"']
+                'report' => ['Laporan', 'bi bi-file-earmark-bar-graph-fill"'],
             ];
         } else {
             if ($check_role != null) {
