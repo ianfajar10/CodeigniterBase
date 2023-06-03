@@ -8,12 +8,6 @@ use App\Models\UserModel;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require_once "library/PHPMailer.php";
-require_once "library/Exception.php";
-require_once "library/OAuth.php";
-require_once "library/POP3.php";
-require_once "library/SMTP.php";
-
 class Auth extends BaseController
 {
     protected
@@ -31,6 +25,10 @@ class Auth extends BaseController
 
         //meload session
         $this->session = \Config\Services::session();
+
+        require APPPATH . 'libraries/phpmailer/src/Exception.php';
+        require APPPATH . 'libraries/phpmailer/src/PHPMailer.php';
+        require APPPATH . 'libraries/phpmailer/src/SMTP.php';
     }
 
     public function login()
@@ -113,50 +111,60 @@ class Auth extends BaseController
             $save = $this->userModel->save_data($data);
 
             if ($save) {
-                $mail = new PHPMailer;
-
-                //Enable SMTP debugging. 
-                $mail->SMTPDebug = 0;
-                //Set PHPMailer to use SMTP.
-                $mail->isSMTP();
-                //Set SMTP host name                          
-                $mail->Host = "tls://smtp.gmail.com"; //host mail server
-                //Set this to true if SMTP host requires authentication to send email
-                $mail->SMTPAuth = true;
-                //Provide username and password     
-                $mail->Username = "inigm10@gmail.com";   //nama-email smtp          
-                $mail->Password = "kxjasgmtigetxzeo";           //password email smtp
-                //If SMTP requires TLS encryption then set it
-                $mail->SMTPSecure = "tls";
-                //Set TCP port to connect to 
-                $mail->Port = 587;
-
-                $mail->From = "inigm10@gmail.com"; //email pengirim
-                $mail->FromName = "Thani Coffee App"; //nama pengirim
-
-                $mail->addAddress($data['email']); //email penerima
-
-                $mail->isHTML(true);
-                $mail->Subject = 'Kode Promo Thani Coffee App'; //subject
-                $mail->Body    = "Selamat!, anda mendapatkan kode potongan senilai Rp10.000. Gunakan kode 'THANICOFFEENEW' saat melakukan checkout. "; //isi email
-                $mail->AltBody = "PHP mailer"; //body email (optional)
-
-                if (!$mail->send()) {
-                    $data = [
-                        'success' => false,
-                        'msg' => 'Anda gagal mendaftar'
-                    ];
-                } else {
-                    $data = [
-                        'success' => true,
-                        'msg' => 'Anda berhasil mendaftar, silahkan login dan periksa kotak masuk pada email anda'
-                    ];
-                }
+                return $this->send_email($data['email']);
             }
 
-            //arahkan ke halaman login
             return $this->response->setJSON($data);
+            //arahkan ke halaman login
         }
+    }
+
+    public function send_email($email)
+    {
+        $mail = new PHPMailer;
+
+        //Enable SMTP debugging. 
+        $mail->SMTPDebug = 2;
+        //Set PHPMailer to use SMTP.
+        $mail->isSMTP();
+        //Set SMTP host name                          
+        $mail->Host = "tls://smtp.gmail.com"; //host mail server
+        //Set this to true if SMTP host requires authentication to send email
+        $mail->SMTPAuth = true;
+        //Provide username and password     
+        $mail->Username = "inigm10@gmail.com";   //nama-email smtp          
+        $mail->Password = "kxjasgmtigetxzeo";           //password email smtp
+        //If SMTP requires TLS encryption then set it
+        $mail->SMTPSecure = "tls";
+        //Set TCP port to connect to 
+        $mail->Port = 587;
+
+        $mail->Timeout = 60; // timeout pengiriman (dalam detik)
+        $mail->SMTPKeepAlive = true; 
+
+        $mail->From = "inigm10@gmail.com"; //email pengirim
+        $mail->FromName = "Thani Coffee App"; //nama pengirim
+
+        $mail->addAddress($email); //email penerima
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Kode Promo Thani Coffee App'; //subject
+        $mail->Body    = "Selamat!, anda mendapatkan kode potongan senilai Rp10.000. Gunakan kode 'THANICOFFEENEW' saat melakukan checkout. "; //isi email
+        $mail->AltBody = "PHP mailer"; //body email (optional)
+
+        if (!$mail->send()) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Anda gagal mendaftar'
+            ];
+        } else {
+            $data = [
+                'success' => true,
+                'msg' => 'Anda berhasil mendaftar, silahkan login dan periksa kotak masuk pada email anda'
+            ];
+        }
+
+        return $this->response->setJSON($data);
     }
 
     public function valid_login()
