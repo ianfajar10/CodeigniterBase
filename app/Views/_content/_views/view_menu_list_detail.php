@@ -20,10 +20,12 @@
                         </div>
                         <div>
                             <h5 class="card-title d-flex align-items-end flex-column fst-italic <?= $row['discount'] != '0' ? 'text-decoration-line-through' : '' ?>"><?= $row['price'] ? 'Rp' . number_format($row['price'], 0, ',', '.') : '-' ?></h5>
-                            <?= $row['discount'] != '0' ? '<span class="badge bg-light text-dark fst-italic">' . 'Rp' . number_format($row['price'] - ($row['price'] * $row['discount']), 0, ',', '.') . '</span>' : '' ?>
+                            <?= $row['discount'] != '0' ? '<span class="badge text-dark fst-italic" style="background-color: #E0CBB0">' . 'Rp' . number_format($row['price'] - ($row['price'] * $row['discount']), 0, ',', '.') . '</span>' : '' ?>
                         </div>
                     </div>
-                    <p class="card-text text-align: justify;"><?= $row['description'] ? $row['description'] : '-' ?></p>
+                    <p class="card-text text-align: justify;"><?= $row['description'] ? explode('||', $row['description'])[0] : '-' ?></p>
+                    <h5 class="mt-2">Bahan</h5>
+                    <p><?= $row['description'] ? explode('||', $row['description'])[1] : '-' ?></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="ratings">
                             <?php if (count($rating) == 0) { ?>

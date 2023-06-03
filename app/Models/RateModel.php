@@ -51,9 +51,13 @@ class RateModel extends Model
         }
     }
 
-    public function get_comment($params)
+    public function get_comment($params = null)
     {
-        return $this->where('file_id', $params['file_id'])->where('comment IS NOT NULL')->findAll();
+        if ($params != null) {
+            return $this->where('file_id', $params['file_id'])->where('comment IS NOT NULL')->findAll();
+        } else {
+            return $this->select('tbl_rates.*, tbl_files.name AS menu_name')->join('tbl_files', 'tbl_files.id = tbl_rates.file_id', 'left')->where('comment IS NOT NULL')->findAll();
+        }
         // return $this->where('file_id', $params['file_id'])->where('user_id', $params['user_id'])->where('comment IS NOT NULL')->findAll();
     }
 

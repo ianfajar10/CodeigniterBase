@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Register - Trifecta Coffee</title>
+    <title>Register - Thani Coffee</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
@@ -72,7 +72,7 @@
                     <p>
                         <a href="<?php echo (base_url() . 'login') ?>">Sudah punya akun?</a>
                     </p>
-                    <button type="submit" class="btn btn-primary" id="send_form">Buat</button>
+                    <button type="submit" class="btn" style="background-color: #E0CBB0" id="send_form">Buat</button>
                     <button type="reset" class="btn btn-secondary">Reset</button>
                 </div>
             </form>

@@ -51,28 +51,30 @@
             <?php } ?>
         </center>
         <div class="card-body">
-            <h5 class="card-title">Masuk</h5>
-
-            <!-- Floating Labels Form -->
+            <div class="d-flex justify-content-center pt-4">
+                <img src="assets/img/apple-touch-icon.png" alt="" style="width: 30%;">
+            </div><!-- End Logo -->
+            <h5 class="card-title text-center pb-0 fs-4">Thani Coffee</h5>
+            <div class="pt-4 pb-2">
+                <h5 class="card-title text-center pb-0 fs-4">Masuk Ke Akunmu</h5>
+                <p class="text-center small">Masukkan nama pengguna dan kata sandi untuk lanjut</p>
+            </div>
             <form method="post" class="row g-3" action="<?php echo (base_url() . 'auth/valid_login') ?>">
-                <div class="col-md-12">
-                    <div class="form-floating">
+                <div class="col-12">
+                    <label for="username" class="form-label">Nama Pengguna</label>
+                    <div class="input-group has-validation">
                         <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Nama Pengguna" required>
-                        <label for="username">Nama Pengguna</label>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="form-floating">
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Kata Sandi" required>
-                        <label for="password">Kata Sandi</label>
-                    </div>
+                <div class="col-12">
+                    <label for="password" class="form-label">Kata Sandi</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Kata Sandi" required>
                 </div>
-                <div class="text-center">
-                    <p>
-                        <a href="<?php echo (base_url() . 'register') ?>">Belum punya akun?</a>
-                    </p>
-                    <button type="submit" class="btn btn-primary" name="login">Login</button>
-                    <button type="reset" class="btn btn-secondary">Reset</button>
+                <div class="col-12">
+                    <button class="btn w-100" style="background-color: #E0CBB0" type="submit">Masuk</button>
+                </div>
+                <div class="col-12">
+                    <a href="<?php echo (base_url() . 'register') ?>">Belum punya akun?</a>
                 </div>
             </form>
         </div>

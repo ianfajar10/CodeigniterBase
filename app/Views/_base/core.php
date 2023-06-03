@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>
         <?php foreach ($modules['all'] as $key => $module) { ?>
-            <?php echo (count(explode('/', uri_string())) > 1 ? (explode('/', uri_string())[0] . '/' . explode('/', uri_string())[1] == $key ? $module[0] . ' - Trifecta Coffee' : null) : (uri_string() == $key ? $module[0] . ' - Trifecta Coffee' : null)) ?>
+            <?php echo (count(explode('/', uri_string())) > 1 ? (explode('/', uri_string())[0] . '/' . explode('/', uri_string())[1] == $key ? $module[0] . ' - Thani Coffee' : null) : (uri_string() == $key ? $module[0] . ' - Thani Coffee' : null)) ?>
         <?php } ?>
     </title>
     <meta content="" name="description">

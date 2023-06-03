@@ -76,6 +76,10 @@
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                        Nomor Meja
+                        <span><input type="number" class="form-control" style="width: 60px;" id="no_table" value=""></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                         Total Produk
                         <span><?= $total_item ?></span>
                     </li>
@@ -88,7 +92,7 @@
                             <input type="text" class="form-control" id="code" value="">
                         </div>
                         <div class="col-4">
-                            <button type="button" onclick="handleUse()" class="btn btn-primary">Pakai</button>
+                            <button type="button" onclick="handleUse()" class="btn" style="background-color: #E0CBB0">Pakai</button>
                         </div>
                     </div>
                     <li id="discount_baru" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0 visually-hidden">
@@ -107,7 +111,7 @@
                 <input id="no_order" type="text" value="<?= date("Ymdhis") ?>" hidden>
                 <input id="total" type="text" value="<?= $total_price ?>" hidden>
 
-                <button type="button" onclick="confirmOrder($item = [<?= implode(', ', $item) ?>], $quantity = [<?= implode(', ', $quantity) ?>], $price = [<?= implode(', ', $price) ?>])" class="btn btn-primary btn-lg btn-block <?= $total_price === null ? 'visually-hidden' : '' ?>">
+                <button type="button" onclick="confirmOrder($item = [<?= implode(', ', $item) ?>], $quantity = [<?= implode(', ', $quantity) ?>], $price = [<?= implode(', ', $price) ?>])" class="btn btn-lg btn-block <?= $total_price === null ? 'visually-hidden' : '' ?>" style="background-color: #E0CBB0">
                     Lanjut Pesan
                 </button>
             </div>
@@ -177,66 +181,76 @@
     }
 
     function confirmOrder($item, $quantity, $price) {
+        var no_table = $('#no_table').val()
         if (user_id) {
-            Swal.fire({
-                title: 'Konfirmasi',
-                text: "Anda yakin untuk memproses pesanan? Anda tidak dapat mengubah pesanan kembali setelah proses ini.",
-                showCancelButton: true,
-                confirmButtonText: 'Ya, Yakin',
-                cancelButtonText: `Batal`,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: "POST",
-                        url: base_url + ('order/process'),
-                        data: {
-                            'no_order': no_order,
-                            'user_id': user_id,
-                            'total': total,
-                            'status': 'menunggu_pembayaran',
-                            'item': $item,
-                            'quantity': $quantity,
-                            'price': $price,
-                            'is_new': is_new
-                        },
-                        beforeSend: function(xhr) {
+            if (no_table.length > 0) {
+                Swal.fire({
+                    title: 'Konfirmasi',
+                    text: "Anda yakin untuk memproses pesanan? Anda tidak dapat mengubah pesanan kembali setelah proses ini.",
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Yakin',
+                    cancelButtonText: `Batal`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "POST",
+                            url: base_url + ('order/process'),
+                            data: {
+                                'no_order': no_order,
+                                'user_id': user_id,
+                                'table': no_table,
+                                'total': total,
+                                'status': 'menunggu_pembayaran',
+                                'item': $item,
+                                'quantity': $quantity,
+                                'price': $price,
+                                'is_new': is_new
+                            },
+                            beforeSend: function(xhr) {
 
-                        },
-                        success: function(response) {
-                            if (response.success) {
-                                Swal.fire({
-                                    title: "Menyimpan..",
-                                    text: "Menyimpan pesanan",
-                                    timer: 2000,
-                                    showConfirmButton: false,
-                                    willOpen: function() {
-                                        Swal.showLoading()
-                                    }
-                                }).then(function() {
+                            },
+                            success: function(response) {
+                                if (response.success) {
                                     Swal.fire({
-                                        icon: 'success',
-                                        title: 'Berhasil!',
-                                        showConfirmButton: false,
-                                        text: response.msg,
+                                        title: "Menyimpan..",
+                                        text: "Menyimpan pesanan",
                                         timer: 2000,
+                                        showConfirmButton: false,
+                                        willOpen: function() {
+                                            Swal.showLoading()
+                                        }
                                     }).then(function() {
-                                        location.reload();
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Berhasil!',
+                                            showConfirmButton: false,
+                                            text: response.msg,
+                                            timer: 2000,
+                                        }).then(function() {
+                                            location.reload();
+                                        })
                                     })
-                                })
-                            } else {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Gagal!',
-                                    text: response.msg,
-                                })
-                            }
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Gagal!',
+                                        text: response.msg,
+                                    })
+                                }
 
-                        }
-                    })
-                } else if (result.isDenied) {
-                    Swal.fire('Changes are not saved', '', 'info')
-                }
-            })
+                            }
+                        })
+                    } else if (result.isDenied) {
+                        Swal.fire('Changes are not saved', '', 'info')
+                    }
+                })
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Maaf!',
+                    text: 'Harap masukkan dahulu nomor meja.',
+                })
+            }
         } else {
             Swal.fire({
                 icon: 'error',

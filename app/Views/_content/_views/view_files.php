@@ -44,11 +44,17 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-md-12">
                 <label>Deskripsi</label>
                 <div class="form-group">
                     <textarea type="text" name="description" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label>Bahan Sajian</label>
+                <div class="form-group">
+                    <textarea type="text" name="description_plus" class="form-control"></textarea>
                 </div>
             </div>
         </div>
@@ -74,6 +80,7 @@
                                 <th scope="col">Aksi</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Deskripsi</th>
+                                <th scope="col">Bahan</th>
                                 <th scope="col">Gambar</th>
                                 <th scope="col">Harga</th>
                             </tr>
@@ -89,7 +96,8 @@
                                         </button>
                                     </td>
                                     <td><?= $row['name']; ?></td>
-                                    <td><?= $row['description'] ? $row['description'] : '-' ?></td>
+                                    <td><?= $row['description'] ? explode('||', $row['description'])[0] : '-' ?></td>
+                                    <td><?= $row['description'] ? explode('||', $row['description'])[1] : '-' ?></td>
                                     <td><img src="<?= base_url('../public/assets/images/' . $row['file']); ?>" width="100"></td>
                                     <td>Rp<?= number_format($row['price'], 0, ',', '.'); ?></td>
                                 </tr>

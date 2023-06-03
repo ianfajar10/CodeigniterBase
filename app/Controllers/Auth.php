@@ -132,13 +132,13 @@ class Auth extends BaseController
                 $mail->Port = 587;
 
                 $mail->From = "inigm10@gmail.com"; //email pengirim
-                $mail->FromName = "Trifecta App"; //nama pengirim
+                $mail->FromName = "Thani Coffee App"; //nama pengirim
 
                 $mail->addAddress($data['email']); //email penerima
 
                 $mail->isHTML(true);
-                $mail->Subject = 'Kode Promo Trifecta App'; //subject
-                $mail->Body    = "Selamat!, anda berhak mendapatkan kode potongan Rp10.000. Gunakan kode 'PENGGUNABARU' saat melakukan pesanan. "; //isi email
+                $mail->Subject = 'Kode Promo Thani Coffee App'; //subject
+                $mail->Body    = "Selamat!, anda mendapatkan kode potongan senilai Rp10.000. Gunakan kode 'THANICOFFEENEW' saat melakukan checkout. "; //isi email
                 $mail->AltBody = "PHP mailer"; //body email (optional)
 
                 if (!$mail->send()) {

@@ -66,9 +66,10 @@ class Order extends BaseController
         $data = [
             'id' => $params['no_order'],
             'user_id' => $params['user_id'],
+            'table' => $params['table'],
             'total' => $params['total'],
             'status' => $params['status'],
-            'disc_id' => $params['is_new'] === 'true' ? 'PENGGUNABARU' : '0'
+            'disc_id' => $params['is_new'] === 'true' ? 'THANICOFFEENEW' : '0'
         ];
 
         $save = $this->orderModel->save_data($data);
@@ -154,7 +155,7 @@ class Order extends BaseController
 
         $data = [
             'name' => 'orderadmin',
-            'title' => 'Pemesanan',
+            'title' => 'Data Pemesanan',
             'file' => $this->orderModel->list_history_order_user(),
             'modules' => $modules
         ];

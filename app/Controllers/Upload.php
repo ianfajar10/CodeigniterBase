@@ -14,8 +14,8 @@ class Upload extends BaseController
         
         if (!$this->validate([])) {
             $data = [
-                'name' => 'profile',
-                'title' => 'Profil',
+                'name' => 'upload',
+                'title' => 'Input Menu',
                 'validation' => $this->validator,
                 'file' => $model->get_files(),
                 'modules' => $modules
@@ -43,7 +43,7 @@ class Upload extends BaseController
             $data = array(
                 'name'  => $this->request->getPost('name'),
                 'price'  => $price,
-                'description'  => $this->request->getPost('description'),
+                'description'  => $this->request->getPost('description') . '||' . $this->request->getPost('description_plus') ,
                 'file' => $upload->getName(),
                 'type' => $upload->getClientMimeType()
             );
@@ -57,7 +57,7 @@ class Upload extends BaseController
         $params = $this->request->getPost();
 
         $get_data = $model->get_files($params['file_id'])[0];
-        unlink('public\assets\images' . DIRECTORY_SEPARATOR . $get_data['file']);
+        unlink('public/assets/images' . DIRECTORY_SEPARATOR . $get_data['file']);
         $delete = $model->delete_files($get_data['id']);
         if ($delete) {
 

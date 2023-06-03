@@ -16,6 +16,7 @@
                         <th scope="col">Total Harga</th>
                         <th scope="col">Diskon</th>
                         <th scope="col">Harga Setelah Diskon</th>
+                        <th scope="col">Nomor Meja</th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
@@ -30,6 +31,7 @@
                             <td><?= $row['total_price']; ?></td>
                             <td><?= $row['discount'] ? $row['discount'] : '-'; ?></td>
                             <td><?= $row['price_after_diskon'] ? ($row['price_after_diskon'] < 0 ? 0 : $row['price_after_diskon']) : '-'; ?></td>
+                            <td><?= $row['table'] ? $row['table'] : '-' ; ?></td>
                             <td>
                                 <select class="form-select" aria-label="Default select">
                                     <option <?= $row['status'] === '' ? 'selected' : '' ?> value="-">Pilih status</option>
@@ -39,6 +41,7 @@
                             </td>
                         </tr>
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

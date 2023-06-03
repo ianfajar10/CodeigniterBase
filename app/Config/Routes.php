@@ -32,7 +32,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Core::dashboard', ['filter' => 'defaultRoute']);
 
 //---------- Modules ----------//
-$routes->get('/dashboard', 'Dashboard::index');
+$routes->get('/dashboard', 'Dashboard::index', ['filter' => 'isLogin']);
 $routes->get('/profile', 'Profile::index', ['filter' => 'isLogin']);
 $routes->get('/menulist', 'Menulist::index');
 $routes->get('/cart', 'Cart::index', ['filter' => 'isLogin']);
@@ -48,6 +48,8 @@ $routes->get('/login', 'Auth::login');
 $routes->get('/upload', 'Upload::index', ['filter' => 'isAdmin']);
 $routes->get('/discount', 'Discount::index');
 $routes->get('/orderadmin', 'Order::index_admin');
+$routes->get('/user', 'User::index');
+$routes->get('/critic', 'Critic::index');
 $routes->get('/report', 'Report::index');
 
 /*
