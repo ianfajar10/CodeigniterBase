@@ -26,9 +26,9 @@ class Auth extends BaseController
         //meload session
         $this->session = \Config\Services::session();
 
-        require APPPATH . 'libraries/phpmailer/src/Exception.php';
-        require APPPATH . 'libraries/phpmailer/src/PHPMailer.php';
-        require APPPATH . 'libraries/phpmailer/src/SMTP.php';
+        require APPPATH . 'Libraries/phpmailer/src/Exception.php';
+        require APPPATH . 'Libraries/phpmailer/src/PHPMailer.php';
+        require APPPATH . 'Libraries/phpmailer/src/SMTP.php';
     }
 
     public function login()
@@ -47,6 +47,7 @@ class Auth extends BaseController
     {
         //tangkap data dari form 
         $data = $this->request->getPost();
+        $email = $data['email']; 
 
         if ($data['name'] == null) {
             $data = [
@@ -111,10 +112,19 @@ class Auth extends BaseController
             $save = $this->userModel->save_data($data);
 
             if ($save) {
-                return $this->send_email($data['email']);
+                $data = [
+                    'success' => true,
+                    'msg' => 'Anda berhasil mendaftar, silahkan login dan periksa kotak masuk pada email anda'
+                ];
+            } else {
+                $data = [
+                    'success' => false,
+                    'msg2' => 'Anda gagal mendaftar'
+                ];
             }
 
             return $this->response->setJSON($data);
+            // return $this->send_email($email);
             //arahkan ke halaman login
         }
     }
@@ -124,7 +134,7 @@ class Auth extends BaseController
         $mail = new PHPMailer;
 
         //Enable SMTP debugging. 
-        $mail->SMTPDebug = 2;
+        $mail->SMTPDebug = 0;
         //Set PHPMailer to use SMTP.
         $mail->isSMTP();
         //Set SMTP host name                          
@@ -140,7 +150,7 @@ class Auth extends BaseController
         $mail->Port = 587;
 
         $mail->Timeout = 60; // timeout pengiriman (dalam detik)
-        $mail->SMTPKeepAlive = true; 
+        $mail->SMTPKeepAlive = true;
 
         $mail->From = "inigm10@gmail.com"; //email pengirim
         $mail->FromName = "Thani Coffee App"; //nama pengirim
