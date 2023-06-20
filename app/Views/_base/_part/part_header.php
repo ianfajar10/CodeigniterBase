@@ -30,6 +30,42 @@
                 <span class="badge badge-number" style="background-color: #E0CBB0"><?= $session->get('cart') ?></span>
             </a>
 
+            <li class="nav-item dropdown <?= $session->get('username') !== 'admin' ? 'visually-hidden' : '' ?>">
+
+                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                    <i class="bi bi-bell"></i>
+                    <span class="badge bg-primary badge-number">!</span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                    <li class="dropdown-header">
+                        <?= count($critic) == 0 ? 'Belum ada kritik dan saran yang masuk' : 'Ada ' . count($critic) . ' kritik dan saran yang masuk' ?>
+                        <a href="<?= base_url() . 'criticadmin' ?>"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat semua</span></a>
+                    </li>
+                    <?php $limit = 0; ?>
+                    <?php foreach ($critic as $row) : ?>
+                        <?php if ($limit < 3) { ?>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li class="notification-item">
+                                <i class="bi bi-chat-left-quote text-primary"></i>
+                                <div>
+                                    <h4><?= $row['username'] ?></h4>
+                                    <p><?= (strlen($row['critic']) > 20 ? substr($row['critic'], 0, 100) . '...' :  $row['critic']) ?></p>
+                                    <p><?= $row['created_at'] ?></p>
+                                </div>
+                            </li>
+                        <?php } else {
+                            break;
+                        } ?>
+                        <?php $limit++; ?>
+                    <?php endforeach; ?>
+
+                </ul>
+
+            </li>
+
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">

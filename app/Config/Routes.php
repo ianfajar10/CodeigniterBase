@@ -37,6 +37,7 @@ $routes->get('/profile', 'Profile::index', ['filter' => 'isLogin']);
 $routes->get('/menulist', 'Menulist::index');
 $routes->get('/cart', 'Cart::index', ['filter' => 'isLogin']);
 $routes->get('/order', 'Order::index', ['filter' => 'isLogin']);
+$routes->get('/critic', 'Critic::index', ['filter' => 'isLogin']);
 
 $routes->get('/menulist/detail', 'Menulist::detail');
 $routes->get('/order/detail', 'Order::detail');
@@ -51,6 +52,7 @@ $routes->get('/orderadmin', 'Order::index_admin');
 $routes->get('/user', 'User::index');
 $routes->get('/critic', 'Critic::index');
 $routes->get('/report', 'Report::index');
+$routes->get('/criticadmin', 'Critic::index_admin');
 
 /*
  * --------------------------------------------------------------------

@@ -141,9 +141,6 @@ class Order extends BaseController
                     ];
                 }
             }
-            // $response = [
-            //     'success' => true,
-            // ];
         }
 
         return $this->response->setJSON($response);
