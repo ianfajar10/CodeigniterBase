@@ -15,13 +15,15 @@ class Modules extends BaseController
             'menulist/detail' => ['Detail Menu', '-'],
             'menulist/search' => ['Pencarian Menu ' . '(' . $query . ')', '-'],
             'upload' => ['Unggah', 'bi bi-pencil-square'],
-            'discount' => ['Potongan Harga', 'bi bi-tag'],
+            'discount' => ['Diskon', 'bi bi-tag'],
             'profile' => ['Profil', 'bi bi-person'],
             'cart' => ['Keranjang', 'bi bi-cart'],
             'order' => ['Histori Pemesanan', 'bi bi-clock-history'],
             'order/detail' => ['Detail Order', '-'],
             'orderadmin' => ['Pemesanan', 'bi bi-book'],
-            'report' => ['Laporan', 'bi bi-file-earmark-bar-graph-fill"']
+            'report' => ['Laporan', 'bi bi-file-earmark-bar-graph-fill"'],
+            'critic' => ['Kritik & Saran', 'bi bi-chat-left-quote'],
+            'criticadmin' => ['Kritik & Saran', 'bi bi-chat-left-quote'],
         ];
         if ($check_role == 1) {
             //ADMIN
@@ -29,10 +31,11 @@ class Modules extends BaseController
                 'dashboard' => ['Beranda', 'bi bi-grid'],
                 'upload' => ['Unggah', 'bi bi-pencil-square'],
                 'menulist' => ['Daftar Menu', 'bi bi-book"'],
-                'discount' => ['Potongan Harga', 'bi bi-tag'],
+                'discount' => ['Diskon', 'bi bi-tag'],
                 'profile' => ['Profil', 'bi bi-person'],
                 'orderadmin' => ['Pemesanan', 'bi bi-book'],
-                'report' => ['Laporan', 'bi bi-file-earmark-bar-graph-fill"'],
+                'report' => ['Laporan', 'bi bi-file-earmark-bar-graph-fill'],
+                'criticadmin' => ['Kritik & Saran', 'bi bi-chat-left-quote'],
             ];
         } else {
             if ($check_role != null) {
@@ -42,6 +45,7 @@ class Modules extends BaseController
                     'cart' => ['Keranjang', 'bi bi-cart'],
                     'profile' => ['Profil', 'bi bi-person'],
                     'order' => ['Histori Pemesanan', 'bi bi-clock-history'],
+                    'critic' => ['Kritik & Saran', 'bi bi-chat-left-quote'],
                 ];
             } else {
                 $data['sidebars'] = [

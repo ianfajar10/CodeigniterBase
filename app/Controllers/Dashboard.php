@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\CriticModel;
 
 class Dashboard extends BaseController
 {
@@ -17,9 +18,11 @@ class Dashboard extends BaseController
     public function index()
     {
         $modules = (new Modules)->index();
+        $model = new CriticModel();
         $data = [
             'name' => 'dashboard',
             'title' => 'Beranda',
+            'critic' => $model->get_critic(),
             'modules' => $modules
         ];
 
