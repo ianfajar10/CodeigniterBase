@@ -26,7 +26,6 @@ class Dashboard extends BaseController
             'modules' => $modules
         ];
 
-
         return view('_content/_views/view_dashboard', $data);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CriticModel;
 use App\Models\DiscountModel;
 use App\Models\FileModel;
 
@@ -12,10 +13,12 @@ class Discount extends BaseController
         $modules = (new Modules)->index();
         $model = new FileModel();
         $model2 = new DiscountModel();
-
+        $model3 = new CriticModel();
+        
         $data = [
+            'critic' => $model3->get_critic(),
             'name' => 'discount',
-            'title' => 'Potongan Harga',
+            'title' => 'Diskon',
             'file' => $model->get_files_cond(),
             'discount' => $model2->get_discount(),
             'modules' => $modules

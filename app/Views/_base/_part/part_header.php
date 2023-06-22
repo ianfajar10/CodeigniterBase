@@ -41,7 +41,7 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                     <li class="dropdown-header">
                         <?= count($critic) == 0 ? 'Belum ada kritik dan saran yang masuk' : 'Ada ' . count($critic) . ' kritik dan saran yang masuk' ?>
-                        <a href="<?= base_url().'/criticadmin' ?>"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat semua</span></a>
+                        <a href="<?= base_url().'criticadmin' ?>"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat semua</span></a>
                     </li>
                     <?php $limit = 0; ?>
                     <?php foreach ($critic as $row) : ?>

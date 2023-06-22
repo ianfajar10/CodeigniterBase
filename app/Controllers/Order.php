@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\CartModel;
+use App\Models\CriticModel;
 use App\Models\DiscountModel;
 use App\Models\OrderDetailModel;
 use App\Models\OrderModel;
@@ -31,13 +32,16 @@ class Order extends BaseController
     public function index()
     {
         $modules = (new Modules)->index();
+        $model = new CriticModel();
         $id_user = ['username' => $this->session->get('username')];
         $user = $this->userModel->check_login($id_user)[0];
-
+        
         $data = [
+            'critic' => $model->get_critic(),
             'name' => 'order',
             'title' => 'Pemesanan',
             'file' => $this->orderModel->list_history_order_user($user['username']),
+            'file2' => $this->orderModel->list_history_order_user($user['username'], 'done'),
             'count_order' => count($this->orderModel->list_history_order_user($user['username'])),
             'modules' => $modules
         ];
@@ -47,7 +51,9 @@ class Order extends BaseController
     public function detail($params)
     {
         $modules = (new Modules)->index();
+        $model = new CriticModel();
         $data = [
+            'critic' => $model->get_critic(),
             'name' => 'orderdetail',
             'title' => 'Detail Order',
             'file' => $this->orderDetailModel->get_item_order($params),
@@ -63,53 +69,104 @@ class Order extends BaseController
     {
         $params = $this->request->getPost();
 
-        $data = [
-            'id' => $params['no_order'],
-            'user_id' => $params['user_id'],
-            'total' => $params['total'],
-            'status' => $params['status'],
-            'disc_id' => $params['is_new'] === 'true' ? 'PENGGUNABARU' : '0'
-        ];
+        $check_order_last = $this->orderModel->check_order($params['user_id']);
+        if ($check_order_last[0]['id']) {
+            $no_order = $check_order_last[0]['id'];
+            $total = ($check_order_last[0]['total'] + $params['total']);
+            $data = [
+                'no_order' => $no_order,
+                'username' => $params['user_id'],
+                'total' => $total
+            ];
+            $save = $this->orderModel->update_data($data);
 
-        $save = $this->orderModel->save_data($data);
+            $quantity = $params['quantity'];
+            $price = $params['price'];
 
-        $quantity = $params['quantity'];
-        $price = $params['price'];
+            foreach ($params['item'] as $key => $value) {
+                $data2 = [
+                    'order_id' => $no_order,
+                    'file_id' => $value,
+                    'quantity' => $quantity[$key],
+                    'price' => $price[$key] * $quantity[$key],
+                ];
 
-        foreach ($params['item'] as $key => $value) {
-            $data2 = [
-                'order_id' => $params['no_order'],
-                'file_id' => $value,
-                'quantity' => $quantity[$key],
-                'price' => $price[$key] * $quantity[$key],
+                $save = $this->orderDetailModel->save_data_detail($data2);
+            }
+
+            if ($save) {
+                foreach ($params['item'] as $key => $value) {
+                    $data = [
+                        'user_id' => $params['user_id'],
+                        'file_id' => $value
+                    ];
+                    $this->cartModel->delete_cart($data);
+                }
+
+                $data = [
+                    'cart' => count($this->cartModel->list_cart_user($params['user_id']))
+                ];
+                $this->session->set($data);
+
+                $response = [
+                    'success' => true,
+                    'msg' => 'Pesanan berhasil dibuat!.'
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'msg' => 'Pesanan gagal dibuat!.'
+                ];
+            }
+        } else {
+            $data = [
+                'id' => $params['no_order'],
+                'user_id' => $params['user_id'],
+                'total' => $params['total'],
+                'status' => $params['status'],
+                'disc_id' => $params['is_new'] === 'true' ? 'PENGGUNABARU' : '0'
             ];
     
-            $save = $this->orderDetailModel->save_data_detail($data2);
-        }
-        
-        if ($save) {
-            foreach ($params['item'] as $key => $value) {
-                $data = [
-                    'user_id' => $params['user_id'],
-                    'file_id' => $value
-                ];
-                $this->cartModel->delete_cart($data);
-            }
-            
-            $data = [
-                'cart' => count($this->cartModel->list_cart_user($params['user_id']))
-            ];
-            $this->session->set($data);
+            $save = $this->orderModel->save_data($data);
 
-            $response = [
-                'success' => true,
-                'msg' => 'Pesanan berhasil dibuat!.'
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'msg' => 'Pesanan gagal dibuat!.'
-            ];
+            $quantity = $params['quantity'];
+            $price = $params['price'];
+
+            foreach ($params['item'] as $key => $value) {
+                $data2 = [
+                    'order_id' => $params['no_order'],
+                    'file_id' => $value,
+                    'quantity' => $quantity[$key],
+                    'price' => $price[$key] * $quantity[$key],
+                ];
+
+                $save = $this->orderDetailModel->save_data_detail($data2);
+            }
+
+            if ($save) {
+                foreach ($params['item'] as $key => $value) {
+                    $data = [
+                        'user_id' => $params['user_id'],
+                        'file_id' => $value
+                    ];
+                    $this->cartModel->delete_cart($data);
+                }
+
+                $data = [
+                    'cart' => count($this->cartModel->list_cart_user($params['user_id']))
+                ];
+                $this->session->set($data);
+
+                $response = [
+                    'success' => true,
+                    'msg' => 'Pesanan berhasil dibuat!.'
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'msg' => 'Pesanan gagal dibuat!.'
+                ];
+            }
         }
 
         return $this->response->setJSON($response);
@@ -151,8 +208,10 @@ class Order extends BaseController
     public function index_admin()
     {
         $modules = (new Modules)->index();
-
+        $model = new CriticModel();
+        
         $data = [
+            'critic' => $model->get_critic(),
             'name' => 'orderadmin',
             'title' => 'Pemesanan',
             'file' => $this->orderModel->list_history_order_user(),

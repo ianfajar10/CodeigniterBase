@@ -34,7 +34,8 @@
                                 <select class="form-select" aria-label="Default select">
                                     <option <?= $row['status'] === '' ? 'selected' : '' ?> value="-">Pilih status</option>
                                     <option <?= $row['status'] === 'sudah_bayar' ? 'selected' : '' ?> value="<?= 'sudah_bayar' . '||' . $row['id'] ?>">Pembayaran Diterima</option>
-                                    <option <?= $row['status'] === 'menunggu_pembayaran' ? 'selected' : '' ?> value="'menunggu_pembayaran' . '||' . $row['id'] ?>">Menunggu Pembayaran</option>
+                                    <option <?= $row['status'] === 'pesanan_sedang_diproses' ? 'selected' : '' ?> value="'pesanan_sedang_diproses' . '||' . $row['id'] ?>">Pesanan Sedang Diproses</option>
+                                    <option <?= $row['status'] === 'pesanan_belum_diproses' ? 'selected' : '' ?> value="'pesanan_belum_diproses' . '||' . $row['id'] ?>">Pesanan Belum Diproses</option>
                                 </select>
                             </td>
                         </tr>

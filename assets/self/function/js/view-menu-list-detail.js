@@ -23,14 +23,14 @@ $.ajax({
 });
 
 
-$(".div-spin-number").hide();
-$(".div-value-spin-number").hide();
+// $(".div-spin-number").hide();
+// $(".div-value-spin-number").hide();
 
-$(".btn-add-cart").on("click", function () {
-    $(".btn-add-cart").hide();
-    $(".div-spin-number").removeClass('visually-hidden');
-    $(".div-spin-number").show();
-});
+// $(".btn-add-cart").on("click", function () {
+//     $(".btn-add-cart").hide();
+//     $(".div-spin-number").removeClass('visually-hidden');
+//     $(".div-spin-number").show();
+// });
 
 $(".btn-delete-cart").on("click", function () {
     $(".btn-add-cart").show();

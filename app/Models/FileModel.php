@@ -17,13 +17,19 @@ class FileModel extends Model
         "type",
         "price",
         "disc_id",
+        "best",
     ];
 
     public function get_files($params = null)
     {
         if ($params == null) {
             $query = $this->select('tbl_files.id, name, description, file, type, price, tbl_discs.discount')->join('tbl_discs', 'tbl_discs.id = tbl_files.disc_id', 'left')->findAll();
-            // dd($this->getLastQuery());
+            return $query;
+        } else if($params == 'food') {
+            $query = $this->select('tbl_files.id, name, description, file, type, price, tbl_discs.discount, best')->join('tbl_discs', 'tbl_discs.id = tbl_files.disc_id', 'left')->like('tbl_files.name', 'makanan')->find();
+            return $query;
+        } else if ($params == 'drink') {
+            $query = $this->select('tbl_files.id, name, description, file, type, price, tbl_discs.discount, best')->join('tbl_discs', 'tbl_discs.id = tbl_files.disc_id', 'left')->like('tbl_files.name', 'minuman')->find();
             return $query;
         } else {
             $query = $this->select('tbl_files.id, name, description, file, type, price, tbl_discs.discount')->join('tbl_discs', 'tbl_discs.id = tbl_files.disc_id', 'left')->where('tbl_files.id', $params)->find();
@@ -65,5 +71,11 @@ class FileModel extends Model
     {
         $this->set(['disc_id' => $discount])->where('id', $file_id)->update();
         return true;
+    }
+
+    public function get_unlike_menu()
+    {
+        $query = $this->select('name, SUM(quantity) as quantity')->join('tbl_order_detail', 'tbl_order_detail.file_id = tbl_files.id', 'left')->groupBy('name, quantity')->orderBy('quantity', 'asc')->limit(5)->find();
+        return $query;
     }
 }

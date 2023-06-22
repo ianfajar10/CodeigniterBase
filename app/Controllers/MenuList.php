@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\CartModel;
+use App\Models\CriticModel;
 use App\Models\FileModel;
 use App\Models\RateModel;
 
@@ -21,10 +22,14 @@ class Menulist extends BaseController
         $file = new FileModel();
 
         $modules = (new Modules)->index();
+        $model = new CriticModel();
         $data = [
             'name' => 'menulist',
             'title' => 'Daftar Menu',
             'file' => $file->get_files(),
+            'file2' => $file->get_files('food'),
+            'file3' => $file->get_files('drink'),
+            'critic' => $model->get_critic(),
             'modules' => $modules
         ];
         return view('_content/_views/view_menu_list', $data);
@@ -35,6 +40,7 @@ class Menulist extends BaseController
         $file = new FileModel();
         $rate = new RateModel();
         $modules = (new Modules)->index();
+        $model = new CriticModel();
 
         $new_params = [
             'file_id' => $params,
@@ -42,6 +48,7 @@ class Menulist extends BaseController
         ];
 
         $data = [
+            'critic' => $model->get_critic(),
             'name' => 'menulist',
             'title' => 'Detail Menu',
             'file' => $file->get_files($params),
@@ -64,16 +71,18 @@ class Menulist extends BaseController
         $query = $this->request->getPost()['query'];
 
         $file = new FileModel();
-
+        $model = new CriticModel();
+        
         $modules = (new Modules)->index($query);
         $data = [
+            'critic' => $model->get_critic(),
             'name' => 'menulist',
             'title' => 'Detail Menu',
             'file' => $file->get_files_by_search($query),
             'query' => $query,
             'modules' => $modules
         ];
-        return view('_content/_views/view_menu_list', $data);
+        return view('_content/_views/view_menu_list_search', $data);
     }
 
     public function detail_item_user()
@@ -116,6 +125,35 @@ class Menulist extends BaseController
     }
 
     public function comment_process()
+    {
+        $rate = new RateModel();
+
+        $params = $this->request->getPost();
+
+        $data = [
+            'user_id' => $params['user_id'],
+            'file_id' => $params['file_id'],
+            'comment' => $params['comment'],
+        ];
+
+        $save = $rate->save_data($data);
+
+        if ($save) {
+            $response = [
+                'success' => true,
+                'msg' => 'Berhasil memberi komentar.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'msg' => 'Gagal memberi komentar.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    public function check_user_order()
     {
         $rate = new RateModel();
 

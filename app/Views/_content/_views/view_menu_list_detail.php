@@ -40,14 +40,14 @@
                             <h5 class="review-count"><?= count($rating) ?> Penilaian</h5>
                         <?php } ?>
                     </div>
-                    <div class="mt-3 <?= ($session->get('username') == 'admin' ? 'visually-hidden' : '') ?>">
-                        <button class="btn btn-outline-primary btn-add-cart" type="submit"><i class="bi bi-cart"></i> Tambah ke Keranjang</button>
-                    </div>
+                    <!-- <div class="mt-3 <?= ($session->get('username') == 'admin' ? 'visually-hidden' : '') ?>">
+                        <button class="btn btn-outline-primary btn-add-cart" id="btn-cart" type="submit"><i class="bi bi-cart"></i> Tambah ke Keranjang</button>
+                    </div> -->
                     <div class="mt-3 <?= ($session->get('username') == 'admin' ? 'visually-hidden' : '') ?>">
                         <button class="btn <?= count($check_like) > 0 ? 'btn-primary' : 'btn-outline-primary' ?>" type="button" onclick="handleLike('like')" <?= count($check_like) > 0 ? 'disabled' : '' ?>><i class="bi bi-hand-thumbs-up"></i> Suka</button>
                         <button class="btn <?= count($check_dislike) > 0 ? 'btn-primary' : 'btn-outline-primary' ?>" type="button" onclick="handleLike('dislike')" <?= count($check_dislike) > 0 ? 'disabled' : '' ?>><i class="bi bi-hand-thumbs-down"></i> Tidak Suka</button>
                     </div>
-                    <div class="row mt-3 div-spin-number visually-hidden">
+                    <div class="row mt-3 div-spin-number">
                         <div class="col-8">
                             <input type="number" class="form-control btn-spin-number" step="1" min="0" value="0" data-numspin />
                         </div>
@@ -104,6 +104,18 @@
     var user_id = $('#user_id').val();
     var base_url = $('#base_url').val();
     var file_id = $('#file_id').val();
+
+    $(document).ready(function() {
+        $.ajax({
+            type: "POST",
+            url: base_url + ('menulist/check_user_order'),
+            dataType: "json",
+            success: function(response) {
+                console.log('Test');
+            }
+
+        });
+    });
 
     function handleLike($rate) {
         if (user_id) {

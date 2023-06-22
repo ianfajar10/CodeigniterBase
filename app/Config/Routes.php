@@ -51,6 +51,7 @@ $routes->get('/discount', 'Discount::index');
 $routes->get('/orderadmin', 'Order::index_admin');
 $routes->get('/report', 'Report::index');
 $routes->get('/criticadmin', 'Critic::index_admin');
+$routes->get('/banner', 'Upload::index_banner');
 
 /*
  * --------------------------------------------------------------------

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\CartModel;
+use App\Models\CriticModel;
 use App\Models\UserModel;
 
 class Cart extends BaseController
@@ -23,10 +24,12 @@ class Cart extends BaseController
     public function index()
     {
         $modules = (new Modules)->index();
+        $model = new CriticModel();
         $id_user = ['username' => $this->session->get('username')];
         $user = $this->userModel->check_login($id_user)[0];
         $cart = new CartModel();
         $data = [
+            'critic' => $model->get_critic(),
             'name' => 'cart',
             'title' => 'Keranjang',
             'file' => $cart->list_cart_user($user['username']),

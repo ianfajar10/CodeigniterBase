@@ -82,6 +82,16 @@ class Auth extends BaseController
             return $this->response->setJSON($data);
         }
 
+        $check_email = $this->userModel->check_email($data['email']);
+
+        if ($check_email) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Email sudah pernah digunakan!'
+            ];
+            return $this->response->setJSON($data);
+        }
+
         //jalankan validasi
         $this->validation->run($data, 'register');
 

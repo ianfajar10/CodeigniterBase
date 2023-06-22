@@ -21,43 +21,5 @@
         </div><!-- End List group Advanced Content -->
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $("#username").val($('#user_id').val());
-    });
-    $("#ajax_form").validate({
-        submitHandler: function(form) {
-            $('#send_form').html('Mengirim..');
-            $.ajax({
-                url: "<?php echo base_url('critic/send') ?>",
-                type: "POST",
-                data: $('#ajax_form').serialize(),
-                dataType: "json",
-                success: function(response) {
-                    if (response.success) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil..',
-                            html: response.msg,
-                            showConfirmButton: false,
-                            timer: 3000
-                        }).then((result) => {
-                            location.reload();
-                        })
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal..',
-                            html: response.msg,
-                            showConfirmButton: true,
-                            timer: 3000
-                        }).then((result) => {})
-                        $('#send_form').html('Kirim');
-                    }
-                }
-            });
-        }
-    })
-</script>
 
 <?= $this->endSection() ?>

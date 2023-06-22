@@ -14,7 +14,7 @@ class Modules extends BaseController
             'menulist' => ['Daftar Menu', 'bi bi-book"'],
             'menulist/detail' => ['Detail Menu', '-'],
             'menulist/search' => ['Pencarian Menu ' . '(' . $query . ')', '-'],
-            'upload' => ['Unggah', 'bi bi-pencil-square'],
+            'upload' => ['Unggah Menu', 'bi bi-pencil-square'],
             'discount' => ['Diskon', 'bi bi-tag'],
             'profile' => ['Profil', 'bi bi-person'],
             'cart' => ['Keranjang', 'bi bi-cart'],
@@ -24,18 +24,20 @@ class Modules extends BaseController
             'report' => ['Laporan', 'bi bi-file-earmark-bar-graph-fill"'],
             'critic' => ['Kritik & Saran', 'bi bi-chat-left-quote'],
             'criticadmin' => ['Kritik & Saran', 'bi bi-chat-left-quote'],
+            'banner' => ['Banner', 'bi bi-images'],
         ];
         if ($check_role == 1) {
             //ADMIN
             $data['sidebars'] = [
                 'dashboard' => ['Beranda', 'bi bi-grid'],
-                'upload' => ['Unggah', 'bi bi-pencil-square'],
+                'upload' => ['Unggah Menu', 'bi bi-pencil-square'],
                 'menulist' => ['Daftar Menu', 'bi bi-book"'],
                 'discount' => ['Diskon', 'bi bi-tag'],
                 'profile' => ['Profil', 'bi bi-person'],
                 'orderadmin' => ['Pemesanan', 'bi bi-book'],
                 'report' => ['Laporan', 'bi bi-file-earmark-bar-graph-fill'],
                 'criticadmin' => ['Kritik & Saran', 'bi bi-chat-left-quote'],
+                'banner' => ['Banner', 'bi bi-images'],
             ];
         } else {
             if ($check_role != null) {

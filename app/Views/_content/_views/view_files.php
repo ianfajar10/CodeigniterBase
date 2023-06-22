@@ -52,6 +52,22 @@
                 </div>
             </div>
         </div>
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" name="food" type="checkbox" id="chekFood" value="y">
+                    <label class="form-check-label" for="chekFood">Makanan</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" name="best" type="checkbox" id="checkBest" value="y">
+                    <label class="form-check-label" for="checkBest">Best Seller</label>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 mt-2">
                 <div class="form-group">

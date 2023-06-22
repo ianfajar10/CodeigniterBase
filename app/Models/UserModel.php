@@ -37,4 +37,10 @@ class UserModel extends Model
         // dd($this->getLastQuery());
         return $query;
     }
+
+    public function check_email($param)
+    {
+        $query = $this->where('email', $param)->findAll();
+        return $query;
+    }
 }

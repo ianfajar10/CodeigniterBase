@@ -83,6 +83,8 @@
                         Total Harga
                         <span>Rp<?= number_format($total_price, 0, ',', '.') ?></span>
                     </li>
+                    <br>
+                    Kode Voucher
                     <div class="row pt-2 pb-2" id="d_voucher">
                         <div class="col-8">
                             <input type="text" class="form-control" id="code" value="">
@@ -193,7 +195,7 @@
                             'no_order': no_order,
                             'user_id': user_id,
                             'total': total,
-                            'status': 'menunggu_pembayaran',
+                            'status': 'pesanan_belum_diproses',
                             'item': $item,
                             'quantity': $quantity,
                             'price': $price,
