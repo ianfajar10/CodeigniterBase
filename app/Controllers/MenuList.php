@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\CartModel;
 use App\Models\CriticModel;
 use App\Models\FileModel;
+use App\Models\OrderModel;
 use App\Models\RateModel;
 
 class Menulist extends BaseController
@@ -23,7 +24,9 @@ class Menulist extends BaseController
 
         $modules = (new Modules)->index();
         $model = new CriticModel();
+        $model2 = new OrderModel();
         $data = [
+            'count_order' => count($model2->order_in_progress()),
             'name' => 'menulist',
             'title' => 'Daftar Menu',
             'file' => $file->get_files(),
@@ -41,13 +44,15 @@ class Menulist extends BaseController
         $rate = new RateModel();
         $modules = (new Modules)->index();
         $model = new CriticModel();
-
+        $model2 = new OrderModel();
+        
         $new_params = [
             'file_id' => $params,
             'user_id' => $this->session->get('username')
         ];
-
+        
         $data = [
+            'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
             'name' => 'menulist',
             'title' => 'Detail Menu',

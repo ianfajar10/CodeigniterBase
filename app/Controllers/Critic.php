@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\CriticModel;
+use App\Models\OrderModel;
 
 class Critic extends BaseController
 {
@@ -17,7 +18,9 @@ class Critic extends BaseController
     public function index()
     {
         $modules = (new Modules)->index();
+        $model2 = new OrderModel();
         $data = [
+            'count_order' => count($model2->order_in_progress()),
             'name' => 'critics',
             'title' => 'Kritik & Saran',
             'critic' => $this->criticModel->get_critic(),
@@ -29,7 +32,9 @@ class Critic extends BaseController
     public function index_admin()
     {
         $modules = (new Modules)->index();
+        $model2 = new OrderModel();
         $data = [
+            'count_order' => count($model2->order_in_progress()),
             'name' => 'criticsadmin',
             'title' => 'Kritik & Saran',
             'critic' => $this->criticModel->get_critic(),

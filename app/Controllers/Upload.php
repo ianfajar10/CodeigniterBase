@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CriticModel;
 use App\Models\FileModel;
+use App\Models\OrderModel;
 
 class Upload extends BaseController
 {
@@ -13,9 +14,11 @@ class Upload extends BaseController
         $modules = (new Modules)->index();
         $model = new FileModel();
         $model2 = new CriticModel();
+        $model3 = new OrderModel();
         
         if (!$this->validate([])) {
             $data = [
+                'count_order' => count($model3->order_in_progress()),
                 'critic' => $model2->get_critic(),
                 'name' => 'unggah',
                 'title' => 'Unggah Menu',
@@ -32,9 +35,11 @@ class Upload extends BaseController
         helper('form');
         $modules = (new Modules)->index();
         $model = new CriticModel();
+        $model2 = new OrderModel();
         
         if (!$this->validate([])) {
             $data = [
+                'count_order' => count($model2->order_in_progress()),
                 'critic' => $model->get_critic(),
                 'name' => 'banner',
                 'title' => 'Banner',

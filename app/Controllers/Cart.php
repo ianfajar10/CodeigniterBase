@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\CartModel;
 use App\Models\CriticModel;
+use App\Models\OrderModel;
 use App\Models\UserModel;
 
 class Cart extends BaseController
@@ -25,10 +26,12 @@ class Cart extends BaseController
     {
         $modules = (new Modules)->index();
         $model = new CriticModel();
+        $model2 = new OrderModel();
         $id_user = ['username' => $this->session->get('username')];
         $user = $this->userModel->check_login($id_user)[0];
         $cart = new CartModel();
         $data = [
+            'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
             'name' => 'cart',
             'title' => 'Keranjang',

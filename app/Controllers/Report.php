@@ -16,7 +16,9 @@ class Report extends BaseController
     {
         $modules = (new Modules)->index();
         $model = new CriticModel();
+        $model2 = new OrderModel();
         $data = [
+            'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
             'name' => 'report',
             'title' => 'Laporan',

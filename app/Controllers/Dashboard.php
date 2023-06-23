@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\CriticModel;
+use App\Models\OrderModel;
 
 class Dashboard extends BaseController
 {
@@ -19,10 +20,12 @@ class Dashboard extends BaseController
     {
         $modules = (new Modules)->index();
         $model = new CriticModel();
+        $model2 = new OrderModel();
         $data = [
             'name' => 'dashboard',
             'title' => 'Beranda',
             'critic' => $model->get_critic(),
+            'count_order' => count($model2->order_in_progress()),
             'modules' => $modules
         ];
 

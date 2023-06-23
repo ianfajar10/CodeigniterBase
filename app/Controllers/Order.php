@@ -35,8 +35,10 @@ class Order extends BaseController
         $model = new CriticModel();
         $id_user = ['username' => $this->session->get('username')];
         $user = $this->userModel->check_login($id_user)[0];
+        $model2 = $this->orderModel;
         
         $data = [
+            'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
             'name' => 'order',
             'title' => 'Pemesanan',
@@ -52,7 +54,9 @@ class Order extends BaseController
     {
         $modules = (new Modules)->index();
         $model = new CriticModel();
+        $model2 = new OrderModel();
         $data = [
+            'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
             'name' => 'orderdetail',
             'title' => 'Detail Order',
@@ -70,7 +74,7 @@ class Order extends BaseController
         $params = $this->request->getPost();
 
         $check_order_last = $this->orderModel->check_order($params['user_id']);
-        if ($check_order_last[0]['id']) {
+        if (isset($check_order_last[0]['id'])) {
             $no_order = $check_order_last[0]['id'];
             $total = ($check_order_last[0]['total'] + $params['total']);
             $data = [
@@ -209,8 +213,9 @@ class Order extends BaseController
     {
         $modules = (new Modules)->index();
         $model = new CriticModel();
-        
+        $model2 = new OrderModel();
         $data = [
+            'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
             'name' => 'orderadmin',
             'title' => 'Pemesanan',

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\CriticModel;
 use App\Models\DiscountModel;
 use App\Models\FileModel;
+use App\Models\OrderModel;
 
 class Discount extends BaseController
 {
@@ -14,8 +15,10 @@ class Discount extends BaseController
         $model = new FileModel();
         $model2 = new DiscountModel();
         $model3 = new CriticModel();
+        $model4 = new OrderModel();
         
         $data = [
+            'count_order' => count($model4->order_in_progress()),
             'critic' => $model3->get_critic(),
             'name' => 'discount',
             'title' => 'Diskon',
