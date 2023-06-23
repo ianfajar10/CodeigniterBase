@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\CriticModel;
 use App\Models\OrderModel;
 use App\Models\RateModel;
 use App\Models\UserModel;
@@ -14,7 +15,9 @@ class Report extends BaseController
     public function index()
     {
         $modules = (new Modules)->index();
+        $model2 = new CriticModel();
         $data = [
+            'critic' => $model2->get_critic(),
             'name' => 'report',
             'title' => 'Laporan',
             'modules' => $modules

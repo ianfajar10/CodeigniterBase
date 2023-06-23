@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\CartModel;
+use App\Models\CriticModel;
 use App\Models\FileModel;
 use App\Models\RateModel;
 
@@ -21,7 +22,9 @@ class Menulist extends BaseController
         $file = new FileModel();
 
         $modules = (new Modules)->index();
+        $model2 = new CriticModel();
         $data = [
+            'critic' => $model2->get_critic(),
             'name' => 'menulist',
             'title' => 'Daftar Menu',
             'file' => $file->get_files(),
@@ -35,13 +38,14 @@ class Menulist extends BaseController
         $file = new FileModel();
         $rate = new RateModel();
         $modules = (new Modules)->index();
-
+        $model2 = new CriticModel();
         $new_params = [
             'file_id' => $params,
             'user_id' => $this->session->get('username')
         ];
-
+        
         $data = [
+            'critic' => $model2->get_critic(),
             'name' => 'menulist',
             'title' => 'Detail Menu',
             'file' => $file->get_files($params),

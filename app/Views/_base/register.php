@@ -64,8 +64,20 @@
                 </div>
                 <div class="col-12">
                     <div class="form-floating">
+                        <input type="date" class="form-control" name="birth" id="birth" placeholder="Masukkan Tanggal Lahir">
+                        <label for="birth">Tanggal Lahir</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
                         <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
                         <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="telp" id="telp" placeholder="Masukkan Nomor Handphone">
+                        <label for="telp">Nomor Handphone</label>
                     </div>
                 </div>
                 <div class="text-center">

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\CartModel;
+use App\Models\CriticModel;
 use App\Models\DiscountModel;
 use App\Models\OrderDetailModel;
 use App\Models\OrderModel;
@@ -31,10 +32,12 @@ class Order extends BaseController
     public function index()
     {
         $modules = (new Modules)->index();
+        $model2 = new CriticModel();
         $id_user = ['username' => $this->session->get('username')];
         $user = $this->userModel->check_login($id_user)[0];
-
+        
         $data = [
+            'critic' => $model2->get_critic(),
             'name' => 'order',
             'title' => 'Pemesanan',
             'file' => $this->orderModel->list_history_order_user($user['username']),
@@ -47,7 +50,9 @@ class Order extends BaseController
     public function detail($params)
     {
         $modules = (new Modules)->index();
+        $model2 = new CriticModel();
         $data = [
+            'critic' => $model2->get_critic(),
             'name' => 'orderdetail',
             'title' => 'Detail Order',
             'file' => $this->orderDetailModel->get_item_order($params),
@@ -127,7 +132,7 @@ class Order extends BaseController
                 'msg' => 'Maaf, anda tidak memenuhi syarat sebagai pengguna baru.'
             ];
         } else {
-            if ($params['code']) {
+            if (isset($params['code'])) {
                 $check_code = $this->discountModel->get_code($params['code']);
                 if (count($check_code) > 0) {
                     $response = [
@@ -145,7 +150,7 @@ class Order extends BaseController
 
         return $this->response->setJSON($response);
     }
-
+    
     public function index_admin()
     {
         $modules = (new Modules)->index();
@@ -175,6 +180,26 @@ class Order extends BaseController
             $response = [
                 'success' => false,
                 'msg' => 'Status pembayaran gagal disimpan.'
+            ];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    public function check_birth_user()
+    {
+        $params = $this->request->getPost();
+        $query = $this->userModel->check_birth_user($params['user_id']);
+        
+        if ($query) {
+            $response = [
+                'success' => true,
+                'msg' => 'Valid.'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'msg' => 'Tidak Valid.'
             ];
         }
 

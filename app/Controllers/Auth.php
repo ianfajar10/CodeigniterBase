@@ -73,14 +73,36 @@ class Auth extends BaseController
                 'msg2' => 'Konfirmasi kata sandi tidak boleh kosong!'
             ];
             return $this->response->setJSON($data);
+        } else if ($data['birth'] == null) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Tanggal Lahir tidak boleh kosong!'
+            ];
+            return $this->response->setJSON($data);
         } else if ($data['email'] == null) {
             $data = [
                 'success' => false,
                 'msg2' => 'Email tidak boleh kosong!'
             ];
             return $this->response->setJSON($data);
+        } else if ($data['telp'] == null) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Nomor Handphone tidak boleh kosong!'
+            ];
+            return $this->response->setJSON($data);
         }
 
+        $check_email = $this->userModel->check_email($data['email']);
+
+        if ($check_email) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Email sudah pernah digunakan!'
+            ];
+            return $this->response->setJSON($data);
+        }
+        
         //jalankan validasi
         $this->validation->run($data, 'register');
 
@@ -105,7 +127,9 @@ class Auth extends BaseController
                 'name' => $data['name'],
                 'username' => $data['username'],
                 'password' => $password,
+                'birth' => $data['birth'],
                 'email' => $data['email'],
+                'telp' => $data['telp'],
                 'role' => 2
             ];
 

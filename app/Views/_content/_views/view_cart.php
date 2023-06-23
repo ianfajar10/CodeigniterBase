@@ -95,6 +95,10 @@
                             <button type="button" onclick="handleUse()" class="btn" style="background-color: #E0CBB0">Pakai</button>
                         </div>
                     </div>
+                    <li id="discount_ulang_tahun" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0 visually-hidden">
+                        Diskon Hari Ulang Tahun
+                        <span>20%</span>
+                    </li>
                     <li id="discount_baru" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0 visually-hidden">
                         Diskon Pengguna Baru
                         <span>Rp10.000</span>
@@ -329,25 +333,20 @@
     }
 
     $(document).ready(function() {
-        // if (user_id && user_id !== 'admin') {
-        //     $.ajax({
-        //         type: "POST",
-        //         url: base_url + ('order/check_new_user'),
-        //         data: {
-        //             'user_id': user_id
-        //         },
-        //         success: function(response) {
-        //             if (response.success) {
-        //                 $('#total_price').text('Rp' + ((total - 10000) < 0 ? 0 : (total - 10000)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
-        //                 is_new = true
-        //             } else {
-        //                 $('#discount_baru').addClass('visually-hidden');
-        //                 $('#total_price').text('Rp' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
-        //             }
-        //         }
-        //     });
-        // }
-        $('#total_price').text('Rp' + ((total) < 0 ? 0 : (total)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
+        $.ajax({
+            type: "POST",
+            url: base_url + ('order/check_birth_user'),
+            data: {
+                'user_id': user_id
+            },
+            success: function(response) {
+                if (response.success) {
+                    total = total - (Math.round(total * 20 / 100))
+                    $('#discount_ulang_tahun').removeClass('visually-hidden');
+                    $('#total_price').text('Rp' + ((total) < 0 ? 0 : (total)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
+                }
+            }
+        });
     });
 </script>
 

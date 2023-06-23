@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CriticModel;
 use App\Models\FileModel;
 
 class Upload extends BaseController
@@ -11,9 +12,11 @@ class Upload extends BaseController
         helper('form');
         $modules = (new Modules)->index();
         $model = new FileModel();
+        $model2 = new CriticModel();
         
         if (!$this->validate([])) {
             $data = [
+                'critic' => $model2->get_critic(),
                 'name' => 'upload',
                 'title' => 'Input Menu',
                 'validation' => $this->validator,

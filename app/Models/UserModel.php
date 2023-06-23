@@ -13,7 +13,9 @@ class UserModel extends Model
         "name",
         "username",
         "password",
+        "birth",
         "email",
+        "telp",
         "role"
     ];
 
@@ -34,7 +36,19 @@ class UserModel extends Model
     public function list_user()
     {
         $query = $this->where('username !=', 'admin')->findAll();
-        // dd($this->getLastQuery());
+        return $query;
+    }
+    
+    public function check_email($param)
+    {
+        $query = $this->where('email', $param)->findAll();
+        return $query;
+    }
+    
+    public function check_birth_user($param)
+    {
+        // dd(date("Y-m-d"));
+        $query = $this->where('username', $param)->where('birth', date("Y-m-d"))->findAll();
         return $query;
     }
 }
