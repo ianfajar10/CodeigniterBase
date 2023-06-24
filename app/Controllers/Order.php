@@ -187,7 +187,7 @@ class Order extends BaseController
                 'msg' => 'Maaf, anda tidak memenuhi syarat sebagai pengguna baru.'
             ];
         } else {
-            if ($params['code']) {
+            if (isset($params['code'])) {
                 $check_code = $this->discountModel->get_code($params['code']);
                 if (count($check_code) > 0) {
                     $response = [

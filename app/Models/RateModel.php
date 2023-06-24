@@ -24,9 +24,15 @@ class RateModel extends Model
         }
     }
 
-    public function count_rating($params)
+    public function count_rating($params = null, $like = null)
     {
-        return $this->where('file_id', $params['file_id'])->find();
+        if ($like === null) {
+            return $this->where('file_id', $params['file_id'])->find();
+        } else if ($like === 'like') {
+            return $this->where('file_id', $params['file_id'])->where('rate', 'like')->findAll();
+        } else {
+            return $this->where('file_id', $params['file_id'])->where('rate', 'dislike')->findAll();
+        }
     }
 
     public function save_data($data)
@@ -51,9 +57,15 @@ class RateModel extends Model
         }
     }
 
-    public function get_comment($params)
+    public function get_comment($params = null, $like = null)
     {
-        return $this->where('file_id', $params['file_id'])->where('comment IS NOT NULL')->findAll();
+        if ($like === null) {
+            return $this->where('file_id', $params['file_id'])->where('comment IS NOT NULL')->findAll();
+        } else if ($like === 'like') {
+            return $this->where('file_id', $params['file_id'])->where('comment IS NOT NULL')->where('rate', 'like')->findAll();
+        } else {
+            return $this->where('file_id', $params['file_id'])->where('comment IS NOT NULL')->where('rate', 'dislike')->findAll();
+        }
         // return $this->where('file_id', $params['file_id'])->where('user_id', $params['user_id'])->where('comment IS NOT NULL')->findAll();
     }
 

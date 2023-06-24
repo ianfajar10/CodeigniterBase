@@ -103,7 +103,7 @@ class Upload extends BaseController
         $params = $this->request->getPost();
 
         $get_data = $model->get_files($params['file_id'])[0];
-        unlink('public\assets\images' . DIRECTORY_SEPARATOR . $get_data['file']);
+        unlink('public/assets/images' . DIRECTORY_SEPARATOR . $get_data['file']);
         $delete = $model->delete_files($get_data['id']);
         if ($delete) {
 

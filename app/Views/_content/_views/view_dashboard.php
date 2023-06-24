@@ -46,7 +46,7 @@
                     'user_id': user_id
                 },
                 success: function(response) {
-                    if (!response.success) {
+                    if (response.success) {
                         $('#newUserModal').modal('show');
                     }
                 }

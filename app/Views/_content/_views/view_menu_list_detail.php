@@ -26,19 +26,35 @@
                     <p class="card-text text-align: justify;"><?= $row['description'] ? $row['description'] : '-' ?></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="ratings">
-                            <?php if (count($rating) == 0) { ?>
+                            <h5 class="review-count">Tidak Suka</h5>
+                            <i class='fa-solid fa-star' style='color:#62b1f6'></i>
+                            <i class='fa-solid fa-star' style='color:#62b1f6'></i>
+                            <i class='fa-solid fa-star' style='color:#62b1f6'></i>
+                            <i class='fa-solid fa-star' style='color:#62b1f6'></i>
+                            <i class='fa-solid fa-star' style='color:#62b1f6'></i>
+                            <br>
+                            <?php if (count($rating_like) == 0) { ?>
                                 <span class="fst-italic">(Belum ada penilaian)</span>
-                            <?php } else { ?>
-                                <i class='<?= (count($like) / count($rating) * 5 >= 1 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
-                                <i class='<?= (count($like) / count($rating) * 5 >= 2 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
-                                <i class='<?= (count($like) / count($rating) * 5 >= 3 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
-                                <i class='<?= (count($like) / count($rating) * 5 >= 4 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
-                                <i class='<?= (count($like) / count($rating) * 5 >= 5 ? 'fa-solid fa-star' : 'fa-regular fa-star') ?>' style='color:#62b1f6'></i>
+                            <?php } ?>
+                            <?php if (count($rating_like) > 0) { ?>
+                                <h5 class="review-count"><?= count($rating_like) ?> Penilaian</h5>
                             <?php } ?>
                         </div>
-                        <?php if (count($rating) > 0) { ?>
-                            <h5 class="review-count"><?= count($rating) ?> Penilaian</h5>
-                        <?php } ?>
+                        <div class="ratings">
+                            <h5 class="review-count">Tidak Suka</h5>
+                            <i class='fa-regular fa-star' style='color:#62b1f6'></i>
+                            <i class='fa-regular fa-star' style='color:#62b1f6'></i>
+                            <i class='fa-regular fa-star' style='color:#62b1f6'></i>
+                            <i class='fa-regular fa-star' style='color:#62b1f6'></i>
+                            <i class='fa-regular fa-star' style='color:#62b1f6'></i>
+                            <br>
+                            <?php if (count($rating_dislike) == 0) { ?>
+                                <span class="fst-italic">(Belum ada penilaian)</span>
+                            <?php } ?>
+                            <?php if (count($rating_dislike) > 0) { ?>
+                                <h5 class="review-count"><?= count($rating_dislike) ?> Penilaian</h5>
+                            <?php } ?>
+                        </div>
                     </div>
                     <!-- <div class="mt-3 <?= ($session->get('username') == 'admin' ? 'visually-hidden' : '') ?>">
                         <button class="btn btn-outline-primary btn-add-cart" id="btn-cart" type="submit"><i class="bi bi-cart"></i> Tambah ke Keranjang</button>
@@ -81,16 +97,40 @@
                                 <button type="button" onclick="handleKirim()" class="btn btn-primary mt-2">Kirim</button>
                             </div>
                             <div class="mt-2">
-                                <!-- List group with Advanced Contents -->
-                                <div class="list-group">
-                                    <?= count($comment) == 0 ? 'Belum ada komentar' : '' ?>
-                                    <?php foreach ($comment as $row2) : ?>
-                                        <a class="list-group-item list-group-item-action" aria-current="true">
-                                            <p class="mb-1"><?= $row2['comment'] ?></p>
-                                            <small class="fw-bold"><?= $row2['user_id'] ?>.</small>
-                                        </a>
-                                    <?php endforeach; ?>
-                                </div><!-- End List group Advanced Content -->
+                                <ul class="nav nav-tabs d-flex mb-3" id="myTabjustified" role="tablist">
+                                    <li class="nav-item flex-fill" role="presentation">
+                                        <button class="nav-link w-100 active" id="like-tab" data-bs-toggle="tab" data-bs-target="#like-justified" type="button" role="tab" aria-controls="like" aria-selected="true">Suka</button>
+                                    </li>
+                                    <li class="nav-item flex-fill" role="presentation">
+                                        <button class="nav-link w-100" id="dislike-tab" data-bs-toggle="tab" data-bs-target="#dislike-justified" type="button" role="tab" aria-controls="dislike" aria-selected="false">Tidak Suka</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content pt-12" id="myTabjustifiedContent">
+                                    <div class="tab-pane fade show active" id="like-justified" role="tabpanel" aria-labelledby="like-tab">
+                                        <!-- List group with Advanced Contents -->
+                                        <div class="list-group">
+                                            <?= count($comment_like) == 0 ? 'Belum ada komentar' : '' ?>
+                                            <?php foreach ($comment_like as $row2) : ?>
+                                                <a class="list-group-item list-group-item-action" aria-current="true">
+                                                    <p class="mb-1"><?= $row2['comment'] ?></p>
+                                                    <small class="fw-bold"><?= $row2['user_id'] ?>.</small>
+                                                </a>
+                                            <?php endforeach; ?>
+                                        </div><!-- End List group Advanced Content -->
+                                    </div>
+                                    <div class="tab-pane fade" id="dislike-justified" role="tabpanel" aria-labelledby="dislike-tab">
+                                        <!-- List group with Advanced Contents -->
+                                        <div class="list-group">
+                                            <?= count($comment_dislike) == 0 ? 'Belum ada komentar' : '' ?>
+                                            <?php foreach ($comment_dislike as $row2) : ?>
+                                                <a class="list-group-item list-group-item-action" aria-current="true">
+                                                    <p class="mb-1"><?= $row2['comment'] ?></p>
+                                                    <small class="fw-bold"><?= $row2['user_id'] ?>.</small>
+                                                </a>
+                                            <?php endforeach; ?>
+                                        </div><!-- End List group Advanced Content -->
+                                    </div>
+                                </div><!-- End Default Tabs -->
                             </div>
                         </div>
                     </div>
@@ -105,17 +145,17 @@
     var base_url = $('#base_url').val();
     var file_id = $('#file_id').val();
 
-    $(document).ready(function() {
-        $.ajax({
-            type: "POST",
-            url: base_url + ('menulist/check_user_order'),
-            dataType: "json",
-            success: function(response) {
-                console.log('Test');
-            }
+    // $(document).ready(function() {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: base_url + ('menulist/check_user_order'),
+    //         dataType: "json",
+    //         success: function(response) {
+    //             console.log('Test');
+    //         }
 
-        });
-    });
+    //     });
+    // });
 
     function handleLike($rate) {
         if (user_id) {
