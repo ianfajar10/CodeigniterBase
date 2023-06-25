@@ -31,11 +31,11 @@
                             <td><?= $row['discount'] ? $row['discount'] : '-'; ?></td>
                             <td><?= $row['price_after_diskon'] ? ($row['price_after_diskon'] < 0 ? 0 : $row['price_after_diskon']) : '-'; ?></td>
                             <td>
-                                <select class="form-select" aria-label="Default select">
+                                <select class="form-select" aria-label="Default select" <?= $row['status'] === 'sudah_bayar' ? 'disabled' : '' ?>>
                                     <option <?= $row['status'] === '' ? 'selected' : '' ?> value="-">Pilih status</option>
                                     <option <?= $row['status'] === 'sudah_bayar' ? 'selected' : '' ?> value="<?= 'sudah_bayar' . '||' . $row['id'] ?>">Pembayaran Diterima</option>
-                                    <option <?= $row['status'] === 'pesanan_sedang_diproses' ? 'selected' : '' ?> value="'pesanan_sedang_diproses' . '||' . $row['id'] ?>">Pesanan Sedang Diproses</option>
-                                    <option <?= $row['status'] === 'pesanan_belum_diproses' ? 'selected' : '' ?> value="'pesanan_belum_diproses' . '||' . $row['id'] ?>">Pesanan Belum Diproses</option>
+                                    <option <?= $row['status'] === 'pesanan_sedang_diproses' ? 'selected' : '' ?> value="<?= 'pesanan_sedang_diproses' . '||' . $row['id'] ?>">Pesanan Sedang Diproses</option>
+                                    <option <?= $row['status'] === 'pesanan_belum_diproses' ? 'selected' : '' ?> value="<?= 'pesanan_belum_diproses' . '||' . $row['id'] ?>">Pesanan Belum Diproses</option>
                                 </select>
                             </td>
                         </tr>

@@ -19,11 +19,13 @@ class Critic extends BaseController
     {
         $modules = (new Modules)->index();
         $model2 = new OrderModel();
+        $id_user = ['username' => \Config\Services::session()->get('username')];
         $data = [
             'count_order' => count($model2->order_in_progress()),
             'name' => 'critics',
             'title' => 'Kritik & Saran',
             'critic' => $this->criticModel->get_critic(),
+            'critic_user' => $this->criticModel->get_critic($id_user),
             'modules' => $modules
         ];
         return view('_content/_views/view_critics', $data);
@@ -33,11 +35,13 @@ class Critic extends BaseController
     {
         $modules = (new Modules)->index();
         $model2 = new OrderModel();
+        $id_user = ['username' => \Config\Services::session()->get('username')];
         $data = [
             'count_order' => count($model2->order_in_progress()),
             'name' => 'criticsadmin',
             'title' => 'Kritik & Saran',
             'critic' => $this->criticModel->get_critic(),
+            'critic_user' => $this->criticModel->get_critic($id_user),
             'modules' => $modules
         ];
         return view('_content/_views/view_critics_admin', $data);

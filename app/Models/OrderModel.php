@@ -53,7 +53,7 @@ class OrderModel extends Model
                 ->findAll();
                 return $query;
             } else if (isset($params['date_order'])) {
-                $query = $this->select('tbl_orders.id, status, user_id, (SELECT SUM(quantity) FROM tbl_order_detail WHERE tbl_order_detail.order_id = tbl_orders.id) AS total_item, ' . $var)->join('tbl_discs', 'tbl_discs.id = tbl_orders.disc_id', 'left')
+                $query = $this->select('tbl_orders.id, status, user_id, email, (SELECT SUM(quantity) FROM tbl_order_detail WHERE tbl_order_detail.order_id = tbl_orders.id) AS total_item, ' . $var)->join('tbl_discs', 'tbl_discs.id = tbl_orders.disc_id', 'left')->join('tbl_users', 'tbl_users.username = tbl_orders.user_id', 'left')
                 ->where('status IS NOT NULL')
                 ->like('date', $params['date_order'])
                 ->orderBy('date', 'desc')
@@ -107,5 +107,10 @@ class OrderModel extends Model
     {
         $query = $this->select('name, username, count(user_id) as total')->join('tbl_users', 'tbl_users.username = tbl_orders.user_id', 'left')->groupBy('name, user_id')->orderBy('total', 'asc')->limit(5)->find();
         return $query;
+    }
+
+    public function check_user_can_comment($params)
+    {
+        return $this->where('user_id', $params['user_id'])->join('tbl_order_detail', 'tbl_order_detail.order_id = tbl_orders.id', 'left')->where('file_id', $params['file_id'])->where('status', 'sudah_bayar')->find();
     }
 }

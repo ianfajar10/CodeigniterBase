@@ -24,9 +24,14 @@ class CriticModel extends Model
         return true;
     }
 
-    public function get_critic()
+    public function get_critic($params = null)
     {
-        $query = $this->orderBy('created_at', 'desc')->findAll();
-        return $query;
+        if (isset($params)) {
+            $query = $this->where('username', $params)->orderBy('created_at', 'desc')->findAll();
+            return $query;
+        } else {
+            $query = $this->orderBy('created_at', 'desc')->findAll();
+            return $query;
+        }
     }
 }

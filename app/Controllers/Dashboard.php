@@ -21,10 +21,12 @@ class Dashboard extends BaseController
         $modules = (new Modules)->index();
         $model = new CriticModel();
         $model2 = new OrderModel();
+        $id_user = ['username' => \Config\Services::session()->get('username')];
         $data = [
             'name' => 'dashboard',
             'title' => 'Beranda',
             'critic' => $model->get_critic(),
+            'critic_user' => $model->get_critic($id_user),
             'count_order' => count($model2->order_in_progress()),
             'modules' => $modules
         ];

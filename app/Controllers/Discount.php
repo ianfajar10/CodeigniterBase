@@ -16,10 +16,11 @@ class Discount extends BaseController
         $model2 = new DiscountModel();
         $model3 = new CriticModel();
         $model4 = new OrderModel();
-        
+        $id_user = ['username' => \Config\Services::session()->get('username')];
         $data = [
             'count_order' => count($model4->order_in_progress()),
             'critic' => $model3->get_critic(),
+            'critic_user' => $model3->get_critic($id_user),
             'name' => 'discount',
             'title' => 'Diskon',
             'file' => $model->get_files_cond(),

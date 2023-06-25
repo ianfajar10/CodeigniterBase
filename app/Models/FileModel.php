@@ -31,6 +31,9 @@ class FileModel extends Model
         } else if ($params == 'drink') {
             $query = $this->select('tbl_files.id, name, description, file, type, price, tbl_discs.discount, best')->join('tbl_discs', 'tbl_discs.id = tbl_files.disc_id', 'left')->like('tbl_files.name', 'minuman')->find();
             return $query;
+        } else if ($params == 'bundling') {
+            $query = $this->select('tbl_files.id, name, description, file, type, price, tbl_discs.discount, best')->join('tbl_discs', 'tbl_discs.id = tbl_files.disc_id', 'left')->like('tbl_files.name', 'bundling')->find();
+            return $query;
         } else {
             $query = $this->select('tbl_files.id, name, description, file, type, price, tbl_discs.discount')->join('tbl_discs', 'tbl_discs.id = tbl_files.disc_id', 'left')->where('tbl_files.id', $params)->find();
             return $query;

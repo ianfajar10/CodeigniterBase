@@ -59,13 +59,13 @@
                     <!-- <div class="mt-3 <?= ($session->get('username') == 'admin' ? 'visually-hidden' : '') ?>">
                         <button class="btn btn-outline-primary btn-add-cart" id="btn-cart" type="submit"><i class="bi bi-cart"></i> Tambah ke Keranjang</button>
                     </div> -->
-                    <div class="mt-3 <?= ($session->get('username') == 'admin' ? 'visually-hidden' : '') ?>">
+                    <div class="mt-3 <?= ($session->get('username') == 'admin' ? 'visually-hidden' : (count($can_comment) > 0 ? '' : 'visually-hidden')) ?>">
                         <button class="btn <?= count($check_like) > 0 ? 'btn-primary' : 'btn-outline-primary' ?>" type="button" onclick="handleLike('like')" <?= count($check_like) > 0 ? 'disabled' : '' ?>><i class="bi bi-hand-thumbs-up"></i> Suka</button>
                         <button class="btn <?= count($check_dislike) > 0 ? 'btn-primary' : 'btn-outline-primary' ?>" type="button" onclick="handleLike('dislike')" <?= count($check_dislike) > 0 ? 'disabled' : '' ?>><i class="bi bi-hand-thumbs-down"></i> Tidak Suka</button>
                     </div>
                     <div class="row mt-3 div-spin-number">
                         <div class="col-8">
-                            <input type="number" class="form-control btn-spin-number" step="1" min="0" value="0" data-numspin />
+                            <input type="number" class="form-control btn-spin-number" id=valSpinNumber" step="1" min="0" value="0" data-numspin />
                         </div>
                         <div class="col-3 mt-1">
                             <div class="row">
@@ -79,13 +79,8 @@
                         </div>
                     </div>
                     <div class="row mt-3 div-value-spin-number visually-hidden">
-                        <div class="col-8">
+                        <div class="col-12">
                             <input type="number" class="form-control value-spin-number" step="1" min="0" value="0" />
-                        </div>
-                        <div class="col-2">
-                            <div>
-                                <button class="btn btn-outline-danger btn-delete-value-cart" type="submit"><i class="bi bi-x-lg"></i></button>
-                            </div>
                         </div>
                     </div>
                     <div class="card mt-3">

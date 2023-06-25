@@ -36,10 +36,11 @@ class Order extends BaseController
         $id_user = ['username' => $this->session->get('username')];
         $user = $this->userModel->check_login($id_user)[0];
         $model2 = $this->orderModel;
-        
+        $id_user = ['username' => \Config\Services::session()->get('username')];
         $data = [
             'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
+            'critic_user' => $model->get_critic($id_user),
             'name' => 'order',
             'title' => 'Pemesanan',
             'file' => $this->orderModel->list_history_order_user($user['username']),
@@ -55,9 +56,11 @@ class Order extends BaseController
         $modules = (new Modules)->index();
         $model = new CriticModel();
         $model2 = new OrderModel();
+        $id_user = ['username' => \Config\Services::session()->get('username')];
         $data = [
             'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
+            'critic_user' => $model->get_critic($id_user),
             'name' => 'orderdetail',
             'title' => 'Detail Order',
             'file' => $this->orderDetailModel->get_item_order($params),
@@ -180,8 +183,8 @@ class Order extends BaseController
     {
         $params = $this->request->getPost();
         $query = $this->orderModel->list_history_order_user($params['user_id']);
-        
-        if ($query) {
+        $query2 = $this->orderModel->list_history_order_user($params['user_id'], 'sudah_bayar');
+        if (count($query) + count($query2) > 0) {
             $response = [
                 'success' => false,
                 'msg' => 'Maaf, anda tidak memenuhi syarat sebagai pengguna baru.'
@@ -200,10 +203,12 @@ class Order extends BaseController
                         'msg' => 'Maaf, kode tidak bisa digunakan.'
                     ];
                 }
+            } else {
+                $response = [
+                    'success' => true,
+                    'msg' => 'Valid.'
+                ];
             }
-            // $response = [
-            //     'success' => true,
-            // ];
         }
 
         return $this->response->setJSON($response);

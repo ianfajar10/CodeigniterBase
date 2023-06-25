@@ -25,6 +25,7 @@ class Menulist extends BaseController
         $modules = (new Modules)->index();
         $model = new CriticModel();
         $model2 = new OrderModel();
+        $id_user = ['username' => \Config\Services::session()->get('username')];
         $data = [
             'count_order' => count($model2->order_in_progress()),
             'name' => 'menulist',
@@ -32,7 +33,9 @@ class Menulist extends BaseController
             'file' => $file->get_files(),
             'file2' => $file->get_files('food'),
             'file3' => $file->get_files('drink'),
+            'file4' => $file->get_files('bundling'),
             'critic' => $model->get_critic(),
+            'critic_user' => $model->get_critic($id_user),
             'modules' => $modules
         ];
         return view('_content/_views/view_menu_list', $data);
@@ -45,6 +48,7 @@ class Menulist extends BaseController
         $modules = (new Modules)->index();
         $model = new CriticModel();
         $model2 = new OrderModel();
+        $id_user = ['username' => \Config\Services::session()->get('username')];
         
         $new_params = [
             'file_id' => $params,
@@ -54,6 +58,7 @@ class Menulist extends BaseController
         $data = [
             'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
+            'critic_user' => $model->get_critic($id_user),
             'name' => 'menulist',
             'title' => 'Detail Menu',
             'file' => $file->get_files($params),
@@ -63,6 +68,7 @@ class Menulist extends BaseController
             'check_like' => $rate->check_user($new_params, 'like'),
             'check_dislike' => $rate->check_user($new_params, 'dislike'),
             'check_comment' => $rate->check_user($new_params, 'comment'),
+            'can_comment' => $model2->check_user_can_comment($new_params),
             'comment' => $rate->get_comment($new_params),
             'comment_like' => $rate->get_comment($new_params, 'like'),
             'comment_dislike' => $rate->get_comment($new_params, 'dislike'),
@@ -81,10 +87,14 @@ class Menulist extends BaseController
 
         $file = new FileModel();
         $model = new CriticModel();
+        $model2 = new OrderModel();
+        $id_user = ['username' => \Config\Services::session()->get('username')];
         
         $modules = (new Modules)->index($query);
         $data = [
+            'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
+            'critic_user' => $model->get_critic($id_user),
             'name' => 'menulist',
             'title' => 'Detail Menu',
             'file' => $file->get_files_by_search($query),

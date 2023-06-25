@@ -33,13 +33,13 @@ class Cart extends BaseController
         $data = [
             'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
+            'critic_user' => $model->get_critic($id_user),
             'name' => 'cart',
             'title' => 'Keranjang',
             'file' => $cart->list_cart_user($user['username']),
             'count_cart' => count($cart->list_cart_user($user['username'])),
             'modules' => $modules
         ];
-        // dd($data['file']);
         return view('_content/_views/view_cart', $data);
     }
 
@@ -65,12 +65,12 @@ class Cart extends BaseController
 
             $response = [
                 'success' => true,
-                'msg' => 'Item berhasil masuk ke keranjang.'
+                'msg' => $params['quantity'] == 0 ? 'Item berhasil dihapus dari keranjang.' : 'Item berhasil masuk ke keranjang.'
             ];
         } else {
             $response = [
                 'success' => false,
-                'msg' => 'Item gagal masuk ke keranjang.'
+                'msg' => $params['quantity'] == 0 ? 'Item gagal dihapus dari keranjang.' : 'Item gagal masuk ke keranjang.'
             ];
         }
 

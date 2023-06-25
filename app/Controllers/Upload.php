@@ -15,11 +15,13 @@ class Upload extends BaseController
         $model = new FileModel();
         $model2 = new CriticModel();
         $model3 = new OrderModel();
+        $id_user = ['username' => \Config\Services::session()->get('username')];
         
         if (!$this->validate([])) {
             $data = [
                 'count_order' => count($model3->order_in_progress()),
                 'critic' => $model2->get_critic(),
+                'critic_user' => $model->get_critic($id_user),
                 'name' => 'unggah',
                 'title' => 'Unggah Menu',
                 'validation' => $this->validator,
@@ -36,11 +38,13 @@ class Upload extends BaseController
         $modules = (new Modules)->index();
         $model = new CriticModel();
         $model2 = new OrderModel();
+        $id_user = ['username' => \Config\Services::session()->get('username')];
         
         if (!$this->validate([])) {
             $data = [
                 'count_order' => count($model2->order_in_progress()),
                 'critic' => $model->get_critic(),
+                'critic_user' => $model->get_critic($id_user),
                 'name' => 'banner',
                 'title' => 'Banner',
                 'validation' => $this->validator,
@@ -66,8 +70,13 @@ class Upload extends BaseController
             $price = str_replace(".", "", $this->request->getPost('price'));
             $upload = $this->request->getFile('file_upload');
             $upload->move(WRITEPATH . '../public/assets/images/');
+            if ($this->request->getPost('bundling')) {
+                $name = 'Bundling ' . $this->request->getPost('name');
+            } else {
+                $name = $this->request->getPost('food') ? 'Makanan ' . $this->request->getPost('name') : 'Minuman ' . $this->request->getPost('name');
+            }
             $data = array(
-                'name'  => $this->request->getPost('food') ? 'Makanan ' . $this->request->getPost('name') : 'Minuman ' . $this->request->getPost('name'),
+                'name'  => $name,
                 'price'  => $price,
                 'description'  => $this->request->getPost('description'),
                 'file' => $upload->getName(),

@@ -55,6 +55,14 @@
         <div class="row mt-2">
             <div class="col-md-12">
                 <div class="form-check form-switch">
+                    <input class="form-check-input" name="bundling" type="checkbox" id="chekBundling" value="y">
+                    <label class="form-check-label" for="chekBundling">Bundling</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2" id="foodCheck">
+            <div class="col-md-12">
+                <div class="form-check form-switch">
                     <input class="form-check-input" name="food" type="checkbox" id="chekFood" value="y">
                     <label class="form-check-label" for="chekFood">Makanan</label>
                 </div>
@@ -161,6 +169,16 @@
 
             }
         });
+
     }
+    $(document).ready(function() {
+        $("#chekBundling").change(function() {
+            if (this.checked) {
+                $('#foodCheck').addClass('visually-hidden');
+            } else {
+                $('#foodCheck').removeClass('visually-hidden');
+            }
+        });
+    });
 </script>
 <?= $this->endSection() ?>

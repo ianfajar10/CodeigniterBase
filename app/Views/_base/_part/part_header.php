@@ -26,6 +26,41 @@
                 </a>
             </li>
 
+            <li class="nav-item dropdown <?= ($session->get('username') === 'admin') || ($session->get('username') === null) ? 'visually-hidden' : '' ?>">
+
+                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                    <i class="bi bi-bell"></i>
+                    <span class="badge bg-primary badge-number"><?= count($critic_user) ?></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                    <li class="dropdown-header">
+                        <?= count($critic_user) == 0 ? 'Belum ada tanggapan yang masuk' : 'Ada ' . count($critic_user) . ' tanggapan mengenai kritik dan saran yang anda berikan' ?>
+                    </li>
+                    <?php $limit = 0; ?>
+                    <?php foreach ($critic_user as $row) : ?>
+                        <?php if ($limit < 3) { ?>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li class="notification-item">
+                                <i class="bi bi-chat-left-quote text-primary"></i>
+                                <div>
+                                    <h4>Sistem</h4>
+                                    <p>Terimakasih atas kritik dan saran anda mengenai "<?= (strlen($row['critic']) > 20 ? substr($row['critic'], 0, 100) . '...' :  $row['critic']) ?>"</p>
+                                    <p><?= $row['created_at'] ?></p>
+                                </div>
+                            </li>
+                        <?php } else {
+                            break;
+                        } ?>
+                        <?php $limit++; ?>
+                    <?php endforeach; ?>
+
+                </ul>
+
+            </li>
+
             <a class="nav-link nav-icon <?= $session->get('name') ? ($session->get('username') == 'admin' ? 'visually-hidden' : '') : 'visually-hidden' ?>" href="<?php echo (base_url() . 'cart') ?>">
                 <i class="bi bi-cart"></i>
                 <span class="badge bg-primary badge-number"><?= $session->get('cart') ?></span>
@@ -41,7 +76,7 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                     <li class="dropdown-header">
                         <?= count($critic) == 0 ? 'Belum ada kritik dan saran yang masuk' : 'Ada ' . count($critic) . ' kritik dan saran yang masuk' ?>
-                        <a href="<?= base_url().'criticadmin' ?>"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat semua</span></a>
+                        <a href="<?= base_url() . 'criticadmin' ?>"><span class="badge rounded-pill bg-primary p-2 ms-2">Lihat semua</span></a>
                     </li>
                     <?php $limit = 0; ?>
                     <?php foreach ($critic as $row) : ?>
@@ -59,7 +94,7 @@
                             </li>
                         <?php } else {
                             break;
-                        }?>
+                        } ?>
                         <?php $limit++; ?>
                     <?php endforeach; ?>
 

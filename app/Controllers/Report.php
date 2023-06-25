@@ -17,9 +17,11 @@ class Report extends BaseController
         $modules = (new Modules)->index();
         $model = new CriticModel();
         $model2 = new OrderModel();
+        $id_user = ['username' => \Config\Services::session()->get('username')];
         $data = [
             'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
+            'critic_user' => $model->get_critic($id_user),
             'name' => 'report',
             'title' => 'Laporan',
             'modules' => $modules
@@ -41,27 +43,22 @@ class Report extends BaseController
         $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(30);
         $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(20);
         $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(60);
-        $spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(40);
 
         $spreadsheet->setActiveSheetIndex(0)
             ->setCellValue('A1', 'NO. PESAN')
-            ->setCellValue('B1', 'PENGGUNA')
-            ->setCellValue('C1', 'TOTAL ITEM')
-            ->setCellValue('D1', 'TOTAL HARGA')
-            ->setCellValue('E1', 'DISKON')
-            ->setCellValue('F1', 'HARGA SETELAH DISKON')
-            ->setCellValue('G1', 'STATUS');
+            ->setCellValue('B1', 'TOTAL ITEM')
+            ->setCellValue('C1', 'TOTAL HARGA')
+            ->setCellValue('D1', 'DISKON')
+            ->setCellValue('E1', 'HARGA SETELAH DISKON');
 
         $column = 2;
         foreach ($dataOrder as $data) {
             $spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A' . $column, $data['id'])
-                ->setCellValue('B' . $column, $data['user_id'])
-                ->setCellValue('C' . $column, $data['total_item'])
-                ->setCellValue('D' . $column, $data['total_price'])
-                ->setCellValue('E' . $column, $data['discount'])
-                ->setCellValue('F' . $column, $data['price_after_diskon'])
-                ->setCellValue('G' . $column, $data['status'] == "pesanan_belum_diproses" ? "Pesanan Belum Diproses" : ($data['status'] == "pesanan_sedang_diproses" ? "Pesanan Sedang Diproses" : "Pembayaran Diterima"));
+                ->setCellValue('B' . $column, $data['total_item'])
+                ->setCellValue('C' . $column, $data['total_price'])
+                ->setCellValue('D' . $column, $data['discount'])
+                ->setCellValue('E' . $column, $data['price_after_diskon']);
             $column++;
         }
         // tulis dalam format .xlsx
@@ -91,7 +88,6 @@ class Report extends BaseController
             ->setCellValue('A1', 'NAMA')
             ->setCellValue('B1', 'EMAIL')
             ->setCellValue('C1', 'MULAI DAFTAR');
-
         $column = 2;
         foreach ($dataUser as $data) {
             $spreadsheet->setActiveSheetIndex(0)
@@ -229,14 +225,16 @@ class Report extends BaseController
         $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(20);
         $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(30);
         $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(30);
-        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(60);
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(30);
+        $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(60);
 
         $spreadsheet->setActiveSheetIndex(0)
             ->setCellValue('A1', 'NO. PESAN')
             ->setCellValue('B1', 'STATUS')
             ->setCellValue('C1', 'PENGGUNA')
-            ->setCellValue('D1', 'TOTAL ITEM')
-            ->setCellValue('E1', 'ITEM');
+            ->setCellValue('D1', 'EMAIL')
+            ->setCellValue('E1', 'TOTAL ITEM')
+            ->setCellValue('F1', 'ITEM');
 
         $column = 2;
         foreach ($dataOrder as $data) {
@@ -244,8 +242,9 @@ class Report extends BaseController
                 ->setCellValue('A' . $column, $data['id'])
                 ->setCellValue('B' . $column, $data['status'] == "pesanan_belum_diproses" ? "Pesanan Belum Diproses" : ($data['status'] == "pesanan_sedang_diproses" ? "Pesanan Sedang Diproses" : "Pembayaran Diterima"))
                 ->setCellValue('C' . $column, $data['user_id'])
-                ->setCellValue('D' . $column, $data['total_item'])
-                ->setCellValue('E' . $column, $data['item']);
+                ->setCellValue('D' . $column, $data['email'])
+                ->setCellValue('E' . $column, $data['total_item'])
+                ->setCellValue('F' . $column, $data['item']);
             $column++;
         }
         // tulis dalam format .xlsx
