@@ -92,40 +92,16 @@
                                 <button type="button" onclick="handleKirim()" class="btn btn-primary mt-2">Kirim</button>
                             </div>
                             <div class="mt-2">
-                                <ul class="nav nav-tabs d-flex mb-3" id="myTabjustified" role="tablist">
-                                    <li class="nav-item flex-fill" role="presentation">
-                                        <button class="nav-link w-100 active" id="like-tab" data-bs-toggle="tab" data-bs-target="#like-justified" type="button" role="tab" aria-controls="like" aria-selected="true">Suka</button>
-                                    </li>
-                                    <li class="nav-item flex-fill" role="presentation">
-                                        <button class="nav-link w-100" id="dislike-tab" data-bs-toggle="tab" data-bs-target="#dislike-justified" type="button" role="tab" aria-controls="dislike" aria-selected="false">Tidak Suka</button>
-                                    </li>
-                                </ul>
-                                <div class="tab-content pt-12" id="myTabjustifiedContent">
-                                    <div class="tab-pane fade show active" id="like-justified" role="tabpanel" aria-labelledby="like-tab">
-                                        <!-- List group with Advanced Contents -->
-                                        <div class="list-group">
-                                            <?= count($comment_like) == 0 ? 'Belum ada komentar' : '' ?>
-                                            <?php foreach ($comment_like as $row2) : ?>
-                                                <a class="list-group-item list-group-item-action" aria-current="true">
-                                                    <p class="mb-1"><?= $row2['comment'] ?></p>
-                                                    <small class="fw-bold"><?= $row2['user_id'] ?>.</small>
-                                                </a>
-                                            <?php endforeach; ?>
-                                        </div><!-- End List group Advanced Content -->
-                                    </div>
-                                    <div class="tab-pane fade" id="dislike-justified" role="tabpanel" aria-labelledby="dislike-tab">
-                                        <!-- List group with Advanced Contents -->
-                                        <div class="list-group">
-                                            <?= count($comment_dislike) == 0 ? 'Belum ada komentar' : '' ?>
-                                            <?php foreach ($comment_dislike as $row2) : ?>
-                                                <a class="list-group-item list-group-item-action" aria-current="true">
-                                                    <p class="mb-1"><?= $row2['comment'] ?></p>
-                                                    <small class="fw-bold"><?= $row2['user_id'] ?>.</small>
-                                                </a>
-                                            <?php endforeach; ?>
-                                        </div><!-- End List group Advanced Content -->
-                                    </div>
-                                </div><!-- End Default Tabs -->
+                                <!-- List group with Advanced Contents -->
+                                <div class="list-group">
+                                    <?= count($comment) == 0 ? 'Belum ada komentar' : '' ?>
+                                    <?php foreach ($comment as $row2) : ?>
+                                        <a class="list-group-item list-group-item-action" aria-current="true">
+                                            <p class="mb-1"><?= $row2['comment'] ?></p>
+                                            <small class="fw-bold"><?= $row2['user_id'] ?>.</small>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div><!-- End List group Advanced Content -->
                             </div>
                         </div>
                     </div>

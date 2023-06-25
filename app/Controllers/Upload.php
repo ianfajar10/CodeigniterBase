@@ -21,7 +21,7 @@ class Upload extends BaseController
             $data = [
                 'count_order' => count($model3->order_in_progress()),
                 'critic' => $model2->get_critic(),
-                'critic_user' => $model->get_critic($id_user),
+                'critic_user' => $model2->get_critic($id_user),
                 'name' => 'unggah',
                 'title' => 'Unggah Menu',
                 'validation' => $this->validator,

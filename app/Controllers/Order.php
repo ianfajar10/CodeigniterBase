@@ -219,9 +219,11 @@ class Order extends BaseController
         $modules = (new Modules)->index();
         $model = new CriticModel();
         $model2 = new OrderModel();
+        $id_user = ['username' => $this->session->get('username')];
         $data = [
             'count_order' => count($model2->order_in_progress()),
             'critic' => $model->get_critic(),
+            'critic_user' => $model->get_critic($id_user),
             'name' => 'orderadmin',
             'title' => 'Pemesanan',
             'file' => $this->orderModel->list_history_order_user(),
