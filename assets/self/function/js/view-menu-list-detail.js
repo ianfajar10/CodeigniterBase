@@ -2,6 +2,26 @@
 var base_url = $('#base_url').val();
 var user_id = $('#user_id').val();
 var file_id = $('#file_id').val();
+var name = $('#name').val();
+var check_variant = '';
+
+$(document).ready(function () {
+    if (name.includes("(Hot & Ice)")) {
+        if ($(this).prop("checked")) {
+            check_variant = $('#chekVariant').val()
+        } else {
+            check_variant = 'n'
+        }
+    }
+});
+
+$("#chekVariant").click(function () {
+    if ($(this).prop("checked")) {
+        check_variant = $('#chekVariant').val()
+    } else {
+        check_variant = 'n'
+    }
+});
 
 $.ajax({
     type: "POST",
@@ -18,6 +38,7 @@ $.ajax({
             $(".value-spin-number").attr("disabled", true);
             $(".div-value-spin-number").removeClass('visually-hidden');
             $(".div-spin-number").hide();
+            $("#chekVariant").attr("disabled", true);
         }
     }
 });
@@ -55,7 +76,8 @@ $(".btn-submit-cart").on("click", function () {
             data: {
                 'user_id': user_id,
                 'file_id': file_id,
-                'quantity': $(".value-spin-number").val()
+                'quantity': $(".value-spin-number").val(),
+                'variant': check_variant
             },
             beforeSend: function (xhr) {
 

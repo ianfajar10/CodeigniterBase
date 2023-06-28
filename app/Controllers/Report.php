@@ -83,18 +83,24 @@ class Report extends BaseController
         $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(20);
         $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(20);
         $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(30);
+        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(30);
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(30);
 
         $spreadsheet->setActiveSheetIndex(0)
             ->setCellValue('A1', 'NAMA')
             ->setCellValue('B1', 'EMAIL')
-            ->setCellValue('C1', 'MULAI DAFTAR');
+            ->setCellValue('C1', 'TANGGAL LAHIR')
+            ->setCellValue('D1', 'TELP')
+            ->setCellValue('E1', 'MULAI DAFTAR');
 
         $column = 2;
         foreach ($dataUser as $data) {
             $spreadsheet->setActiveSheetIndex(0)
                 ->setCellValue('A' . $column, $data['name'])
                 ->setCellValue('B' . $column, $data['email'])
-                ->setCellValue('C' . $column, $data['created_at']);
+                ->setCellValue('C' . $column, $data['birth'])
+                ->setCellValue('D' . $column, $data['telp'])
+                ->setCellValue('E' . $column, $data['created_at']);
             $column++;
         }
         // tulis dalam format .xlsx
@@ -109,7 +115,7 @@ class Report extends BaseController
         $writer->save('php://output');
     }
 
-    public function download_critic()
+    public function download_review()
     {
         $model = new RateModel();
         $dataCritic = $model->get_comment();
@@ -133,6 +139,42 @@ class Report extends BaseController
                 ->setCellValue('B' . $column, $data['user_id'])
                 ->setCellValue('C' . $column, $data['comment'])
                 ->setCellValue('D' . $column, $data['created_at']);
+            $column++;
+        }
+        // tulis dalam format .xlsx
+        $writer = new Xlsx($spreadsheet);
+        $fileName = 'Data Review Pelanggan ' . date("Y-m-d");
+
+        // Redirect hasil generate xlsx ke web client
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+    }
+
+    public function download_critic()
+    {
+        $model = new CriticModel();
+        $dataCritic = $model->get_critic();
+
+        $spreadsheet = new Spreadsheet();
+
+        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(30);
+
+        $spreadsheet->setActiveSheetIndex(0)
+            ->setCellValue('A1', 'NAMA PENGGUNA')
+            ->setCellValue('B1', 'KRITIK')
+            ->setCellValue('C1', 'WAKTU DITULIS');
+
+        $column = 2;
+        foreach ($dataCritic as $data) {
+            $spreadsheet->setActiveSheetIndex(0)
+                ->setCellValue('A' . $column, $data['username'])
+                ->setCellValue('B' . $column, $data['critic'])
+                ->setCellValue('C' . $column, $data['created_at']);
             $column++;
         }
         // tulis dalam format .xlsx

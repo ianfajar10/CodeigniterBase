@@ -43,11 +43,11 @@ class Cart extends BaseController
     public function process()
     {
         $params = $this->request->getPost();
-
         $data = [
             'user_id' => $params['user_id'],
             'file_id' => $params['file_id'],
             'quantity' => $params['quantity'],
+            'variant' => $params['variant'] == '' ? null : ($params['variant'] == 'n' ? 'Hot' : 'Ice'),
         ];
 
         $save = $this->cartModel->save_data($data);

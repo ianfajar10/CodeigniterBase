@@ -57,6 +57,14 @@
                     <textarea type="text" name="description_plus" class="form-control"></textarea>
                 </div>
             </div>
+            <div class="row mt-2" id="variantCheck">
+                <div class="col-md-12">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" name="variant" type="checkbox" id="chekVariant" value="y">
+                        <label class="form-check-label" for="chekFood">Variasi Panas/Dingin</label>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12 mt-2">

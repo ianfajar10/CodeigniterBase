@@ -11,7 +11,8 @@ class CartModel extends Model
     protected $allowedFields = [
         "user_id",
         "file_id",
-        "quantity"
+        "quantity",
+        "variant"
     ];
 
     public function save_data($data)

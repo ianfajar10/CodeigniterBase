@@ -50,9 +50,10 @@ $routes->get('/upload', 'Upload::index', ['filter' => 'isAdmin']);
 $routes->get('/discount', 'Discount::index');
 $routes->get('/orderadmin', 'Order::index_admin');
 $routes->get('/user', 'User::index');
-$routes->get('/critic', 'Critic::index');
+$routes->get('/review', 'Review::index');
 $routes->get('/report', 'Report::index');
 $routes->get('/criticadmin', 'Critic::index_admin');
+$routes->get('/banner', 'Upload::index_banner');
 
 /*
  * --------------------------------------------------------------------

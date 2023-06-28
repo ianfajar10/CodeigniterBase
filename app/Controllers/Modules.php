@@ -25,6 +25,8 @@ class Modules extends BaseController
             'user' => ['Data Pelanggan', 'bi bi-person-circle'],
             'critic' => ['Kritik & Saran', 'bi bi-chat-left-quote'],
             'criticadmin' => ['Kritik & Saran', 'bi bi-chat-left-quote'],
+            'review' => ['Review Pelanggan', 'bi bi-chat-left-quote'],
+            'banner' => ['Banner', 'bi bi-images'],
         ];
         if ($check_role == 1) {
             //ADMIN
@@ -36,9 +38,10 @@ class Modules extends BaseController
                 'profile' => ['Profil', 'bi bi-person'],
                 'orderadmin' => ['Data Pemesanan', 'bi bi-book'],
                 'user' => ['Data Pelanggan', 'bi bi-person-circle'],
-                'critic' => ['Data Kritik & Saran', 'bi bi-chat-left-dots-fill'],
                 'report' => ['Laporan', 'bi bi-file-earmark-bar-graph-fill'],
                 'criticadmin' => ['Kritik & Saran', 'bi bi-chat-left-quote'],
+                'review' => ['Review Pelanggan', 'bi bi-chat-left-quote'],
+                'banner' => ['Banner', 'bi bi-images'],
             ];
         } else {
             if ($check_role != null) {

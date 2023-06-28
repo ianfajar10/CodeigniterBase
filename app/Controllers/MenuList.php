@@ -68,9 +68,11 @@ class Menulist extends BaseController
         $query = $this->request->getPost()['query'];
 
         $file = new FileModel();
-
+        $model2 = new CriticModel();
+        
         $modules = (new Modules)->index($query);
         $data = [
+            'critic' => $model2->get_critic(),
             'name' => 'menulist',
             'title' => 'Detail Menu',
             'file' => $file->get_files_by_search($query),

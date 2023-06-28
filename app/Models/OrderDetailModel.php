@@ -12,7 +12,8 @@ class OrderDetailModel extends Model
         "order_id",
         "file_id",
         "quantity",
-        "price"
+        "price",
+        "note"
     ];
 
     public function save_data_detail($data2)

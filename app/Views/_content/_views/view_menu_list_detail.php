@@ -6,6 +6,7 @@
 
 <?php foreach ($file as $row) : ?>
     <input type="hidden" id="file_id" value="<?= $params['id'] ?>">
+    <input type="hidden" id="name" value="<?= $row['name'] ?>">
     <!-- Card with an image on left -->
     <div class="card mb-3">
         <div class="row g-0">
@@ -41,6 +42,14 @@
                         <?php if (count($rating) > 0) { ?>
                             <h5 class="review-count"><?= count($rating) ?> Penilaian</h5>
                         <?php } ?>
+                    </div>
+                    <div class="row mt-2 <?= str_contains($row['name'], '(Hot & Ice)') ? '' : 'visually-hidden' ?>" id="variantCheck">
+                        <div class="col-md-12">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input .disabled" name="variant" type="checkbox" id="chekVariant" value="y">
+                                <label class="form-check-label fw-bold" for="chekFood">Variasi Dingin?</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="mt-3 <?= ($session->get('username') == 'admin' ? 'visually-hidden' : '') ?>">
                         <button class="btn btn-outline-primary btn-add-cart" type="submit"><i class="bi bi-cart"></i> Tambah ke Keranjang</button>

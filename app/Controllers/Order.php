@@ -35,7 +35,7 @@ class Order extends BaseController
         $model2 = new CriticModel();
         $id_user = ['username' => $this->session->get('username')];
         $user = $this->userModel->check_login($id_user)[0];
-        
+
         $data = [
             'critic' => $model2->get_critic(),
             'name' => 'order',
@@ -67,7 +67,6 @@ class Order extends BaseController
     public function process()
     {
         $params = $this->request->getPost();
-
         $data = [
             'id' => $params['no_order'],
             'user_id' => $params['user_id'],
@@ -81,6 +80,7 @@ class Order extends BaseController
 
         $quantity = $params['quantity'];
         $price = $params['price'];
+        $variant = $params['variant'];
 
         foreach ($params['item'] as $key => $value) {
             $data2 = [
@@ -88,11 +88,12 @@ class Order extends BaseController
                 'file_id' => $value,
                 'quantity' => $quantity[$key],
                 'price' => $price[$key] * $quantity[$key],
+                'note' => $variant[$key],
             ];
-    
+
             $save = $this->orderDetailModel->save_data_detail($data2);
         }
-        
+
         if ($save) {
             foreach ($params['item'] as $key => $value) {
                 $data = [
@@ -101,7 +102,7 @@ class Order extends BaseController
                 ];
                 $this->cartModel->delete_cart($data);
             }
-            
+
             $data = [
                 'cart' => count($this->cartModel->list_cart_user($params['user_id']))
             ];
@@ -125,8 +126,8 @@ class Order extends BaseController
     {
         $params = $this->request->getPost();
         $query = $this->orderModel->list_history_order_user($params['user_id']);
-        
-        if ($query) {
+
+        if (count($query) > 0) {
             $response = [
                 'success' => false,
                 'msg' => 'Maaf, anda tidak memenuhi syarat sebagai pengguna baru.'
@@ -145,17 +146,23 @@ class Order extends BaseController
                         'msg' => 'Maaf, kode tidak bisa digunakan.'
                     ];
                 }
+            } else {
+                $response = [
+                    'success' => true,
+                    'msg' => 'Valid.'
+                ];
             }
         }
 
         return $this->response->setJSON($response);
     }
-    
+
     public function index_admin()
     {
         $modules = (new Modules)->index();
-
+        $model2 = new CriticModel();
         $data = [
+            'critic' => $model2->get_critic(),
             'name' => 'orderadmin',
             'title' => 'Data Pemesanan',
             'file' => $this->orderModel->list_history_order_user(),
@@ -190,7 +197,7 @@ class Order extends BaseController
     {
         $params = $this->request->getPost();
         $query = $this->userModel->check_birth_user($params['user_id']);
-        
+
         if ($query) {
             $response = [
                 'success' => true,

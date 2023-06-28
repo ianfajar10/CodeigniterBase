@@ -27,6 +27,24 @@ class Upload extends BaseController
         }
     }
 
+    public function index_banner()
+    {
+        helper('form');
+        $modules = (new Modules)->index();
+        $model = new CriticModel();
+
+        if (!$this->validate([])) {
+            $data = [
+                'critic' => $model->get_critic(),
+                'name' => 'banner',
+                'title' => 'Banner',
+                'validation' => $this->validator,
+                'modules' => $modules
+            ];
+            echo view('_content/_views/view_banner', $data);
+        }
+    }
+
     public function process()
     {
         $model = new FileModel();
@@ -44,7 +62,7 @@ class Upload extends BaseController
             $upload = $this->request->getFile('file_upload');
             $upload->move(WRITEPATH . '../public/assets/images/');
             $data = array(
-                'name'  => $this->request->getPost('name'),
+                'name'  => $this->request->getPost('variant') ? $this->request->getPost('name') . ' (Hot & Ice)' : $this->request->getPost('name'),
                 'price'  => $price,
                 'description'  => $this->request->getPost('description') . '||' . $this->request->getPost('description_plus') ,
                 'file' => $upload->getName(),
@@ -52,6 +70,25 @@ class Upload extends BaseController
             );
             $model->save_file($data);
             return redirect()->to('./upload')->with('berhasil', 'Data Berhasil di Simpan');
+        }
+    }
+
+    public function banner_process()
+    {
+        if ($this->request->getMethod() !== 'post') {
+            return redirect()->to('banner');
+        }
+        $validation = $this->validate([
+            'file_upload' => 'uploaded[file_upload]|mime_in[file_upload,image/jpg,image/jpeg]|max_size[file_upload,4096]'
+        ]);
+
+        if ($validation == FALSE) {
+            return redirect()->to('banner')->with('gagal', 'Periksa kembali dokumen!');;
+        } else {
+            unlink('assets/img/banner.jpg');
+            $upload = $this->request->getFile('file_upload');
+            $upload->move(WRITEPATH . '../assets/img/', 'banner.jpg');
+            return redirect()->to('./banner')->with('berhasil', 'Data Berhasil di Simpan');
         }
     }
 

@@ -11,12 +11,14 @@
             </div>
             <div class="card-body">
                 <?php $item = array() ?>
+                <?php $variant = array() ?>
                 <?php $quantity = array() ?>
                 <?php $price = array() ?>
                 <?php $total_item = 0 ?>
                 <?php $total_price = 0 ?>
                 <!-- Single item -->
                 <?php foreach ($file as $row) : ?>
+                    <input id="variant" type="text" value="<?= $row['variant'] ?>" hidden>
                     <div class="row">
                         <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                             <!-- Image -->
@@ -31,7 +33,7 @@
 
                         <div class="col-lg-5 col-md-5 mb-4 mb-lg-0">
                             <!-- Data -->
-                            <p><strong><?= $row['name'] ? $row['name'] : '-' ?></strong></p>
+                            <p><strong><?= $row['name'] ? (str_contains($row['name'], '(Hot & Ice)') ? str_replace('(Hot & Ice)', '(' . $row['variant'] . ')', $row['name']) : $row['name']) : '-' ?></strong></p>
                             <button type="button" onclick="deleteItem(<?= $row['file_id'] ?>)" class="btn btn-danger btn-md me-1 mb-2 btn-submit-cart" data-mdb-toggle="tooltip" title="Remove item">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -59,6 +61,7 @@
                     </div>
                     <!-- Single item -->
                     <?php array_push($item, $row['file_id']) ?>
+                    <?php array_push($variant, "'".$row['variant']."'") ?>
                     <?php array_push($quantity, $row['quantity']) ?>
                     <?php array_push($price, $row['price']) ?>
                     <?php $total_item = $total_item + $row['quantity'] ?>
@@ -115,7 +118,7 @@
                 <input id="no_order" type="text" value="<?= date("Ymdhis") ?>" hidden>
                 <input id="total" type="text" value="<?= $total_price ?>" hidden>
 
-                <button type="button" onclick="confirmOrder($item = [<?= implode(', ', $item) ?>], $quantity = [<?= implode(', ', $quantity) ?>], $price = [<?= implode(', ', $price) ?>])" class="btn btn-lg btn-block <?= $total_price === null ? 'visually-hidden' : '' ?>" style="background-color: #E0CBB0">
+                <button type="button" onclick="confirmOrder($item = [<?= implode(', ', $item) ?>], $variant = [<?= implode(', ', $variant) ?>], $quantity = [<?= implode(', ', $quantity) ?>], $price = [<?= implode(', ', $price) ?>])" class="btn btn-lg btn-block <?= $total_price === null ? 'visually-hidden' : '' ?>" style="background-color: #E0CBB0">
                     Lanjut Pesan
                 </button>
             </div>
@@ -139,7 +142,9 @@
                 data: {
                     'user_id': user_id,
                     'file_id': $file_id,
-                    'quantity': 0
+                    'quantity': 0,
+                    'variant': null,
+
                 },
                 beforeSend: function(xhr) {
 
@@ -184,7 +189,7 @@
         }
     }
 
-    function confirmOrder($item, $quantity, $price) {
+    function confirmOrder($item, $variant, $quantity, $price) {
         var no_table = $('#no_table').val()
         if (user_id) {
             if (no_table.length > 0) {
@@ -208,7 +213,8 @@
                                 'item': $item,
                                 'quantity': $quantity,
                                 'price': $price,
-                                'is_new': is_new
+                                'is_new': is_new,
+                                'variant': $variant,
                             },
                             beforeSend: function(xhr) {
 
