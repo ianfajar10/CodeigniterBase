@@ -14,8 +14,9 @@
             <?= count($review) == 0 ? 'Belum ada review pelanggan yang masuk' : '' ?>
             <?php foreach ($review as $row) : ?>
                 <a class="list-group-item list-group-item-action" aria-current="true">
+                    <p class="mb-1 fw-bold fst-italic"><?= $row['menu_name'] ?></p>
                     <p class="mb-1"><?= $row['comment'] ?></p>
-                    <small class="fw-bold"><?= $row['username'] ?>.</small>
+                    <small class="fw-bold"><?= $row['user_id'] ?>.</small>
                 </a>
             <?php endforeach; ?>
         </div><!-- End List group Advanced Content -->

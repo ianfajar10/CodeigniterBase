@@ -48,7 +48,8 @@ class UserModel extends Model
     public function check_birth_user($param)
     {
         // dd(date("Y-m-d"));
-        $query = $this->where('username', $param)->where('birth', date("Y-m-d"))->findAll();
+        $query = $this->where('username', $param)->like('birth', date("m-d"))->findAll();
+        // print_r($this->getLastQuery());die;
         return $query;
     }
 }

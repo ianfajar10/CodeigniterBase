@@ -18,6 +18,8 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Nama Pengguna</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Tanggal Lahir</th>
+                        <th scope="col">Telepon</th>
                         <th scope="col">Waktu Daftar</th>
                     </tr>
                 </thead>
@@ -27,6 +29,8 @@
                             <td><?= $row['name']; ?></td>
                             <td><?= $row['username']; ?></td>
                             <td><?= $row['email']; ?></td>
+                            <td><?= $row['birth']; ?></td>
+                            <td><?= $row['telp']; ?></td>
                             <td><?= $row['created_at']; ?></td>
                         </tr>
                     <?php endforeach; ?>
