@@ -147,8 +147,8 @@ class Auth extends BaseController
                 ];
             }
 
-            return $this->response->setJSON($data);
-            // return $this->send_email($email);
+            // return $this->response->setJSON($data);
+            return $this->send_email($email);
             //arahkan ke halaman login
         }
     }

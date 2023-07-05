@@ -48,7 +48,9 @@ class UserModel extends Model
     public function check_birth_user($param)
     {
         // dd(date("Y-m-d"));
+        date_default_timezone_set('Asia/Jakarta');
         $query = $this->where('username', $param)->like('birth', date("m-d"))->findAll();
+        // dd($query);
         // print_r($this->getLastQuery());die;
         return $query;
     }
