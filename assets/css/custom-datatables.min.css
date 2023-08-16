@@ -1,0 +1,29 @@
+/* Sembunyikan elemen kotak pencarian */
+#myTable {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#myTable tbody tr td {
+    border: none;
+}
+
+.dataTables_filter {
+    display: none;
+}
+
+/* Sesuaikan margin atas untuk tabel agar tetap rapi */
+.dataTables_wrapper {
+    margin-top: 20px;
+}
+
+/* CSS untuk menghilangkan opsi "Show entries" */
+.dataTables_length {
+    display: none;
+}
+
+/* Menyembunyikan ikon sort pada kolom pertama */
+#myTable thead th:first-child::before,
+#myTable thead th:first-child::after {
+    display: none !important;
+}

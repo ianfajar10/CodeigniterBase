@@ -13,7 +13,6 @@ class Filelist extends BaseController
 
         $modules = (new Modules)->index();
         $data = [
-            'name' => 'filelist',
             'title' => 'Daftar File',
             'file' => $file->get_files(),
             'modules' => $modules
@@ -27,7 +26,6 @@ class Filelist extends BaseController
 
         $modules = (new Modules)->index();
         $data = [
-            'name' => 'filelist',
             'title' => 'Detail File',
             'file' => $file->get_files($params),
             'rating' => 5,

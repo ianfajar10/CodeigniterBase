@@ -16,8 +16,7 @@ class Upload extends BaseController
         $model = new FileModel();
         if (!$this->validate([])) {
             $data = [
-                'name' => 'profile',
-                'title' => 'Profil',
+                'title' => 'Unggah',
                 'validation' => $this->validator,
                 'file' => $model->get_files(),
                 'modules' => $modules

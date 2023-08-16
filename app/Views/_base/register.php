@@ -1,121 +1,69 @@
 <html>
 
 <head>
-    <title>Register - Trifecta Coffee</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register - Codeigniter Base</title>
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
 
-<body class="d-flex align-items-center justify-content-center 100vh">
-    <?php
-    $session = session();
-    ?>
-    <div class="card col-4">
-        <div class="card-body">
-            <h5 class="card-title">Daftar Pengguna Baru</h5>
-
-            <!-- Floating Labels Form -->
-            <form class="row g-3" id="ajax_form">
-                <div class="col-md-12">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan Nama Lengkap">
-                        <label for="name">Nama Lengkap</label>
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+        <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center w-100">
+                <div class="row justify-content-center w-100">
+                    <div class="col-md-8 col-lg-6 col-xxl-3">
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                                    <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+                                </a>
+                                <p class="text-center">Your Social Campaigns</p>
+                                <form id="ajax_form">
+                                    <div class="mb-3">
+                                        <label for="exampleNama" class="form-label">Nama</label>
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan Nama Lengkap">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputUsername" class="form-label">Nama Pengguna</label>
+                                        <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Nama Pengguna">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="exampleInputPassword" class="form-label">Kata Sandi</label>
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Kata Sandi">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="exampleInputConfirmPassword" class="form-label">Konfirmasi Kata Sandi</label>
+                                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Konfirmasi Kata Sandi">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="exampleInputEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" id="submitButton">
+                                        <span class="text-button" role="status" aria-hidden="true">Buat</span>
+                                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                    </button>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="fs-4 mb-0 fw-bold">Sudah punya akun?</p>
+                                        <a class="text-primary fw-bold ms-2" href="<?= base_url() . 'login' ?>">Masuk</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Nama Pengguna">
-                        <label for="username">Nama Pengguna</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Kata Sandi">
-                        <label for="password">Kata Sandi</label>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-floating">
-                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Konfirmasi Kata Sandi">
-                        <label for="confirm">Konfirmasi Kata Sandi</label>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
-                        <label for="email">Email</label>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <p>
-                        <a href="<?php echo (base_url() . 'login') ?>">Sudah punya akun?</a>
-                    </p>
-                    <button type="submit" class="btn btn-primary" id="send_form">Buat</button>
-                    <button type="reset" class="btn btn-secondary">Reset</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-    <script>
-        $("#ajax_form").validate({
-            submitHandler: function(form) {
-                $('#send_form').html('Sending..');
-                $.ajax({
-                    url: "<?php echo base_url('auth/valid_register') ?>",
-                    type: "POST",
-                    data: $('#ajax_form').serialize(),
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.success) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Berhasil..',
-                                html: response.msg,
-                                showConfirmButton: false,
-                                timer: 3000
-                            }).then((result) => {
-                                window.location.href = "<?php echo (base_url() . 'login') ?>";
-                            })
-                        } else {
-                            let res = response.msg
-                            const error = []
-                            for (const [key, value] of Object.entries(res)) {
-                                error.push(`<li>${value}</li>`)
-                            }
-                            let error_msg = error.join('')
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Maaf..',
-                                html: error_msg
-                            })
-                        }
-                    }
-                });
-            }
-        })
-    </script>
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="../assets/js/register.js"></script>
 </body>
 
 </html>

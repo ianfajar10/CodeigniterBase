@@ -10,7 +10,6 @@ class Core extends BaseController
     {
         $modules = (new Modules)->index();
         $data = [
-            'name' => 'core',
             'title' => null,
             'modules' => $modules
         ];

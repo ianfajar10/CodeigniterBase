@@ -1,0 +1,19 @@
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover:not(.current) {
+  background: #fff;
+  color: black !important;
+  border: 1px solid #5D87FF;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  /* Style for the current/active tab button */
+  background: #5D87FF;
+  color: white !important;
+  border: 1px solid #fff;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  /* Style for the current/active tab button */
+  background: #5D87FF;
+  color: white !important;
+  border: 1px solid #fff;
+}

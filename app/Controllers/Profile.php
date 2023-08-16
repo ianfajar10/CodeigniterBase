@@ -10,8 +10,7 @@ class Profile extends BaseController
     {
         $modules = (new Modules)->index();
         $data = [
-            'name' => 'profile',
-            'title' => 'Profil',
+            'title' => 'Profile',
             'modules' => $modules
         ];
         return view('_content/_views/view_profile', $data);

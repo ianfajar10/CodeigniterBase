@@ -29,7 +29,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'db_trifecta',
+        'database' => 'db_dummy',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

@@ -25,6 +25,12 @@ class UserModel extends Model
         return $query;
     }
 
+    public function check_email($param)
+    {
+        $query = $this->where('email', $param)->findAll();
+        return $query;
+    }
+
     public function save_data($data)
     {
         $query = $this->insert($data);

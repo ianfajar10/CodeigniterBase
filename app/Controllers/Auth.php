@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class Auth extends BaseController
 {
     protected
@@ -13,25 +16,24 @@ class Auth extends BaseController
 
     public function __construct()
     {
-        //membuat user model untuk konek ke database 
         $this->userModel = new UserModel();
 
-        //meload validation
         $this->validation = \Config\Services::validation();
 
-        //meload session
         $this->session = \Config\Services::session();
+
+        require APPPATH . 'Libraries/phpmailer/src/Exception.php';
+        require APPPATH . 'Libraries/phpmailer/src/PHPMailer.php';
+        require APPPATH . 'Libraries/phpmailer/src/SMTP.php';
     }
 
     public function login()
     {
-        //menampilkan halaman login
         return view('_base/login');
     }
 
     public function register()
     {
-        //menampilkan halaman register
         return view('_base/register');
     }
 
@@ -39,6 +41,49 @@ class Auth extends BaseController
     {
         //tangkap data dari form 
         $data = $this->request->getPost();
+        $email = $data['email'];
+
+        if ($data['name'] == null) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Nama tidak boleh kosong!'
+            ];
+            return $this->response->setJSON($data);
+        } else if ($data['username'] == null) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Nama pengguna tidak boleh kosong!'
+            ];
+            return $this->response->setJSON($data);
+        } else if ($data['password'] == null) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Kata sandi tidak boleh kosong!'
+            ];
+            return $this->response->setJSON($data);
+        } else if ($data['confirm'] == null) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Konfirmasi kata sandi tidak boleh kosong!'
+            ];
+            return $this->response->setJSON($data);
+        } else if ($data['email'] == null) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Email tidak boleh kosong!'
+            ];
+            return $this->response->setJSON($data);
+        }
+
+        $check_email = $this->userModel->check_email($email);
+
+        if ($check_email) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Email sudah pernah digunakan!'
+            ];
+            return $this->response->setJSON($data);
+        }
 
         //jalankan validasi
         $this->validation->run($data, 'register');
@@ -68,36 +113,89 @@ class Auth extends BaseController
                 'role' => 2
             ];
 
-            $this->userModel->save_data($data);
+            $save = $this->userModel->save_data($data);
 
-            $data = [
-                'success' => true,
-                'msg' => 'Anda berhasil mendaftar, silahkan login'
-            ];
-
-            //arahkan ke halaman login
-            return $this->response->setJSON($data);
+            if ($save) {
+                $data = [
+                    'success' => true,
+                    'msg' => 'Anda berhasil mendaftar, silahkan login dan periksa kotak masuk pada email anda'
+                ];
+            } else {
+                $data = [
+                    'success' => false,
+                    'msg2' => 'Anda gagal mendaftar'
+                ];
+            }
+            
+            return $this->send_email($email);
         }
     }
 
+    public function send_email($email)
+    {
+        $mail = new PHPMailer();
+
+        //Enable SMTP debugging. 
+        $mail->SMTPDebug = 0;
+        //Set PHPMailer to use SMTP.
+        $mail->isSMTP();
+        //Set SMTP host name                          
+        $mail->Host = "tls://smtp.gmail.com"; //host mail server
+        //Set this to true if SMTP host requires authentication to send email
+        $mail->SMTPAuth = true;
+        //Provide username and password     
+        $mail->Username = "inigm10@gmail.com";   //nama-email smtp          
+        $mail->Password = "kxjasgmtigetxzeo";           //password email smtp
+        //If SMTP requires TLS encryption then set it
+        $mail->SMTPSecure = "tls";
+        //Set TCP port to connect to 
+        $mail->Port = 587;
+
+        $mail->Timeout = 60; // timeout pengiriman (dalam detik)
+        $mail->SMTPKeepAlive = true;
+
+        $mail->From = "inigm10@gmail.com"; //email pengirim
+        $mail->FromName = "Codeigniter Base"; //nama pengirim
+
+        $mail->addAddress($email); //email penerima
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Greeting Codeigniter Base'; //subject
+        $mail->Body    = "Halo, selamat datang pengguna baru!"; //isi email
+        $mail->AltBody = "PHP mailer"; //body email (optional)
+
+        if (!$mail->send()) {
+            $data = [
+                'success' => false,
+                'msg2' => 'Anda gagal mendaftar'
+            ];
+        } else {
+            $data = [
+                'success' => true,
+                'msg' => 'Anda berhasil mendaftar, silahkan login dan periksa kotak masuk pada email anda'
+            ];
+        }
+
+        return $this->response->setJSON($data);
+    }
+
+
     public function valid_login()
     {
-        //ambil data dari form
         $data = $this->request->getPost();
 
-        //ambil data user di database yang usernamenya sama 
+
         $user = $this->userModel->check_login($data);
 
-        //cek apakah username ditemukan
         if ($user) {
             $user = $user[0];
-            //cek password
-            //jika salah arahkan lagi ke halaman login
             if ($user['password'] != md5($data['password'])) {
-                session()->setFlashdata('password', 'Password salah');
-                return redirect()->to('login');
+                $data = [
+                    'success' => false,
+                    'msg' => 'Kata sandi tidak sesuai!'
+                ];
+                return $this->response->setJSON($data);
             } else {
-                //jika benar, arahkan user masuk ke aplikasi 
                 $sessLogin = [
                     'isLogin' => true,
                     'name' => $user['name'],
@@ -105,19 +203,31 @@ class Auth extends BaseController
                     'role' => $user['role']
                 ];
                 $this->session->set($sessLogin);
-                return redirect()->to('/');
+                $data = [
+                    'success' => true,
+                    'msg' => 'Anda berhasil masuk!'
+                ];
+                return $this->response->setJSON($data);
             }
         } else {
-            //jika username tidak ditemukan, balikkan ke halaman login
-            session()->setFlashdata('username', 'Username tidak ditemukan');
-            return redirect()->to('login');
+            $data = [
+                'success' => false,
+                'msg' => 'Nama pengguna tidak ditemukan!'
+            ];
+            return $this->response->setJSON($data);
         }
+    }
+
+    public function get_session()
+    {
+        $sessionData = $this->session->get();
+
+        header('Content-Type: application/json');
+        echo json_encode($sessionData);
     }
 
     public function logout()
     {
-        //hancurkan session 
-        //balikan ke halaman login
         $this->session->destroy();
         return redirect()->to('login');
     }

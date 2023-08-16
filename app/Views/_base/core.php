@@ -1,90 +1,60 @@
-<!DOCTYPE html>
+<?php $session = session() ?>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>
-        <?php foreach ($modules['all'] as $key => $module) { ?>
-            <?php echo (count(explode('/', uri_string())) > 1 ? (explode('/', uri_string())[0] . '/' . explode('/', uri_string())[1] == $key ? $module[0] . ' - Trifecta Coffee' : null) : (uri_string() == $key ? $module[0] . ' - Trifecta Coffee' : null)) ?>
-        <?php } ?>
-    </title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Codeigniter Base -
+		<?= $title ?>
+	</title>
+	<link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.ico" />
+	<link rel="stylesheet" href="../assets/css/styles.min.css" />
+	<link rel="stylesheet" href="../assets/css/custom-datatables.min.css" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 
-    <!-- Favicons -->
-    <link href="<?= base_url() . 'assets/img/favicon.png' ?>" rel="icon">
-    <link href="<?= base_url() . 'assets/img/apple-touch-icon.png' ?>" rel="apple-touch-icon">
-
-    <!-- Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Vendor CSS Files -->
-    <link href="<?= base_url() . 'assets/vendor/bootstrap/css/bootstrap.min.css' ?>" rel="stylesheet">
-    <link href="<?= base_url() . 'assets/vendor/bootstrap-icons/bootstrap-icons.css' ?>" rel="stylesheet">
-    <link href="<?= base_url() . 'assets/vendor/boxicons/css/boxicons.min.css' ?>" rel="stylesheet">
-    <link href="<?= base_url() . 'assets/vendor/quill/quill.snow.css' ?>" rel="stylesheet">
-    <link href="<?= base_url() . 'assets/vendor/quill/quill.bubble.css' ?>" rel="stylesheet">
-    <link href="<?= base_url() . 'assets/vendor/remixicon/remixicon.css' ?>" rel="stylesheet">
-    <link href="<?= base_url() . 'assets/vendor/simple-datatables/style.css' ?>" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="<?= base_url() . 'assets/css/style.css' ?>" rel="stylesheet">
-
-    <!-- =======================================================
-    * Template Name: NiceAdmin
-    * Updated: Mar 09 2023 with Bootstrap v5.2.3
-    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    <!-- ======= Header ======= -->
-    <?= $this->include('_base/_part/part_header') ?>
-
-    <!-- ======= Sidebar ======= -->
-    <?= $this->include('_base/_part/part_sidebar') ?>
-
-    <!-- ======= Main Content ======= -->
-    <main id="main" class="main">
-
-        <div class="pagetitle">
-            <?= $this->include('_base/_part/part_title') ?>
-        </div>
-
-        <section class="section dashboard">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body p-4">
-                            <?= $this->renderSection('content') ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ======= Footer ======= -->
-    <?= $this->include('_base/_part/part_footer') ?>
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-    <script src="<?= base_url() . 'assets/vendor/apexcharts/apexcharts.min.js' ?>"></script>
-    <script src="<?= base_url() . 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' ?>"></script>
-    <script src="<?= base_url() . 'assets/vendor/chart.js/chart.umd.js' ?>"></script>
-    <script src="<?= base_url() . 'assets/vendor/echarts/echarts.min.js' ?>"></script>
-    <script src="<?= base_url() . 'assets/vendor/quill/quill.min.js' ?>"></script>
-    <script src="<?= base_url() . 'assets/vendor/simple-datatables/simple-datatables.js' ?>"></script>
-    <script src="<?= base_url() . 'assets/vendor/tinymce/tinymce.min.js' ?>"></script>
-    <script src="<?= base_url() . 'assets/vendor/php-email-form/validate.js' ?>"></script>
-
-    <script src="<?= base_url() . 'assets/js/main.js' ?>"></script>
-
+	<!--  Body Wrapper -->
+	<input type="hidden" id="base_url" value="<?php echo base_url(); ?>">
+	<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+		<!-- Sidebar Start -->
+		<?= $this->include('_base/_part/part_sidebar') ?>
+		<!--  Sidebar End -->
+		<!--  Main wrapper -->
+		<div class="body-wrapper">
+			<!--  Header Start -->
+			<?= $this->include('_base/_part/part_header') ?>
+			<!--  Header End -->
+			<div class="container-fluid">
+				<!--  Row 1 -->
+				<div class="row">
+					<div class="col-lg-12 d-flex align-items-strech">
+						<div class="card w-100">
+							<div class="card-body">
+								<?= $this->include('_base/_part/part_title') ?>
+								<div style="text-align: justify;" class="p-1">
+									<?= $this->renderSection('content') ?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<?= $this->include('_base/_part/part_footer') ?>
+			</div>
+		</div>
+	</div>
+	<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+	<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="../assets/js/sidebarmenu.js"></script>
+	<script src="../assets/js/app.min.js"></script>
+	<script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+	<script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<script src="../assets/js/user.js"></script>
+	<script src="../assets/js/datatables.js"></script>
 </body>
 
 </html>

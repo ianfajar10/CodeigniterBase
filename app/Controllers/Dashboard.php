@@ -10,7 +10,6 @@ class Dashboard extends BaseController
     {
         $modules = (new Modules)->index();
         $data = [
-            'name' => 'dashboard',
             'title' => 'Beranda',
             'modules' => $modules
         ];
