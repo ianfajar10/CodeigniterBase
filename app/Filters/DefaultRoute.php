@@ -10,7 +10,7 @@ class DefaultRoute implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        return redirect()->to(base_url('/dashboard'));
+        return redirect()->to(base_url('/home'));
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
