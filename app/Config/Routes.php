@@ -27,7 +27,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Core::dashboard', ['filter' => 'defaultRoute']);
 $routes->get('/core', 'Core::dashboard', ['filter' => 'defaultRoute']);
 $routes->get('/register', 'Auth::register');
-$routes->get('/login', 'Auth::login');
+$routes->get('/login', 'Auth::login', ['filter' => 'checkLogin']);
 $routes->get('/home', 'Home::index');
 
 //---------- Modules ----------//
