@@ -22,7 +22,8 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'defaultRoute'  => \App\Filters\DefaultRoute::class,
-        'isLogin'       => \App\Filters\IsLogin::class
+        'isLogin'       => \App\Filters\IsLogin::class,
+        'checkLogin'       => \App\Filters\CheckLogin::class
     ];
 
     /**

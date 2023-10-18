@@ -39,7 +39,7 @@ class Auth extends BaseController
 
     public function valid_register()
     {
-        //tangkap data dari form 
+        //tangkap data dari form
         $data = $this->request->getPost();
         $email = $data['email'];
 
@@ -101,7 +101,7 @@ class Auth extends BaseController
 
             return $this->response->setJSON($data);
         } else {
-            //jika tdk ada error 
+            //jika tdk ada error
             $password = md5($data['password']);
 
             //masukan data ke database
@@ -126,7 +126,7 @@ class Auth extends BaseController
                     'msg2' => 'Anda gagal mendaftar'
                 ];
             }
-            
+
             return $this->send_email($email);
         }
     }
@@ -135,20 +135,20 @@ class Auth extends BaseController
     {
         $mail = new PHPMailer();
 
-        //Enable SMTP debugging. 
+        //Enable SMTP debugging.
         $mail->SMTPDebug = 0;
         //Set PHPMailer to use SMTP.
         $mail->isSMTP();
-        //Set SMTP host name                          
+        //Set SMTP host name
         $mail->Host = "tls://smtp.gmail.com"; //host mail server
         //Set this to true if SMTP host requires authentication to send email
         $mail->SMTPAuth = true;
-        //Provide username and password     
-        $mail->Username = "inigm10@gmail.com";   //nama-email smtp          
+        //Provide username and password
+        $mail->Username = "inigm10@gmail.com";   //nama-email smtp
         $mail->Password = "kxjasgmtigetxzeo";           //password email smtp
         //If SMTP requires TLS encryption then set it
         $mail->SMTPSecure = "tls";
-        //Set TCP port to connect to 
+        //Set TCP port to connect to
         $mail->Port = 587;
 
         $mail->Timeout = 60; // timeout pengiriman (dalam detik)
