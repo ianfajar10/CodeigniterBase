@@ -13,6 +13,7 @@ class Modules extends BaseController
         $data['sidebars'] = ($check_role == 1) ?
             [
                 'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
+                'master-coffee' => ['Master Coffee', 'ti ti-coffee'],
                 'sample-page' => ['Halaman Contoh', 'ti ti-file-broken'],
                 'sample-data-tables' => ['Data Tables Contoh', 'ti ti-layout-columns'],
                 // 'profile' => ['Profil', 'ti ti-user-circle'],

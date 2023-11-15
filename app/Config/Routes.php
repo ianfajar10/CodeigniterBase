@@ -32,6 +32,7 @@ $routes->get('/home', 'Home::index');
 
 //---------- Modules ----------//
 $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'isLogin']);
+$routes->get('/master-coffee', 'Mastercoffee::index', ['filter' => 'isLogin']);
 $routes->get('/sample-page', 'Samplepage::sample_page', ['filter' => 'isLogin']);
 $routes->get('/sample-data-tables', 'Samplepage::sample_data_tables', ['filter' => 'isLogin']);
 $routes->get('/profile', 'Profile::index', ['filter' => 'isLogin']);

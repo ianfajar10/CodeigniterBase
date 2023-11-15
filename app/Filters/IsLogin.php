@@ -12,8 +12,6 @@ class IsLogin implements FilterInterface
     {
         if (!session('isLogin')) {
           return redirect()->to(site_url('/login'));
-        } else {
-          return redirect()->to(site_url('/home'));
         }
     }
 

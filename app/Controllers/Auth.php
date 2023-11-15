@@ -155,12 +155,12 @@ class Auth extends BaseController
         $mail->SMTPKeepAlive = true;
 
         $mail->From = "inigm10@gmail.com"; //email pengirim
-        $mail->FromName = "Codeigniter Base"; //nama pengirim
+        $mail->FromName = "Milestone Coffee"; //nama pengirim
 
         $mail->addAddress($email); //email penerima
 
         $mail->isHTML(true);
-        $mail->Subject = 'Greeting Codeigniter Base'; //subject
+        $mail->Subject = 'Greeting Milestone Coffee'; //subject
         $mail->Body    = "Halo, selamat datang pengguna baru!"; //isi email
         $mail->AltBody = "PHP mailer"; //body email (optional)
 
