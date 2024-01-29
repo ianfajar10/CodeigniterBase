@@ -9,6 +9,16 @@ class FileModel extends Model
     protected $table = 'tbl_files';
     protected $primaryKey = "id";
 
+    protected $allowedFields = [
+        "name",
+        "price",
+        "description",
+        "file",
+        "type"
+    ];
+
+    protected $useTimestamps = true;
+
     public function get_files($params = null)
     {
         if ($params == null) {
