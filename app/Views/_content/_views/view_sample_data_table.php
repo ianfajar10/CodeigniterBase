@@ -46,9 +46,6 @@
         <th class="border-bottom-0">
           <h6 id="column5" class="fw-semibold mb-0">Kolom 5</h6>
         </th>
-        <th class="border-bottom-0">
-          <h6 id="column6" class="fw-semibold mb-0">Kolom 6</h6>
-        </th>
       </tr>
     </thead>
     <tbody></tbody>
