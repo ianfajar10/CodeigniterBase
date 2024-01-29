@@ -15,6 +15,7 @@ class Modules extends BaseController
                 'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
                 'sample-page' => ['Halaman Contoh', 'ti ti-file-broken'],
                 'sample-data-tables' => ['Data Tables Contoh', 'ti ti-layout-columns'],
+                'sample-crud' => ['Contoh CRUD', 'ti ti-plus'],
                 // 'profile' => ['Profil', 'ti ti-user-circle'],
                 // 'modul' => ['Modul', 'ti ti-list-details'],
                 // 'upload' => ['Unggah', 'bi bi-pencil-square'],

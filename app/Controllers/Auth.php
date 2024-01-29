@@ -145,11 +145,19 @@ class Auth extends BaseController
         $mail->SMTPAuth = true;
         //Provide username and password
         $mail->Username = "inigm10@gmail.com";   //nama-email smtp
-        $mail->Password = "kxjasgmtigetxzeo";           //password email smtp
+        $mail->Password = "epwljcmgijkgyoyp";           //password email smtp
         //If SMTP requires TLS encryption then set it
         $mail->SMTPSecure = "tls";
         //Set TCP port to connect to
         $mail->Port = 587;
+
+        $mail->SMTPOptions = [
+            'ssl' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true,
+            ],
+        ];
 
         $mail->Timeout = 60; // timeout pengiriman (dalam detik)
         $mail->SMTPKeepAlive = true;
@@ -167,7 +175,7 @@ class Auth extends BaseController
         if (!$mail->send()) {
             $data = [
                 'success' => false,
-                'msg2' => 'Anda gagal mendaftar'
+                'msg2' => 'Anda gagal mendaftar 2'
             ];
         } else {
             $data = [
