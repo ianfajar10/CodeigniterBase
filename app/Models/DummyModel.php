@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class DummyModel extends Model
 {
-    protected $table = "tbl_dummy2";
+    protected $table = "tbl_dummy";
     protected $primaryKey = "id";
 
     protected $allowedFields = [
