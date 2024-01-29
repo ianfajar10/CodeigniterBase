@@ -5,7 +5,7 @@
   <!-- Mobile Specific Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Favicon-->
-  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.ico" />
+  <link rel="shortcut icon" href="../assets/home/img/fav.png">
   <!-- Author Meta -->
   <meta name="author" content="codepixer">
   <!-- Meta Description -->
@@ -18,7 +18,6 @@
   <title>Milestone Coffee</title>
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet">
   <!-- CSS ============================================= -->
   <link rel="stylesheet" href="../assets/home/css/linearicons.css">
   <link rel="stylesheet" href="../assets/home/css/font-awesome.min.css">
@@ -28,136 +27,12 @@
   <link rel="stylesheet" href="../assets/home/css/animate.min.css">
   <link rel="stylesheet" href="../assets/home/css/owl.carousel.css">
   <link rel="stylesheet" href="../assets/home/css/main.css">
-  <style type="text/css">
-    /* div */
-    .search-box {
-      position: absolute;
-      top: 50%;
-      left: 2.5%;
-      transform: translate(-0%, -100%);
-      background: #D0AE86;
-      height: auto;
-      border-radius: 50px;
-      padding: 10px;
-      margin-top: 160px;
-    }
-
-    /* input */
-    .search-input {
-      outline: none;
-      border: none;
-      background: none;
-      width: 350px;
-      padding: 0;
-      color: #fff;
-      float: left;
-      font-size: 16px;
-      transition: .3s;
-      line-height: 40px;
-    }
-
-    .search-input::placeholder {
-      color: #fff;
-    }
-
-    /* icon */
-    .search-btn {
-      color: #D0AE86;
-      float: right;
-      width: 40px;
-      height: 40px;
-      border-radius: 50px;
-      background: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-      transition: .3s;
-    }
-
-    .search-input:focus,
-    .search-input:not(:placeholder-shown) {
-      width: 350px;
-      padding: 0 6px;
-    }
-
-    .search-box:hover>.search-input {
-      width: 350px;
-      padding: 0 6px;
-    }
-
-    .search-box:hover>.search-btn,
-    .search-input:focus+.search-btn,
-    .search-input:not(:placeholder-shown)+.search-btn {
-      background: #90684E;
-      color: #fff;
-    }
-
-    /* Media queries untuk menyembunyikan .search-box pada tampilan mobile */
-    @media (max-width: 767px) {
-      .search-box {
-        display: none;
-        /* Ini akan menyembunyikan .search-box pada tampilan mobile */
-      }
-    }
-
-    /* Sembunyikan input pencarian di perangkat dengan lebar layar lebih besar */
-    @media (min-width: 768px) {
-      #search-click {
-        display: none;
-        /* Sembunyikan input pada lebar layar yang lebih besar dari 767px */
-      }
-    }
-
-    #search-click {
-      border: 1px solid #ccc;
-      outline: none;
-      background-size: 22px;
-      background-position: 13px;
-      border-radius: 10px;
-      width: 50px;
-      height: 30px;
-      padding: 25px;
-      margin-top: 5%;
-      margin-right: 5%;
-      margin-left: 5%;
-      transition: all 0.5s;
-    }
-
-    #search-click:focus {
-      width: 300px;
-      padding-left: 5%;
-    }
-
-    #search-click {
-      position: relative;
-      overflow: hidden;
-      height: 30px;
-    }
-
-    #search-click input {
-      background: transparent;
-      border: 1px solid #ccc;
-      outline: none;
-      position: absolute;
-      width: 300px;
-      height: 30px;
-      left: 0%;
-      padding: 10px;
-    }
-
-    /* Gaya untuk header */
-    #header {
-      display: flex;
-      align-items: center;
-    }
-  </style>
 </head>
 
 <body>
 
   <header id="header" id="home">
-    <!-- <div class="header-top">
+    <div class="header-top">
       <div class="container">
         <div class="row justify-content-end">
           <div class="col-lg-8 col-sm-4 col-8 header-top-right no-padding">
@@ -175,20 +50,19 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <div class="container">
       <div class="row align-items-center justify-content-between d-flex">
         <div id="logo">
           <a href="index.html"><img src="../assets/home/img/logo.png" alt="" title="" /></a>
         </div>
-        <!-- Tambahkan input pencarian di sini -->
         <nav id="nav-menu-container">
           <ul class="nav-menu">
             <li class="menu-active"><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#coffee">Coffee</a></li>
-            <!-- <li><a href="#review">Review</a></li>
-                    <li><a href="#blog">Blog</a></li> -->
+            <li><a href="#review">Review</a></li>
+            <li><a href="#blog">Blog</a></li>
             <li class="menu-has-children"><a href="">Pages</a>
               <ul>
                 <li><a href="generic.html">Generic</a></li>
@@ -197,12 +71,8 @@
             </li>
           </ul>
         </nav><!-- #nav-menu-container -->
-        <div class="input-group">
-          <input type="search" id="search-click" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        </div>
       </div>
     </div>
-    <!-- <input type="text" class="search-click" name="" placeholder="search here..." /> -->
   </header><!-- #header -->
 
 
@@ -215,14 +85,7 @@
           <h1>
             Start your day with <br> a black Coffee
           </h1>
-          <!-- <a href="#" class="primary-btn text-uppercase">Buy Now</a> -->
-          <div class="search-box">
-            <input type="text" class="search-input" placeholder="Start Looking For Something!">
-            <a class="search-btn" href="#">
-              <!-- Seach Icon -->
-              <i class="bi bi-search-heart"></i>
-            </a>
-          </div>
+          <a href="#" class="primary-btn text-uppercase">Buy Now</a>
         </div>
       </div>
     </div>
@@ -428,7 +291,7 @@
   <!-- End gallery Area -->
 
   <!-- Start review Area -->
-  <!-- <section class="review-area section-gap" id="review">
+  <section class="review-area section-gap" id="review">
     <div class="container">
       <div class="row d-flex justify-content-center">
         <div class="menu-content pb-60 col-lg-10">
@@ -491,11 +354,11 @@
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
   <!-- End review Area -->
 
   <!-- Start blog Area -->
-  <!-- <section class="blog-area section-gap" id="blog">
+  <section class="blog-area section-gap" id="blog">
     <div class="container">
       <div class="row d-flex justify-content-center">
         <div class="menu-content pb-60 col-lg-10">
@@ -540,7 +403,7 @@
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
   <!-- End blog Area -->
 
   <!-- start footer Area -->
@@ -599,7 +462,7 @@
   <!-- End footer Area -->
 
   <script src="../assets/home/js/vendor/jquery-2.2.4.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.../assets/home/js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="../assets/home/js/vendor/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
   <script src="../assets/home/js/easing.min.js"></script>
