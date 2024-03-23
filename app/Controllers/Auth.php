@@ -208,6 +208,8 @@ class Auth extends BaseController
                     'isLogin' => true,
                     'name' => $user['name'],
                     'username' => $user['username'],
+                    'email' => $user['email'],
+                    'created_at' => $user['created_at'],
                     'role' => $user['role']
                 ];
                 $this->session->set($sessLogin);

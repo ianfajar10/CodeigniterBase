@@ -14,16 +14,20 @@ class Modules extends BaseController
             [
                 'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
                 'master-coffee' => ['Master Coffee', 'ti ti-coffee'],
-                'sample-page' => ['Halaman Contoh', 'ti ti-file-broken'],
-                'sample-data-tables' => ['Data Tables Contoh', 'ti ti-layout-columns'],
-                'sample-crud' => ['Contoh CRUD', 'ti ti-plus'],
+                'order' => ['Pesanan', 'ti ti-notebook'],
+                'report' => ['Laporan', 'ti ti-clipboard-data'],
+                // 'sample-page' => ['Halaman Contoh', 'ti ti-file-broken'],
+                // 'sample-data-tables' => ['Data Tables Contoh', 'ti ti-layout-columns'],
+                // 'sample-crud' => ['Contoh CRUD', 'ti ti-plus'],
                 // 'profile' => ['Profil', 'ti ti-user-circle'],
                 // 'modul' => ['Modul', 'ti ti-list-details'],
                 // 'upload' => ['Unggah', 'bi bi-pencil-square'],
             ]
             :
             [
-                'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
+                'home' => ['Home', 'ti ti-layout-dashboard'],
+                'cart' => ['Keranjang', 'ti ti-shopping-cart'],
+                'history' => ['Riwayat', 'ti ti-clipboard'],
                 // 'profile' => ['Profil', 'ti ti-user-circle'],
                 // 'filelist' => ['Daftar File', 'bi bi-book"'],
             ];

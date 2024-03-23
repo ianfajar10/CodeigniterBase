@@ -1,6 +1,6 @@
 // HASIL QUERY HARUS SAMA DENGAN COLUMNIDS
 
-async function getDataAndPopulateTable(url, columnIDs) {
+async function getDataAndPopulateTable(url, columnIDs, action = '') {
   var columnIDsLength = (columnIDs.length + 1);
 
   const apiUrl = url; // Ganti URL_API dengan URL endpoint API Anda
@@ -25,6 +25,27 @@ async function getDataAndPopulateTable(url, columnIDs) {
     var tableBody = $("#myTable tbody");
     $.each(data, function (index, item) {
       var row = `<tr><td>${index + 1}</td>`;
+
+      if (action != '') {
+        row += '<td><input type="hidden" id="id_' + item['id'] + '" value="' + item['id'] + '">'; // Buka tag <td>
+        if (action.includes('D')) {
+          row += '<button type="button" class="btn btn-danger" style="margin: 0px 1px;" onclick="showModalD(\'modalTableD\', \'' + item['id'] + '\');"><i class="ti ti-trash"></i></button>';
+        }
+        if (action.includes('M')) { //modal
+          row += '<button type="button" class="btn btn-primary" style="margin: 0px 1px;" onclick="showModalM(\'modalTableM\', \'' + item['id'] + '\');"><i class="ti ti-eye"></i></button>'; // Tambahkan aksi 'M'
+        }
+        if (action.includes('S')) { //modal
+          row += '<button type="button" class="btn btn-primary" style="margin: 0px 1px;" onclick="showModalS(\'modalTableS\', \'' + item['id'] + '\');"><i class="ti ti-notes"></i></button>'; // Tambahkan aksi 'M'
+        }
+        if (action.includes('U')) {
+          row += '<button type="button" class="btn btn-primary" style="margin: 0px 1px;" onclick="showModalU(\'modalTableU\', \'' + item['id'] + '\');"><i class="ti ti-pencil"></i></button>';
+        }
+        if (action.includes('L')) {
+          row += '<button type="button" class="btn btn-primary" style="margin: 0px 1px;"><i class="ti ti-eye"></i></button>'; // Tambahkan aksi 'L'
+        }
+
+        row += '</td>'; // Tutup tag <td>
+      }
 
       // Iterate through each property (column) ID in columnIDs array
       $.each(columnIDs, function (key, value) {
@@ -126,4 +147,78 @@ async function getDataAndPopulateTable(url, columnIDs) {
       console.log("Error while fetching data from API:", error);
     }
   });
+}
+
+function showModalM(modalId, itemId) {
+  var modal = new bootstrap.Modal(document.getElementById(modalId)); // Buat objek modal dari ID
+  var modalBody = modal._element.querySelector('.modal-body'); // Temukan elemen modal-body
+
+  // Buat konten HTML untuk data yang ingin Anda tampilkan di dalam modal
+  var modalContent = '<h5 class="mb-4">Nomor Pesanan Anda</h5><p class="large-id center">MC-' + itemId + '</p>'; // Contoh penggunaan item['id'], Anda dapat menyesuaikan dengan data yang sesuai
+
+  // Tempelkan konten HTML ke dalam modal-body
+  modalBody.innerHTML = modalContent;
+
+  modal.show(); // Tampilkan modal
+}
+
+function showModalU(modalId, itemId) {
+  var modal = new bootstrap.Modal(document.getElementById(modalId)); // Buat objek modal dari ID
+
+  var modalBody = modal._element.querySelector('.modal-body'); // Temukan elemen modal-body
+
+  // Buat konten HTML untuk data yang ingin Anda tampilkan di dalam modal
+  var modalContent = '<input type="hidden" id="idx" value="' + itemId + '">';
+
+  // Tempelkan konten HTML ke dalam modal-body
+  modalBody.innerHTML = modalContent;
+
+  modal.show(); // Tampilkan modal
+}
+
+function showModalD(modalId, itemId) {
+  var modal = new bootstrap.Modal(document.getElementById(modalId)); // Buat objek modal dari ID
+
+  var modalBody = modal._element.querySelector('.modal-body'); // Temukan elemen modal-body
+
+  // Buat konten HTML untuk data yang ingin Anda tampilkan di dalam modal
+  var modalContent = '<input type="hidden" id="idx" value="'+ itemId + '"><p> Anda yakin untuk menghapus data ?</p>'; // Contoh penggunaan item['id'], Anda dapat menyesuaikan dengan data yang sesuai
+
+  // Tempelkan konten HTML ke dalam modal-body
+  modalBody.innerHTML = modalContent;
+
+  modal.show(); // Tampilkan modal
+}
+
+function showModalS(modalId, itemId) {
+  var modal = new bootstrap.Modal(document.getElementById(modalId)); // Buat objek modal dari ID
+  var modalBody = modal._element.querySelector('.modal-body'); // Temukan elemen modal-body
+
+  const formData = {
+    id: itemId,
+  };
+
+  $.ajax({
+    url: 'orderdetail/get_list_by_id', // Ganti dengan URL endpoint Anda
+    type: 'GET',
+    data: formData,
+    success: function (response) {
+      modalBody.innerHTML = '';
+
+      // Iterasi melalui setiap objek dalam respons
+      response.forEach(function (item, index) {
+        // Buat elemen untuk menampilkan informasi item
+        var itemElement = document.createElement('div');
+        itemElement.innerHTML = '<pre>Nama:          ' + item.name + ' \nQuantity:      ' + item.quantity + ' \nPrice:         ' + item.price + '</pre>';
+
+        // Tambahkan elemen item ke dalam modal
+        modalBody.appendChild(itemElement);
+      });
+    },
+    error: function (xhr, status, error) {
+      console.error(xhr.responseText);
+    }
+  });
+
+  modal.show(); // Tampilkan modal
 }

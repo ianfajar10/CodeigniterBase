@@ -36,4 +36,13 @@ class UserModel extends Model
         $query = $this->insert($data);
         return $query;
     }
+
+    public function list($userId = null)
+    {
+        $today = date('Y-m-d');
+
+        $query = $this->where('DATE(created_at)', $today)->findAll();
+
+        return $query;
+    }
 }

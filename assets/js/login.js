@@ -54,6 +54,7 @@ $(document).ready(function () {
                                 timerProgressBar: true,
                                 // position: 'top',
                             }).then((result) => {
+                                localStorage.clear();
                                 $.ajax({
                                     type: 'GET',
                                     url: 'auth/get_session',

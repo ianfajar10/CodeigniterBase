@@ -34,4 +34,33 @@ class FileModel extends Model
         $query = $this->db->table($this->table)->insert($data);
         return $query;
     }
+
+    public function get_files_by_search($query = null)
+    {
+        if ($query == null) {
+            $query = $this->findAll();
+            return $query;
+        } else {
+            $query = $this->like('name', $query)->find();
+            return $query;
+        }
+    }
+
+    public function get_files_by_filter($filter = null)
+    {
+        if ($filter == null) {
+            $query = $this->findAll();
+            return $query;
+        } else {
+            $query = $this->like('additional', $filter)->find();
+            return $query;
+        }
+    }
+
+    public function drop($id = null)
+    {
+        $query = $this->where('id', $id)->delete();
+        return $query;
+    }
+
 }

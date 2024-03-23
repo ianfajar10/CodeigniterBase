@@ -140,7 +140,7 @@
   // Remove the first element from the array
   columnIDs = columnIDs.slice(1);
 
-  var url = 'samplepage/get_crud'
+  var url = 'filelist/get_list_table'
 
   getDataAndPopulateTable(url, columnIDs);
 </script>

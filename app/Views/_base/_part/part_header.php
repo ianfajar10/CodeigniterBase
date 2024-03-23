@@ -45,7 +45,7 @@
                         <div class="message-body">
                             <a href="<?= base_url().'profile'?>" class="d-flex align-items-center gap-2 dropdown-item">
                                 <i class="ti ti-user fs-6"></i>
-                                <p class="mb-0 fs-3">My Profile</p>
+                                <p class="mb-0 fs-3">Profil Saya</p>
                             </a>
                             <a href="<?= base_url() . 'auth/logout' ?>" onclick="localStorage.removeItem('user')" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                         </div>

@@ -29,4 +29,24 @@ class Services extends BaseService
      *     return new \CodeIgniter\Example();
      * }
      */
+
+    public static function autoload($class)
+    {
+        if (strpos($class, 'Config\\') === 0) {
+            include(ROOTPATH . 'config/' . substr($class, 7) . '.php');
+            return;
+        }
+
+        if (strpos($class, 'Myth\Auth') === 0) {
+            include(ROOTPATH . 'Auth/' . str_replace('\\', DIRECTORY_SEPARATOR, substr($class, 5)) . '.php');
+            return;
+        }
+
+        // Load Composer's PSR-4 autoloader
+        $file = ROOTPATH . 'vendor/autoload.php';
+        if (is_file($file)) {
+            include_once($file);
+        }
+    }
+
 }
