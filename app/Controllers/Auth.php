@@ -37,6 +37,11 @@ class Auth extends BaseController
         return view('_base/register');
     }
 
+    public function register_mitra()
+    {
+        return view('_base/register_mitra');
+    }
+
     public function valid_register()
     {
         //tangkap data dari form
@@ -110,7 +115,10 @@ class Auth extends BaseController
                 'username' => $data['username'],
                 'password' => $password,
                 'email' => $data['email'],
-                'role' => 2
+                'bank' => $data['bank'] ?? null,
+                'rekening' => $data['rekening'] ?? null,
+                'rekening_name' => $data['rekening_name'] ?? null,
+                'role' => $data['user_type'] ?? 3
             ];
 
             $save = $this->userModel->save_data($data);

@@ -1,483 +1,442 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html lang="zxx">
 
 <head>
-  <!-- Mobile Specific Meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Favicon-->
-  <link rel="shortcut icon" href="../assets/home/img/fav.png">
-  <!-- Author Meta -->
-  <meta name="author" content="codepixer">
-  <!-- Meta Description -->
-  <meta name="description" content="">
-  <!-- Meta Keyword -->
-  <meta name="keywords" content="">
-  <!-- meta character set -->
   <meta charset="UTF-8">
-  <!-- Site Title -->
-  <title>Coffee</title>
+  <meta name="description" content="Ogani Template">
+  <meta name="keywords" content="Ogani, unica, creative, html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ogani | Template</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-  <!-- CSS ============================================= -->
-  <link rel="stylesheet" href="../assets/home/css/linearicons.css">
-  <link rel="stylesheet" href="../assets/home/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../assets/home/css/bootstrap.css">
-  <link rel="stylesheet" href="../assets/home/css/magnific-popup.css">
-  <link rel="stylesheet" href="../assets/home/css/nice-select.css">
-  <link rel="stylesheet" href="../assets/home/css/animate.min.css">
-  <link rel="stylesheet" href="../assets/home/css/owl.carousel.css">
-  <link rel="stylesheet" href="../assets/home/css/main.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+  <!-- Css Styles -->
+  <link rel="stylesheet" href="../assets/home/ogani/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="../assets/home/ogani/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="../assets/home/ogani/css/elegant-icons.css" type="text/css">
+  <link rel="stylesheet" href="../assets/home/ogani/css/nice-select.css" type="text/css">
+  <link rel="stylesheet" href="../assets/home/ogani/css/jquery-ui.min.css" type="text/css">
+  <link rel="stylesheet" href="../assets/home/ogani/css/owl.carousel.min.css" type="text/css">
+  <link rel="stylesheet" href="../assets/home/ogani/css/slicknav.min.css" type="text/css">
+  <link rel="stylesheet" href="../assets/home/ogani/css/style.css" type="text/css">
+
+  <style>
+    .no-decoration {
+      text-decoration: none !important;
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Page Preloder -->
+  <div id="preloder">
+    <div class="loader"></div>
+  </div>
 
-  <header id="header" id="home">
-    <div class="header-top">
-      <div class="container">
-        <div class="row justify-content-end">
-          <div class="col-lg-8 col-sm-4 col-8 header-top-right no-padding">
+  <!-- Humberger Begin -->
+  <div class="humberger__menu__overlay"></div>
+  <div class="humberger__menu__wrapper">
+    <div class="humberger__menu__logo">
+      <a href="#"><img src="../assets/home/ogani/img/logo.png" alt=""></a>
+    </div>
+    <div class="humberger__menu__cart">
+      <ul>
+        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+      </ul>
+      <div class="header__cart__price">item: <span>$150.00</span></div>
+    </div>
+    <div class="humberger__menu__widget">
+      <div class="header__top__right__language">
+        <img src="../assets/home/ogani/img/language.png" alt="">
+        <div>English</div>
+        <span class="arrow_carrot-down"></span>
+        <ul>
+          <li><a href="#">Spanis</a></li>
+          <li><a href="#">English</a></li>
+        </ul>
+      </div>
+      <div class="header__top__right__auth">
+        <a href="#"><i class="fa fa-user"></i> <?php echo $session['name'] ?? 'Login' ?></a>
+      </div>
+    </div>
+    <nav class="humberger__menu__nav mobile-menu">
+      <ul>
+        <li class="active"><a href="./index.html">Home</a></li>
+        <li><a href="./shop-grid.html">Shop</a></li>
+        <li><a href="#">Pages</a>
+          <ul class="header__menu__dropdown">
+            <li><a href="./shop-details.html">Shop Details</a></li>
+            <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+            <li><a href="./checkout.html">Check Out</a></li>
+            <li><a href="./blog-details.html">Blog Details</a></li>
+          </ul>
+        </li>
+        <li><a href="./blog.html">Blog</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div id="mobile-menu-wrap"></div>
+    <div class="header__top__right__social">
+      <a href="#"><i class="fa fa-facebook"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+      <a href="#"><i class="fa fa-linkedin"></i></a>
+      <a href="#"><i class="fa fa-pinterest-p"></i></a>
+    </div>
+    <div class="humberger__menu__contact">
+      <ul>
+        <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+        <li>Free Shipping for all Order of $99</li>
+      </ul>
+    </div>
+  </div>
+  <!-- Humberger End -->
+
+  <!-- Header Section Begin -->
+  <header class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="header__logo">
+            <a href="./index.html"><img src="../assets/home/ogani/img/logo.png" alt=""></a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <nav class="header__menu">
             <ul>
-              <li>
-                Mon-Fri: 8am to 2pm
+              <li class="active"><a href="./index.html">Home</a></li>
+              <li><a href="./shop-grid.html">Shop</a></li>
+              <li><a href="#">Pages</a>
+                <ul class="header__menu__dropdown">
+                  <li><a href="./shop-details.html">Shop Details</a></li>
+                  <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                  <li><a href="./checkout.html">Check Out</a></li>
+                  <li><a href="./blog-details.html">Blog Details</a></li>
+                </ul>
               </li>
-              <li>
-                Sat-Sun: 11am to 4pm
-              </li>
-              <li>
-                <a href="tel:(012) 6985 236 7512">(012) 6985 236 7512</a>
-              </li>
+              <li><a href="./blog.html">Blog</a></li>
+              <li><a href="./contact.html">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-lg-3">
+          <div class="header__cart">
+            <ul>
+              <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+              <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+              <li><a href="<?= base_url() . 'dashboard' ?>" style="text-decoration: none"><i class="fa fa-user"></i> <?php echo $session['name'] ?? 'Login' ?></a></li>
             </ul>
           </div>
         </div>
       </div>
-    </div>
-    <div class="container">
-      <div class="row align-items-center justify-content-between d-flex">
-        <div id="logo">
-          <a href="index.html"><img src="../assets/home/img/logo.png" alt="" title="" /></a>
-        </div>
-        <nav id="nav-menu-container">
-          <ul class="nav-menu">
-            <li class="menu-active"><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#coffee">Coffee</a></li>
-            <li><a href="#review">Review</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li class="menu-has-children"><a href="">Pages</a>
-              <ul>
-                <li><a href="generic.html">Generic</a></li>
-                <li><a href="elements.html">Elements</a></li>
-              </ul>
-            </li>
-          </ul>
-        </nav><!-- #nav-menu-container -->
+      <div class="humberger__open">
+        <i class="fa fa-bars"></i>
       </div>
     </div>
-  </header><!-- #header -->
+  </header>
+  <!-- Header Section End -->
 
-
-  <!-- start banner Area -->
-  <section class="banner-area" id="home">
-    <div class="container">
-      <div class="row fullscreen d-flex align-items-center justify-content-start">
-        <div class="banner-content col-lg-7">
-          <h6 class="text-white text-uppercase">Now you can feel the Energy</h6>
-          <h1>
-            Start your day with <br> a black Coffee
-          </h1>
-          <a href="#" class="primary-btn text-uppercase">Buy Now</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End banner Area -->
-
-  <!-- Start video-sec Area -->
-  <section class="video-sec-area pb-100 pt-40" id="about">
-    <div class="container">
-      <div class="row justify-content-start align-items-center">
-        <div class="col-lg-6 video-right justify-content-center align-items-center d-flex">
-          <div class="overlay overlay-bg"></div>
-          <a class="play-btn" href="https://www.youtube.com/watch?v=ARA0AxrnHdM"><img class="img-fluid" src="../assets/home/img/play-icon.png" alt=""></a>
-        </div>
-        <div class="col-lg-6 video-left">
-          <h6>Live Coffee making process.</h6>
-          <h1>We Telecast our <br> Coffee Making Live</h1>
-          <p><span>We are here to listen from you deliver exellence</span></p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp or incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
-          </p>
-          <img class="img-fluid" src="../assets/home/img/signature.png" alt="">
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End video-sec Area -->
-
-  <!-- Start menu Area -->
-  <section class="menu-area section-gap" id="coffee">
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="menu-content pb-60 col-lg-10">
-          <div class="title text-center">
-            <h1 class="mb-10">What kind of Coffee we serve for you</h1>
-            <p>Who are in extremely love with eco friendly system.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="single-menu">
-            <div class="title-div justify-content-between d-flex">
-              <h4>Cappuccino</h4>
-              <p class="price float-right">
-                $49
-              </p>
-            </div>
-            <p>
-              Usage of the Internet is becoming more common due to rapid advance.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="single-menu">
-            <div class="title-div justify-content-between d-flex">
-              <h4>Americano</h4>
-              <p class="price float-right">
-                $49
-              </p>
-            </div>
-            <p>
-              Usage of the Internet is becoming more common due to rapid advance.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="single-menu">
-            <div class="title-div justify-content-between d-flex">
-              <h4>Espresso</h4>
-              <p class="price float-right">
-                $49
-              </p>
-            </div>
-            <p>
-              Usage of the Internet is becoming more common due to rapid advance.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="single-menu">
-            <div class="title-div justify-content-between d-flex">
-              <h4>Macchiato</h4>
-              <p class="price float-right">
-                $49
-              </p>
-            </div>
-            <p>
-              Usage of the Internet is becoming more common due to rapid advance.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="single-menu">
-            <div class="title-div justify-content-between d-flex">
-              <h4>Mocha</h4>
-              <p class="price float-right">
-                $49
-              </p>
-            </div>
-            <p>
-              Usage of the Internet is becoming more common due to rapid advance.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="single-menu">
-            <div class="title-div justify-content-between d-flex">
-              <h4>Coffee Latte</h4>
-              <p class="price float-right">
-                $49
-              </p>
-            </div>
-            <p>
-              Usage of the Internet is becoming more common due to rapid advance.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="single-menu">
-            <div class="title-div justify-content-between d-flex">
-              <h4>Piccolo Latte</h4>
-              <p class="price float-right">
-                $49
-              </p>
-            </div>
-            <p>
-              Usage of the Internet is becoming more common due to rapid advance.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="single-menu">
-            <div class="title-div justify-content-between d-flex">
-              <h4>Ristretto</h4>
-              <p class="price float-right">
-                $49
-              </p>
-            </div>
-            <p>
-              Usage of the Internet is becoming more common due to rapid advance.
-            </p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="single-menu">
-            <div class="title-div justify-content-between d-flex">
-              <h4>Affogato</h4>
-              <p class="price float-right">
-                $49
-              </p>
-            </div>
-            <p>
-              Usage of the Internet is becoming more common due to rapid advance.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End menu Area -->
-
-  <!-- Start gallery Area -->
-  <section class="gallery-area section-gap" id="gallery">
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="menu-content pb-60 col-lg-10">
-          <div class="title text-center">
-            <h1 class="mb-10">What kind of Coffee we serve for you</h1>
-            <p>Who are in extremely love with eco friendly system.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          <a href="../assets/home/img/g1.jpg" class="img-pop-home">
-            <img class="img-fluid" src="../assets/home/img/g1.jpg" alt="">
-          </a>
-          <a href="../assets/home/img/g2.jpg" class="img-pop-home">
-            <img class="img-fluid" src="../assets/home/img/g2.jpg" alt="">
-          </a>
-        </div>
-        <div class="col-lg-8">
-          <a href="../assets/home/img/g3.jpg" class="img-pop-home">
-            <img class="img-fluid" src="../assets/home/img/g3.jpg" alt="">
-          </a>
-          <div class="row">
-            <div class="col-lg-6">
-              <a href="../assets/home/img/g4.jpg" class="img-pop-home">
-                <img class="img-fluid" src="../assets/home/img/g4.jpg" alt="">
-              </a>
-            </div>
-            <div class="col-lg-6">
-              <a href="../assets/home/img/g5.jpg" class="img-pop-home">
-                <img class="img-fluid" src="../assets/home/img/g5.jpg" alt="">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End gallery Area -->
-
-  <!-- Start review Area -->
-  <section class="review-area section-gap" id="review">
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="menu-content pb-60 col-lg-10">
-          <div class="title text-center">
-            <h1 class="mb-10">What kind of Coffee we serve for you</h1>
-            <p>Who are in extremely love with eco friendly system.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6 col-md-6 single-review">
-          <img src="../assets/home/img/r1.png" alt="">
-          <div class="title d-flex flex-row">
-            <h4>lorem ipusm</h4>
-            <div class="star">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-            </div>
-          </div>
-          <p>
-            Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-          </p>
-        </div>
-        <div class="col-lg-6 col-md-6 single-review">
-          <img src="../assets/home/img/r2.png" alt="">
-          <div class="title d-flex flex-row">
-            <h4>lorem ipusm</h4>
-            <div class="star">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-            </div>
-          </div>
-          <p>
-            Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-          </p>
-        </div>
-      </div>
-      <div class="row counter-row">
-        <div class="col-lg-3 col-md-6 single-counter">
-          <h1 class="counter">2536</h1>
-          <p>Happy Client</p>
-        </div>
-        <div class="col-lg-3 col-md-6 single-counter">
-          <h1 class="counter">7562</h1>
-          <p>Total Projects</p>
-        </div>
-        <div class="col-lg-3 col-md-6 single-counter">
-          <h1 class="counter">2013</h1>
-          <p>Cups Coffee</p>
-        </div>
-        <div class="col-lg-3 col-md-6 single-counter">
-          <h1 class="counter">10536</h1>
-          <p>Total Submitted</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End review Area -->
-
-  <!-- Start blog Area -->
-  <section class="blog-area section-gap" id="blog">
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="menu-content pb-60 col-lg-10">
-          <div class="title text-center">
-            <h1 class="mb-10">What kind of Coffee we serve for you</h1>
-            <p>Who are in extremely love with eco friendly system.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6 col-md-6 single-blog">
-          <img class="img-fluid" src="../assets/home/img/b1.jpg" alt="">
-          <ul class="post-tags">
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Life Style</a></li>
-          </ul>
-          <a href="#">
-            <h4>Portable latest Fashion for young women</h4>
-          </a>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.
-          </p>
-          <p class="post-date">
-            31st January, 2018
-          </p>
-        </div>
-        <div class="col-lg-6 col-md-6 single-blog">
-          <img class="img-fluid" src="../assets/home/img/b2.jpg" alt="">
-          <ul class="post-tags">
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Life Style</a></li>
-          </ul>
-          <a href="#">
-            <h4>Portable latest Fashion for young women</h4>
-          </a>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.
-          </p>
-          <p class="post-date">
-            31st January, 2018
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End blog Area -->
-
-  <!-- start footer Area -->
-  <footer class="footer-area section-gap">
+  <!-- Hero Section Begin -->
+  <section class="hero">
     <div class="container">
       <div class="row">
-        <div class="col-lg-5 col-md-6 col-sm-6">
-          <div class="single-footer-widget">
-            <h6>About Us</h6>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.
-            </p>
-            <p class="footer-text">
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy;<script>
-                document.write(new Date().getFullYear());
-              </script>
-              All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
-              <a href="https://colorlib.com" target="_blank">Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
+        <div class="col-lg-3">
+          <div class="hero__categories">
+            <div class="hero__categories__all">
+              <i class="fa fa-bars"></i>
+              <span>All departments</span>
+            </div>
+            <ul>
+              <li><a href="#">Fresh Meat</a></li>
+              <li><a href="#">Vegetables</a></li>
+              <li><a href="#">Fruit & Nut Gifts</a></li>
+              <li><a href="#">Fresh Berries</a></li>
+              <li><a href="#">Ocean Foods</a></li>
+              <li><a href="#">Butter & Eggs</a></li>
+              <li><a href="#">Fastfood</a></li>
+              <li><a href="#">Fresh Onion</a></li>
+              <li><a href="#">Papayaya & Crisps</a></li>
+              <li><a href="#">Oatmeal</a></li>
+              <li><a href="#">Fresh Bananas</a></li>
+            </ul>
           </div>
         </div>
-        <div class="col-lg-5  col-md-6 col-sm-6">
-          <div class="single-footer-widget">
-            <h6>Newsletter</h6>
-            <p>Stay update with our latest</p>
-            <div class="" id="mc_embed_signup">
-              <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-                <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-                <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-                <div style="position: absolute; left: -5000px;">
-                  <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                </div>
-
-                <div class="info pt-20"></div>
+        <div class="col-lg-9">
+          <div class="hero__search">
+            <div class="hero__search__form">
+              <form action="#">
+                <input type="text" placeholder="What do yo u need?">
+                <button type="submit" class="site-btn">SEARCH</button>
               </form>
             </div>
           </div>
+          <div class="hero__item set-bg" data-setbg="../assets/home/ogani/img/hero/banner.jpg">
+            <div class="hero__text">
+              <span>FRUIT FRESH</span>
+              <h2>Vegetable <br />100% Organic</h2>
+              <p>Free Pickup and Delivery Available</p>
+              <a href="#" class="primary-btn">SHOP NOW</a>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
-          <div class="single-footer-widget">
-            <h6>Follow Us</h6>
-            <p>Let us be social</p>
-            <div class="footer-social d-flex align-items-center">
+      </div>
+    </div>
+  </section>
+  <!-- Hero Section End -->
+
+  <!-- Categories Section Begin -->
+  <section class="categories">
+    <div class="container">
+      <div class="row">
+        <div class="categories__slider owl-carousel">
+          <div class="col-lg-3">
+            <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-1.jpg">
+              <h5><a href="#">Fresh Fruit</a></h5>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-2.jpg">
+              <h5><a href="#">Dried Fruit</a></h5>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-3.jpg">
+              <h5><a href="#">Vegetables</a></h5>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-4.jpg">
+              <h5><a href="#">drink fruits</a></h5>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-5.jpg">
+              <h5><a href="#">drink fruits</a></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Categories Section End -->
+
+  <!-- Featured Section Begin -->
+  <section class="featured spad">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-title">
+            <h2>Featured Product</h2>
+          </div>
+          <div class="featured__controls">
+            <ul>
+              <li class="active" data-filter="*">All</li>
+              <li data-filter=".oranges">Oranges</li>
+              <li data-filter=".fresh-meat">Fresh Meat</li>
+              <li data-filter=".vegetables">Vegetables</li>
+              <li data-filter=".fastfood">Fastfood</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row featured__filter">
+        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+          <div class="featured__item">
+            <div class="featured__item__pic set-bg" data-setbg="../assets/home/ogani/img/featured/feature-1.jpg">
+              <ul class="featured__item__pic__hover">
+                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+              </ul>
+            </div>
+            <div class="featured__item__text">
+              <br>
+              <h6><a href="#">Crab Pool Security</a></h6>
+              <h5><?php echo $session['name'] ?></h5>
+              <br>
+              <h5>$30.00</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+          <div class="featured__item">
+            <div class="featured__item__pic set-bg" data-setbg="../assets/home/ogani/img/featured/feature-2.jpg">
+              <ul class="featured__item__pic__hover">
+                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+              </ul>
+            </div>
+            <div class="featured__item__text">
+              <h6><a href="#">Crab Pool Security</a></h6>
+              <h5>$30.00</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
+          <div class="featured__item">
+            <div class="featured__item__pic set-bg" data-setbg="../assets/home/ogani/img/featured/feature-3.jpg">
+              <ul class="featured__item__pic__hover">
+                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+              </ul>
+            </div>
+            <div class="featured__item__text">
+              <h6><a href="#">Crab Pool Security</a></h6>
+              <h5>$30.00</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
+          <div class="featured__item">
+            <div class="featured__item__pic set-bg" data-setbg="../assets/home/ogani/img/featured/feature-4.jpg">
+              <ul class="featured__item__pic__hover">
+                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+              </ul>
+            </div>
+            <div class="featured__item__text">
+              <h6><a href="#">Crab Pool Security</a></h6>
+              <h5>$30.00</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+          <div class="featured__item">
+            <div class="featured__item__pic set-bg" data-setbg="../assets/home/ogani/img/featured/feature-5.jpg">
+              <ul class="featured__item__pic__hover">
+                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+              </ul>
+            </div>
+            <div class="featured__item__text">
+              <h6><a href="#">Crab Pool Security</a></h6>
+              <h5>$30.00</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
+          <div class="featured__item">
+            <div class="featured__item__pic set-bg" data-setbg="../assets/home/ogani/img/featured/feature-6.jpg">
+              <ul class="featured__item__pic__hover">
+                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+              </ul>
+            </div>
+            <div class="featured__item__text">
+              <h6><a href="#">Crab Pool Security</a></h6>
+              <h5>$30.00</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+          <div class="featured__item">
+            <div class="featured__item__pic set-bg" data-setbg="../assets/home/ogani/img/featured/feature-7.jpg">
+              <ul class="featured__item__pic__hover">
+                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+              </ul>
+            </div>
+            <div class="featured__item__text">
+              <h6><a href="#">Crab Pool Security</a></h6>
+              <h5>$30.00</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
+          <div class="featured__item">
+            <div class="featured__item__pic set-bg" data-setbg="../assets/home/ogani/img/featured/feature-8.jpg">
+              <ul class="featured__item__pic__hover">
+                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+              </ul>
+            </div>
+            <div class="featured__item__text">
+              <h6><a href="#">Crab Pool Security</a></h6>
+              <h5>$30.00</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Featured Section End -->
+
+  <!-- Footer Section Begin -->
+  <footer class="footer spad">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="footer__about">
+            <div class="footer__about__logo">
+              <a href="./index.html"><img src="../assets/home/ogani/img/logo.png" alt=""></a>
+            </div>
+            <ul>
+              <li>Address: 60-49 Road 11378 New York</li>
+              <li>Phone: +65 11.188.888</li>
+              <li>Email: hello@colorlib.com</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+          <div class="footer__widget">
+            <h6>Useful Links</h6>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">About Our Shop</a></li>
+              <li><a href="#">Secure Shopping</a></li>
+              <li><a href="#">Delivery infomation</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Our Sitemap</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">Who We Are</a></li>
+              <li><a href="#">Our Services</a></li>
+              <li><a href="#">Projects</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Innovation</a></li>
+              <li><a href="#">Testimonials</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <div class="footer__widget">
+            <h6>Join Our Newsletter Now</h6>
+            <p>Get E-mail updates about our latest shop and special offers.</p>
+            <form action="#">
+              <input type="text" placeholder="Enter your mail">
+              <button type="submit" class="site-btn">Subscribe</button>
+            </form>
+            <div class="footer__widget__social">
               <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-instagram"></i></a>
               <a href="#"><i class="fa fa-twitter"></i></a>
-              <a href="#"><i class="fa fa-dribbble"></i></a>
-              <a href="#"><i class="fa fa-behance"></i></a>
+              <a href="#"><i class="fa fa-pinterest"></i></a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </footer>
-  <!-- End footer Area -->
+  <!-- Footer Section End -->
 
-  <script src="../assets/home/js/vendor/jquery-2.2.4.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.../assets/home/js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="../assets/home/js/vendor/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-  <script src="../assets/home/js/easing.min.js"></script>
-  <script src="../assets/home/js/hoverIntent.js"></script>
-  <script src="../assets/home/js/superfish.min.js"></script>
-  <script src="../assets/home/js/jquery.ajaxchimp.min.js"></script>
-  <script src="../assets/home/js/jquery.magnific-popup.min.js"></script>
-  <script src="../assets/home/js/owl.carousel.min.js"></script>
-  <script src="../assets/home/js/jquery.sticky.js"></script>
-  <script src="../assets/home/js/jquery.nice-select.min.js"></script>
-  <script src="../assets/home/js/parallax.min.js"></script>
-  <script src="../assets/home/js/waypoints.min.js"></script>
-  <script src="../assets/home/js/jquery.counterup.min.js"></script>
-  <script src="../assets/home/js/mail-script.js"></script>
-  <script src="../assets/home/js/main.js"></script>
+  <!-- Js Plugins -->
+  <script src="../assets/home/ogani/js/jquery-3.3.1.min.js"></script>
+  <script src="../assets/home/ogani/js/bootstrap.min.js"></script>
+  <script src="../assets/home/ogani/js/jquery.nice-select.min.js"></script>
+  <script src="../assets/home/ogani/js/jquery-ui.min.js"></script>
+  <script src="../assets/home/ogani/js/jquery.slicknav.js"></script>
+  <script src="../assets/home/ogani/js/mixitup.min.js"></script>
+  <script src="../assets/home/ogani/js/owl.carousel.min.js"></script>
+  <script src="../assets/home/ogani/js/main.js"></script>
+
 </body>
 
 </html>

@@ -10,7 +10,11 @@ class DefaultRoute implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        return redirect()->to(base_url('/home'));
+        if (session('isLogin') && (session('role') == 1) || (session('role') == 2)) {
+            return redirect()->to(base_url('/dashboard'));
+        }else{
+            return redirect()->to(base_url('/home'));
+        }
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)

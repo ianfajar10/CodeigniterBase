@@ -35,6 +35,21 @@ class UserTable extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '50',
             ],
+            'bank' => [
+                'type' => 'VARCHAR',
+                'constraint' => '50',
+                'null' => true,
+            ],
+            'rekening' => [
+                'type' => 'VARCHAR',
+                'constraint' => '50',
+                'null' => true,
+            ],
+            'rekening_name' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+                'null' => true,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
