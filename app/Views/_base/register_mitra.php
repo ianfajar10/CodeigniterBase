@@ -25,41 +25,41 @@
                                 <form id="ajax_form">
                                     <div class="mb-3">
                                         <label for="exampleNama" class="form-label">Nama Mitra</label>
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan Nama Lengkap">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Masukkan nama mitra">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputUsername" class="form-label">Nama Pengguna Toko</label>
-                                        <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Nama Pengguna">
+                                        <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan nama pengguna toko">
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputPassword" class="form-label">Kata Sandi</label>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="Kata Sandi">
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan kata sandi">
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputConfirmPassword" class="form-label">Konfirmasi Kata Sandi</label>
-                                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Konfirmasi Kata Sandi">
+                                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Masukkan konfirmasi kata sandi">
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputBank" class="form-label">Nama Bank</label>
-                                        <input type="text" class="form-control" name="bank" id="bank" placeholder="Masukkan Nama Bank">
+                                        <input type="text" class="form-control" name="bank" id="bank" placeholder="Masukkan nama bank">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputRekening" class="form-label">Nomor Rekening</label>
-                                        <input type="text" class="form-control" name="rekening" id="rekening" placeholder="Masukkan Nomor Rekening">
+                                        <input type="text" class="form-control" name="rekening" id="rekening" placeholder="Masukkan nomor rekening">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputRekeningName" class="form-label">Nama Rekening (AN)</label>
-                                        <input type="text" class="form-control" name="rekening_name" id="rekening_name" placeholder="Masukkan Nama Rekening">
+                                        <label for="exampleInputRekeningName" class="form-label">Nama Rekening (a.n.)</label>
+                                        <input type="text" class="form-control" name="rekening_name" id="rekening_name" placeholder="Masukkan atas nama rekening">
                                     </div>
                                     <div class="mb-3">
                                         <input type="hidden" class="form-control" name="user_type" id="user_type" value="2">
                                     </div>
                                     <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" id="submitButton">
-                                        <span class="text-button" role="status" aria-hidden="true">Buat</span>
+                                        <span class="text-button" role="status" aria-hidden="true">Buat akun Penjual</span>
                                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                                     </button>
                                     <div class="d-flex align-items-center justify-content-center">

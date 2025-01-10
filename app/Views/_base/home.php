@@ -100,14 +100,15 @@
       <div class="row">
         <div class="col-lg-3">
           <div class="header__logo">
-            <a href="./index.html"><img src="../assets/home/ogani/img/logo.png" alt=""></a>
+            <a href="./index.html"><img src="../assets/home/ogani/img/logo3.png" alt=""></a>
           </div>
         </div>
         <div class="col-lg-6">
           <nav class="header__menu">
             <ul>
-              <li class="active"><a href="./index.html">Home</a></li>
-              <li><a href="./shop-grid.html">Shop</a></li>
+              <li class="active"><a href="./index.html">Beranda</a></li>
+              <li><a href="./blog.html">Terlaris</a></li>
+              <li><a href="./contact.html">Terbaru</a></li>
               <li><a href="#">Pages</a>
                 <ul class="header__menu__dropdown">
                   <li><a href="./shop-details.html">Shop Details</a></li>
@@ -116,8 +117,6 @@
                   <li><a href="./blog-details.html">Blog Details</a></li>
                 </ul>
               </li>
-              <li><a href="./blog.html">Blog</a></li>
-              <li><a href="./contact.html">Contact</a></li>
             </ul>
           </nav>
         </div>
@@ -146,20 +145,20 @@
           <div class="hero__categories">
             <div class="hero__categories__all">
               <i class="fa fa-bars"></i>
-              <span>All departments</span>
+              <span>Semua Kategori </span>
             </div>
             <ul>
-              <li><a href="#">Fresh Meat</a></li>
-              <li><a href="#">Vegetables</a></li>
-              <li><a href="#">Fruit & Nut Gifts</a></li>
-              <li><a href="#">Fresh Berries</a></li>
-              <li><a href="#">Ocean Foods</a></li>
-              <li><a href="#">Butter & Eggs</a></li>
-              <li><a href="#">Fastfood</a></li>
-              <li><a href="#">Fresh Onion</a></li>
-              <li><a href="#">Papayaya & Crisps</a></li>
-              <li><a href="#">Oatmeal</a></li>
-              <li><a href="#">Fresh Bananas</a></li>
+              <li><a href="#">Nugget</a></li>
+              <li><a href="#">Sosis</a></li>
+              <li><a href="#">Cireng</a></li>
+              <li><a href="#">Bakso</a></li>
+              <li><a href="#">Cimol</a></li>
+              <li><a href="#">Cilok</a></li>
+              <li><a href="#">Risoles</a></li>
+              <li><a href="#">Pempek</a></li>
+              <li><a href="#">Dimsum</a></li>
+              <li><a href="#">Tempura</a></li>
+              <li><a href="#">Kentang Stik</a></li>
             </ul>
           </div>
         </div>
@@ -167,7 +166,7 @@
           <div class="hero__search">
             <div class="hero__search__form">
               <form action="#">
-                <input type="text" placeholder="What do yo u need?">
+                <input type="text" placeholder="Apa yang kamu cari ?">
                 <button type="submit" class="site-btn">SEARCH</button>
               </form>
             </div>
@@ -376,10 +375,10 @@
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="footer__about">
             <div class="footer__about__logo">
-              <a href="./index.html"><img src="../assets/home/ogani/img/logo.png" alt=""></a>
+              <a href="./index.html"><img src="../assets/home/ogani/img/logo3.png" alt=""></a>
             </div>
             <ul>
-              <li>Address: 60-49 Road 11378 New York</li>
+              <li>Address: 60-49 Road 11378</li>
               <li>Phone: +65 11.188.888</li>
               <li>Email: hello@colorlib.com</li>
             </ul>

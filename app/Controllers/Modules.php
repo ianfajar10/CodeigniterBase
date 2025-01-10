@@ -23,7 +23,7 @@ class Modules extends BaseController
             :
             [
                 'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
-                // 'profile' => ['Profil', 'ti ti-user-circle'],
+                'profile' => ['Profil', 'ti ti-user-circle'],
                 // 'filelist' => ['Daftar File', 'bi bi-book"'],
             ];
 

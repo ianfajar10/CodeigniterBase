@@ -26,7 +26,7 @@
                                 <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
                                     <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
                                 </a>
-                                <p class="text-center">Tambah Suatu Kalimat Disini</p>
+                                <p class="text-center">Masuk Akun</p>
                                 <form id="loginForm">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Nama Pengguna</label>
@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputPassword1" class="form-label">Kata Sandi</label>
-                                        <input type="password" name="password" class="form-control" id="password" placeholder="Kata Sandi">
+                                        <input type="password" name="password" class="form-control" id="password" placeholder="Masukkan Kata Sandi">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">
                                         <div class="form-check">
