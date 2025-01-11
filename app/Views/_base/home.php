@@ -43,8 +43,10 @@
     </div>
     <div class="humberger__menu__cart">
       <ul>
-        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+        <?php if (isset($session['username']) && $session['username'] != null): ?>
+          <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+          <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+        <?php endif; ?>
       </ul>
       <div class="header__cart__price">item: <span>$150.00</span></div>
     </div>
@@ -64,7 +66,7 @@
     </div>
     <nav class="humberger__menu__nav mobile-menu">
       <ul>
-        <li class="active"><a href="./index.html">Home</a></li>
+        <li class="active"><a href="./home">Home</a></li>
         <li><a href="./shop-grid.html">Shop</a></li>
         <li><a href="#">Pages</a>
           <ul class="header__menu__dropdown">
@@ -100,13 +102,13 @@
       <div class="row">
         <div class="col-lg-3">
           <div class="header__logo">
-            <a href="./index.html"><img src="../assets/home/ogani/img/logo3.png" alt=""></a>
+            <a href="./home"><img src="../assets/home/ogani/img/logo3.png" alt=""></a>
           </div>
         </div>
         <div class="col-lg-6">
           <nav class="header__menu">
             <ul>
-              <li class="active"><a href="./index.html">Beranda</a></li>
+              <li class="active"><a href="./home">Beranda</a></li>
               <li><a href="./blog.html">Terlaris</a></li>
               <li><a href="./contact.html">Terbaru</a></li>
               <li><a href="#">Pages</a>
@@ -123,8 +125,10 @@
         <div class="col-lg-3">
           <div class="header__cart">
             <ul>
-              <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-              <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+              <?php if (isset($session['username']) && $session['username'] != null): ?>
+                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+              <?php endif; ?>
               <li><a href="<?= base_url() . 'dashboard' ?>" style="text-decoration: none"><i class="fa fa-user"></i> <?php echo $session['name'] ?? 'Login' ?></a></li>
             </ul>
           </div>
@@ -148,17 +152,9 @@
               <span>Semua Kategori </span>
             </div>
             <ul>
-              <li><a href="#">Nugget</a></li>
-              <li><a href="#">Sosis</a></li>
-              <li><a href="#">Cireng</a></li>
-              <li><a href="#">Bakso</a></li>
-              <li><a href="#">Cimol</a></li>
-              <li><a href="#">Cilok</a></li>
-              <li><a href="#">Risoles</a></li>
-              <li><a href="#">Pempek</a></li>
-              <li><a href="#">Dimsum</a></li>
-              <li><a href="#">Tempura</a></li>
-              <li><a href="#">Kentang Stik</a></li>
+              <?php foreach ($categories as $category): ?>
+                <li><a href="/search?keyword=<?= urlencode(strtolower($category['name'])) ?>"><?= $category['name'] ?></a></li>
+              <?php endforeach; ?>
             </ul>
           </div>
         </div>
@@ -186,43 +182,46 @@
   <!-- Hero Section End -->
 
   <!-- Categories Section Begin -->
-  <section class="categories">
-    <div class="container">
-      <div class="row">
-        <div class="categories__slider owl-carousel">
-          <div class="col-lg-3">
-            <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-1.jpg">
-              <h5><a href="#">Fresh Fruit</a></h5>
+  <?php if (!($keywords)): ?>
+    <section class="categories">
+      <div class="container">
+        <div class="row">
+          <div class="categories__slider owl-carousel">
+            <div class="col-lg-3">
+              <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-1.jpg">
+                <h5><a href="#">Fresh Fruit</a></h5>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-2.jpg">
-              <h5><a href="#">Dried Fruit</a></h5>
+            <div class="col-lg-3">
+              <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-2.jpg">
+                <h5><a href="#">Dried Fruit</a></h5>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-3.jpg">
-              <h5><a href="#">Vegetables</a></h5>
+            <div class="col-lg-3">
+              <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-3.jpg">
+                <h5><a href="#">Vegetables</a></h5>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-4.jpg">
-              <h5><a href="#">drink fruits</a></h5>
+            <div class="col-lg-3">
+              <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-4.jpg">
+                <h5><a href="#">drink fruits</a></h5>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-5.jpg">
-              <h5><a href="#">drink fruits</a></h5>
+            <div class="col-lg-3">
+              <div class="categories__item set-bg" data-setbg="../assets/home/ogani/img/categories/cat-5.jpg">
+                <h5><a href="#">drink fruits</a></h5>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  <?php else: ?>
+  <?php endif; ?>
   <!-- Categories Section End -->
 
   <!-- Featured Section Begin -->
-  <section class="featured spad">
+  <section class="featured spad" style="padding-top: <?= $keywords ? '0px' : '80px'; ?>">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -232,24 +231,32 @@
         </div>
       </div>
       <div class="row featured__filter">
-        <?php foreach ($products as $product): ?>
-          <div class="col-lg-2 col-md-4 col-sm-6 mix">
-            <div class="featured__item">
-              <div class="featured__item__pic set-bg" data-setbg="../public/assets/images/<?= $product->file ?>">
-                <ul class="featured__item__pic__hover">
-                  <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                  <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                  <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                </ul>
-              </div>
-              <div class="featured__item__text">
-                <h6><a href="#"><?= $product->name ?></a></h6>
-                <h6><a href="#"><?= $product->mitra_name ?></a></h6>
-                <h5><?= $product->price ?></h5>
+        <?php if (!empty($products)): ?>
+          <?php foreach ($products as $product): ?>
+            <div class="col-lg-2 col-md-4 col-sm-6 mix">
+              <div class="featured__item">
+                <div class="featured__item__pic set-bg" data-setbg="../public/assets/images/<?= $product->file ?>">
+                  <ul class="featured__item__pic__hover">
+                    <li><a href="#"><i class="fa fa-info"></i></a></li>
+                    <?php if (isset($session['username']) && $session['username'] != null): ?>
+                      <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                      <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                    <?php endif; ?>
+                  </ul>
+                </div>
+                <div class="featured__item__text">
+                  <h6><a href="#"><?= $product->name ?></a></h6>
+                  <h6><a href="#"><?= $product->mitra_name ?></a></h6>
+                  <h5><?= $product->price ?></h5>
+                </div>
               </div>
             </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <div class="col-12">
+            <p class="text-center">Produk tidak ditemukan.</p>
           </div>
-        <?php endforeach; ?>
+        <?php endif; ?>
       </div>
 
     </div>
@@ -263,7 +270,7 @@
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="footer__about">
             <div class="footer__about__logo">
-              <a href="./index.html"><img src="../assets/home/ogani/img/logo3.png" alt=""></a>
+              <a href="./home"><img src="../assets/home/ogani/img/logo3.png" alt=""></a>
             </div>
             <ul>
               <li>Address: 60-49 Road 11378</li>

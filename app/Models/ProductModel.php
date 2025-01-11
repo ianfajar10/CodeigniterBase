@@ -24,7 +24,6 @@ class ProductModel extends Model
     {
         $builder = $this->builder();
 
-
         if ($params === null) {
             $builder->select('tbl_products.*, tbl_users.name as mitra_name')
                 ->join('tbl_users', 'tbl_users.username = tbl_products.created_by', 'left');
@@ -33,11 +32,12 @@ class ProductModel extends Model
             return $builder->get()->getResult();
         } else {
 
-            $builder->select('tbl_products.*, tbl_users.name as category_name')
-                ->join('tbl_users', 'tbl_users.username = tbl_products.created_by', 'left')
-                ->where('tbl_products.id', $params);
+            $builder->select('tbl_products.*, tbl_users.name as mitra_name')
+            ->join('tbl_users', 'tbl_users.username = tbl_products.created_by', 'left')
+            ->where('tbl_products.id', $params)
+            ->orWhere("LOWER(tbl_products.name) LIKE", "%" . strtolower($params) . "%");
 
-            return $builder->get()->getRow();
+            return $builder->get()->getResult();
         }
     }
 
