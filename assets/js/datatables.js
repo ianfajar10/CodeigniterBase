@@ -42,6 +42,14 @@ async function getDataAndPopulateTable(url, columnIDs) {
         }
       });
 
+      var rootApiUrl = apiUrl.split('/')[0];
+
+      row += `<td>
+             <a href="/${rootApiUrl}/delete/${item.id}" class="btn btn-danger btn-sm">
+               <i class="fas fa-trash"></i> Hapus
+             </a>
+           </td>`;
+
       row += "</tr>";
       tableBody.append(row);
     });

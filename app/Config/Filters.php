@@ -23,6 +23,7 @@ class Filters extends BaseConfig
         'secureheaders' => SecureHeaders::class,
         'defaultRoute'  => \App\Filters\DefaultRoute::class,
         'isLogin'       => \App\Filters\IsLogin::class,
+        'isAdmin'       => \App\Filters\IsAdmin::class,
         'checkLogin'       => \App\Filters\CheckLogin::class
     ];
 

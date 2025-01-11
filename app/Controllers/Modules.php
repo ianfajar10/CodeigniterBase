@@ -13,12 +13,15 @@ class Modules extends BaseController
         $data['sidebars'] = ($check_role == 1) ?
             [
                 'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
-                'sample-page' => ['Halaman Contoh', 'ti ti-file-broken'],
-                'sample-data-tables' => ['Data Tables Contoh', 'ti ti-layout-columns'],
-                'sample-crud' => ['Contoh CRUD', 'ti ti-plus'],
-                // 'profile' => ['Profil', 'ti ti-user-circle'],
-                // 'modul' => ['Modul', 'ti ti-list-details'],
-                // 'upload' => ['Unggah', 'bi bi-pencil-square'],
+                'product-category' => ['Kategori', 'ti ti-layout-dashboard'],
+                // 'sample-page' => ['Halaman Contoh', 'ti ti-file-broken'],
+                // 'sample-data-tables' => ['Data Tables Contoh', 'ti ti-layout-columns'],
+            ]
+            :
+            $data['sidebars'] = ($check_role == 2) ? [
+                'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
+                'product' => ['Produk', 'ti ti-plus'],
+                // 'sample-crud' => ['Produk', 'ti ti-plus'],
             ]
             :
             [

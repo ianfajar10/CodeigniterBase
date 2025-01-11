@@ -43,6 +43,35 @@
                                         <label for="exampleInputEmail" class="form-label">Email</label>
                                         <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
                                     </div>
+                                    <div class="mb-4">
+                                        <label for="exampleInputTelepon" class="form-label">Telepon</label>
+                                        <input type="text" class="form-control" name="telepon" id="telepon" placeholder="Nomor telepon" maxlength="13">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="exampleInputProvinsi" class="form-label">Provinsi</label>
+                                        <select class="form-control" name="provinsi" id="provinsi">
+                                            <option value="">Pilih Provinsi</option>
+                                            <?php foreach ($provinces as $provinsi): ?>
+                                                <option value="<?= $provinsi['id'] ?>"><?= $provinsi['name'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="exampleInputKabupaten" class="form-label">Kabupaten</label>
+                                        <select class="form-control" name="kabupaten" id="kabupaten" disabled>
+                                            <option value="">Pilih Kabupaten/Kota</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="exampleInputKecamatan" class="form-label">Kecamatan</label>
+                                        <select class="form-control" name="kecamatan" id="kecamatan" disabled>
+                                            <option value="">Pilih Kecamatan</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="exampleInputAlamat" class="form-label">Alamat</label>
+                                        <textarea class="mb-4 form-control" name="alamat" id="alamat" rows="3"></textarea>
+                                    </div>
                                     <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" id="submitButton">
                                         <span class="text-button" role="status" aria-hidden="true">Buat Akun</span>
                                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>

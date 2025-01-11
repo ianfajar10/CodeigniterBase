@@ -37,6 +37,8 @@ $routes->get('/sample-page', 'Samplepage::sample_page', ['filter' => 'isLogin'])
 $routes->get('/sample-data-tables', 'Samplepage::sample_data_tables', ['filter' => 'isLogin']);
 $routes->get('/profile', 'Profile::index', ['filter' => 'isLogin']);
 $routes->get('/sample-crud', 'Samplepage::crud', ['filter' => 'isLogin']);
+$routes->get('/product-category', 'Productcategory::index', ['filter' => 'isAdmin']);
+$routes->get('/product', 'Product::index', ['filter' => 'isAdmin']);
 // $routes->get('/filelist', 'Filelist::index');
 // $routes->get('/filelist/detail', 'Filelist::detail');
 // $routes->get('/upload', 'Upload::index');

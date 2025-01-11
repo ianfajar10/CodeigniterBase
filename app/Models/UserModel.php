@@ -14,10 +14,15 @@ class UserModel extends Model
         "username",
         "password",
         "email",
+        "telepon",
         "role",
         "bank",
         "rekening",
-        "rekening_name"
+        "rekening_name",
+        "provinsi",
+        "kabupaten",
+        "kecamatan",
+        "alamat"
     ];
 
     protected $useTimestamps = true;

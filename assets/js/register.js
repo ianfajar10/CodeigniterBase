@@ -62,4 +62,52 @@ $("#ajax_form").validate({
             }
         });
     }
-})
+});
+
+$('#provinsi').on('change', function () {
+    const provinsiId = $(this).val();
+    const kabupatenSelect = $('#kabupaten');
+
+    if (provinsiId) {
+        kabupatenSelect.prop('disabled', true).html('<option value="">Loading...</option>');
+
+        $.post('/auth/getKabupaten', { provinsiId: provinsiId }, function (data) {
+            kabupatenSelect.prop('disabled', false).html('<option value="">Pilih Kabupaten/Kota</option>');
+            data.forEach(function (kabupaten) {
+                kabupatenSelect.append(`<option value="${kabupaten.id}">${kabupaten.name}</option>`);
+            });
+        }).fail(function () {
+            kabupatenSelect.prop('disabled', false).html('<option value="">Terjadi kesalahan</option>');
+        });
+    } else {
+        kabupatenSelect.prop('disabled', true).html('<option value="">Pilih Kabupaten/Kota</option>');
+    }
+});
+
+$('#kabupaten').on('change', function () {
+    const kabupatenId = $(this).val();
+    const kecamatanSelect = $('#kecamatan');
+
+    kecamatanSelect.html('<option value="">Loading...</option>').prop('disabled', true);
+
+    if (kabupatenId) {
+        $.post('/auth/getKecamatan', { kabupatenId }, function (data) {
+            kecamatanSelect.html('<option value="">Pilih Kecamatan</option>').prop('disabled', false);
+            data.forEach(function (kecamatan) {
+                kecamatanSelect.append(`<option value="${kecamatan.id}">${kecamatan.name}</option>`);
+            });
+        }).fail(function () {
+            kecamatanSelect.html('<option value="">Terjadi kesalahan</option>').prop('disabled', false);
+        });
+    } else {
+        kecamatanSelect.html('<option value="">Pilih Kecamatan</option>').prop('disabled', true);
+    }
+});
+
+$('#telepon').on('input', function () {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+
+$('#rekening').on('input', function () {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
