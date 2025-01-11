@@ -245,7 +245,7 @@
               <div class="featured__item__text">
                 <h6><a href="#"><?= $product->name ?></a></h6>
                 <h6><a href="#"><?= $product->mitra_name ?></a></h6>
-                <h5><?= $product->price ?></h5>
+                <h5>Rp <?= $product->price ?>,-</h5>
               </div>
             </div>
           </div>
