@@ -125,12 +125,18 @@
           </nav>
         </div>
         <div class="col-lg-3">
-          <div class="header__cart">
+          <div class="header__menu">
             <ul>
               <?php if (isset($session['username']) && $session['username'] != null): ?>
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
               <?php endif; ?>
+              <li><a href="#">Daftar</a>
+                <ul class="header__menu__dropdown">
+                  <li><a href="/register">Pengguna</a></li>
+                  <li><a href="/register-mitra">Penjual</a></li>
+                </ul>
+              </li>
               <li><a href="<?= base_url() . 'dashboard' ?>" style="text-decoration: none"><i class="fa fa-user"></i> <?php echo $session['name'] ?? 'Login' ?></a></li>
             </ul>
           </div>
@@ -239,10 +245,12 @@
               <div class="featured__item">
                 <div class="featured__item__pic set-bg" data-setbg="../public/assets/images/<?= $product->file ?>">
                   <ul class="featured__item__pic__hover">
-                    <li><a href="#"><i class="fa fa-info"></i></a></li>
-                    <?php if (isset($session['username']) && $session['username'] != null): ?>
+                  <?php if (!isset($session['role']) || ($session['role'] != 1 && $session['role'] != 2)): ?>
+                      <li><a href="/home/details/<?php echo $product->id ?>"><i class="fa fa-info"></i></a></li>
+                      <?php if (isset($session['username']) && $session['username'] != null): ?>
                       <li><a href="#"><i class="fa fa-heart"></i></a></li>
                       <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                    <?php endif; ?>
                     <?php endif; ?>
                   </ul>
                 </div>

@@ -21,6 +21,7 @@ class Modules extends BaseController
             $data['sidebars'] = ($check_role == 2) ? [
                 'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
                 'product' => ['Produk', 'ti ti-gift'],
+                'profile' => ['Profil', 'ti ti-user-circle'],
                 // 'sample-crud' => ['Produk', 'ti ti-plus'],
             ]
             :

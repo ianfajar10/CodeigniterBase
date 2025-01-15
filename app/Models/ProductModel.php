@@ -15,7 +15,8 @@ class ProductModel extends Model
         "description",
         "file",
         "category",
-        "type"
+        "type",
+        "stock"
     ];
 
     protected $useTimestamps = true;
@@ -32,8 +33,9 @@ class ProductModel extends Model
             return $builder->get()->getResult();
         } else {
 
-            $builder->select('tbl_products.*, tbl_users.name as mitra_name')
+            $builder->select('tbl_products.*, tbl_users.name as mitra_name, tbl_categories.name as category_name')
             ->join('tbl_users', 'tbl_users.username = tbl_products.created_by', 'left')
+            ->join('tbl_categories', 'tbl_products.category = tbl_categories.id', 'left') // JOIN tbl_categories
             ->where('tbl_products.id', $params)
             ->orWhere("LOWER(tbl_products.name) LIKE", "%" . strtolower($params) . "%");
 

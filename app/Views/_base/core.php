@@ -6,9 +6,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Codeigniter Base -
-		<?= $title ?>
+		<?= $title ?? null ?>
 	</title>
-	<link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.ico" />
+	<link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon1.ico" />
 	<link rel="stylesheet" href="../assets/css/styles.min.css" />
 	<link rel="stylesheet" href="../assets/css/custom-datatables.min.css" />
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
