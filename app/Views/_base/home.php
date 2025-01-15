@@ -7,7 +7,9 @@
   <meta name="keywords" content="Ogani, unica, creative, html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Ogani | Template</title>
+
+  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon1.ico" />
+  <title>FreeZzeMart</title>
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -149,7 +151,7 @@
           <div class="hero__categories">
             <div class="hero__categories__all">
               <i class="fa fa-bars"></i>
-              <span>Semua Kategori </span>
+              <span>Jenis Produk </span>
             </div>
             <ul>
               <?php foreach ($categories as $category): ?>

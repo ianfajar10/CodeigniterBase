@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - Codeigniter Base</title>
+    <title>Login</title>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon1.ico" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
 
@@ -24,7 +24,7 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+                                    <img src="../assets/images/logos/logo3.png" width="180" alt="">
                                 </a>
                                 <p class="text-center">Masuk Akun</p>
                                 <form id="loginForm">
