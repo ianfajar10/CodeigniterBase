@@ -24,10 +24,11 @@
                 </div>
               </div>
             </div>
+            <br>
             <div class="row">
               <div class="col-lg-12">
                 <div class="form-group focused">
-                  <label class="form-control-label" for="name">Nama Lengkap</label>
+                  <label class="form-control-label" for="name">Nama Toko</label>
                   <input type="text" id="name" class="form-control form-control-alternative" placeholder="First name" value="Lucky">
                 </div>
               </div>

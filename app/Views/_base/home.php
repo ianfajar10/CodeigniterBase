@@ -131,7 +131,7 @@
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
               <?php endif; ?>
-              <li><a href="#">Daftar</a>
+              <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Daftar</a>
                 <ul class="header__menu__dropdown">
                   <li><a href="/register">Pengguna</a></li>
                   <li><a href="/register-mitra">Penjual</a></li>
