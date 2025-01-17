@@ -141,10 +141,10 @@
         <div class="col-lg-6">
           <nav class="header__menu">
             <ul>
-              <li class="active"><a href="./home">Beranda</a></li>
-              <li><a href="./blog.html">Terlaris</a></li>
-              <li><a href="./contact.html">Terbaru</a></li>
-              <li><a href="#">Pages</a>
+              <li class="active"><a href="./home"><i class="fa fa-home"></i> Beranda </a></li>
+              <li><a href="./blog.html"><i class="fa fa-fire"></i> Terlaris </a></li>
+              <li><a href="./contact.html"><i class="fa fa-plus-circle"></i> Terbaru </a></li>
+              <li><a href="#"> Pages</a>
                 <ul class="header__menu__dropdown">
                   <li><a href="./shop-details.html">Shop Details</a></li>
                   <li><a href="./shoping-cart.html">Shoping Cart</a></li>
