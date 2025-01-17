@@ -29,6 +29,37 @@
       text-decoration: none !important;
     }
   </style>
+
+  <!-- Awal Style Session metode pembayaran -->
+  <style>
+    .payment-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+     align-items: center;
+    }
+    .payment-methods img {
+      width: 70px;
+      height: auto;
+    }
+  </style>
+  <!-- Akhir Style Session metode pembayaran -->
+
+  <!-- Awal Style Session layanan pengiriman -->
+  <style>
+    .shipping-services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+    }
+    .shipping-services img {
+      width: 100px;
+      height: auto;
+    }
+    </style>
+    <!-- Akhir Style Session layanan pengiriman -->
+
 </head>
 
 <body>
@@ -282,17 +313,22 @@
             <div class="footer__about__logo">
               <a href="./home"><img src="../assets/home/ogani/img/logo3.png" alt=""></a>
             </div>
-            <ul>
-              <li>Address: 60-49 Road 11378</li>
-              <li>Phone: +65 11.188.888</li>
-              <li>Email: hello@colorlib.com</li>
-            </ul>
+            <p class="text-justify" style="color: black;">FreeZzemart merupakan platform online yang menghubungkan penjual dan pembeli produk makanan beku. Menyediakan berbagai pilihan jenis produk dan harga yang kompetitif, serta kemudahan dalam pencarian produk. Yuk Belanja Sekarang</p>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
           <div class="footer__widget">
-            <h6>Useful Links</h6>
-            <ul>
+            <h6>Metode Pembayaran</h6>
+            <div class="payment-methods">
+              <img src="../assets/home/ogani/img/bank/bca.png" alt="BCA">
+              <img src="../assets/home/ogani/img/bank/bni.png" alt="BNI">
+              <img src="../assets/home/ogani/img/bank/bri.png" alt="BRI">
+              <img src="../assets/home/ogani/img/bank/mandiri.png" alt="Mandiri">
+              <img src="../assets/home/ogani/img/bank/dana.png" alt="Dana">
+              <img src="../assets/home/ogani/img/bank/gopay.png" alt="Gopay">
+            </div>
+
+            <!-- <ul>
               <li><a href="#">About Us</a></li>
               <li><a href="#">About Our Shop</a></li>
               <li><a href="#">Secure Shopping</a></li>
@@ -307,13 +343,21 @@
               <li><a href="#">Contact</a></li>
               <li><a href="#">Innovation</a></li>
               <li><a href="#">Testimonials</a></li>
-            </ul>
+            </ul> -->
           </div>
         </div>
         <div class="col-lg-4 col-md-12">
           <div class="footer__widget">
-            <h6>Join Our Newsletter Now</h6>
-            <p>Get E-mail updates about our latest shop and special offers.</p>
+            <h6>Layanan Pengiriman</h6>
+              <div class="payment-methods">
+                <img src="../assets/home/ogani/img/pengiriman/jne.png" alt="JNE">
+                <img src="../assets/home/ogani/img/pengiriman/anteraja.png" alt="Anteraja">
+                <img src="../assets/home/ogani/img/pengiriman/gosend.png" alt="Gosend">
+                <img src="../assets/home/ogani/img/pengiriman/grabexpress.png" alt="Grabexpress">
+                <img src="../assets/home/ogani/img/bank/dana1.png" alt="Dana">
+                <img src="../assets/home/ogani/img/bank/gopay1.png" alt="Gopay">
+              </div>
+            <!-- <p>Get E-mail updates about our latest shop and special offers.</p>
             <form action="#">
               <input type="text" placeholder="Enter your mail">
               <button type="submit" class="site-btn">Subscribe</button>
@@ -323,7 +367,7 @@
               <a href="#"><i class="fa fa-instagram"></i></a>
               <a href="#"><i class="fa fa-twitter"></i></a>
               <a href="#"><i class="fa fa-pinterest"></i></a>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
