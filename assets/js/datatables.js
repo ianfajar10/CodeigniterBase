@@ -46,7 +46,7 @@ async function getDataAndPopulateTable(url, columnIDs) {
 
       row += `<td>
              <a href="/${rootApiUrl}/delete/${item.id}" class="btn btn-danger btn-sm">
-               <i class="fas fa-trash"></i> Hapus
+               <i class="ti ti-trash"></i>
              </a>
            </td>`;
 
