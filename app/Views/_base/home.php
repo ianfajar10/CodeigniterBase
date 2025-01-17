@@ -145,7 +145,7 @@
           <div class="header__menu">
             <ul>
               <?php if (isset($session['username']) && $session['username'] != null): ?>
-                <li><a href="#"><i class="fa fa-heart"></i><span id="favorite-count"><?php echo $favorite_count ?></span></a></li>
+                <li><a href="../profile/favorite"><i class="fa fa-heart"></i><span id="favorite-count"><?php echo $favorite_count ?></span></a></li>
               <?php else: ?>
                 <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Daftar</a>
                   <ul class="header__menu__dropdown">
