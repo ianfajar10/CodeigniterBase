@@ -81,9 +81,9 @@
     <table id="myTable" class="table text-nowrap mb-0 align-middle">
         <thead class="text-dark fs-4">
             <tr>
-                <th class="border-bottom-0">
-                    <h6 class="fw-semibold mb-0">#</h6>
-                </th>
+                <!-- <th class="border-bottom-0">
+                    <h6 class="fw-semibold mb-0">No</h6>
+                </th> -->
                 <th class="border-bottom-0">
                     <h6 id="id" class="fw-semibold mb-0">ID Kategori</h6>
                 </th>

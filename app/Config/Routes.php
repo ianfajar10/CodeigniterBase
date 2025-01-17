@@ -30,6 +30,8 @@ $routes->get('/register', 'Auth::register');
 $routes->get('/register-mitra', 'Auth::register_mitra');
 $routes->get('/login', 'Auth::login', ['filter' => 'checkLogin']);
 $routes->get('/home', 'Home::index');
+$routes->get('/home/details/(:num)', 'Home::details/$1');
+$routes->get('/home/checkout', 'Home::checkout', ['filter' => 'isLogin']);
 $routes->get('/search', 'Home::search');
 
 //---------- Modules ----------//

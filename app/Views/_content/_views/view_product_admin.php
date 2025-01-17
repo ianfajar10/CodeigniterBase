@@ -51,22 +51,30 @@
           </div>
           <div class="col-lg-12">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <label>Nama</label>
                 <div class="form-group">
                   <input type="text" name="name" class="form-control">
                 </div>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-6">
                 <label>Foto</label>
                 <div class="form-group">
                   <input type="file" name="file_upload" class="form-control">
                 </div>
               </div>
-              <div class="col-md-3">
+            </div>
+            <div class="row">
+              <div class="col-md-6">
                 <label>Harga</label>
                 <div class="form-group">
                   <input name="price" class="form-control numberformat">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Stok</label>
+                <div class="form-group">
+                  <input type="number" name="stock" class="form-control numberformat">
                 </div>
               </div>
             </div>
@@ -120,6 +128,12 @@
         </th>
         <th class="border-bottom-0">
           <h6 id="description" class="fw-semibold mb-0">Deskripsi</h6>
+        </th>
+        <th class="border-bottom-0">
+          <h6 id="price" class="fw-semibold mb-0">Harga</h6>
+        </th>
+        <th class="border-bottom-0">
+          <h6 id="stock" class="fw-semibold mb-0">Stok</h6>
         </th>
         <th class="border-bottom-0">
           <h6 id="file" class="fw-semibold mb-0">Gambar</h6>

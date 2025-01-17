@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - Codeigniter Base</title>
+    <title>Login</title>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon1.ico" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
 
@@ -24,16 +24,16 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="../assets/home/ogani/img/logo3.png" width="180" alt="">
+                                    <img src="../assets/images/logos/logo3.png" width="180" alt="">
                                 </a>
-                                <p class="text-center">Masuk Akun</p>
+                                <h4 class="text-center"> Masuk ke Akun</h4><br>
                                 <form id="loginForm">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Nama Pengguna</label>
                                         <input type="text" class="form-control" name="username" id="username" placeholder="Masukkan Nama Pengguna">
                                     </div>
                                     <div class="mb-4">
-                                        <label for="exampleInputPassword1" class="form-label">Kata Sandi</label>
+                                        <label for="exampleInputPassword1" class="form-label">Kata Sandi  </label>
                                         <input type="password" name="password" class="form-control" id="password" placeholder="Masukkan Kata Sandi">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">

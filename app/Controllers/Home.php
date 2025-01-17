@@ -52,4 +52,27 @@ class Home extends BaseController
         ];
         return view('_base/home', $data);
     }
+
+    public function details($id = null)
+    {
+        $sessionData = $this->session->get();
+
+        $products = $this->product->get($id);
+
+        $products_category = $this->products_category->get();
+
+        $data = [
+            'session' => $sessionData,
+            'products' => $products,
+        ];
+        return view('_base/details_product', $data);
+    }
+
+    public function checkout(){
+        $session = session();
+      
+        if (!$session->get('isLogin')) {
+            return redirect()->to('/login');
+        }
+    }
 }

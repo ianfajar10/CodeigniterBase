@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register Mitra - Codeigniter Base</title>
+    <title>Register Penjual </title>
 
-    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon1.ico" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
 
@@ -21,7 +21,7 @@
                                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
                                     <img src="../assets/home/ogani/img/logo3.png" width="180" alt="">
                                 </a>
-                                <p class="text-center">Your Social Campaigns</p>
+                                <h3 class="text-center">Registrasi sebagai Pembeli</h3><br>
                                 <form id="ajax_form">
                                     <div class="mb-3">
                                         <label for="exampleNama" class="form-label">Nama Mitra</label>

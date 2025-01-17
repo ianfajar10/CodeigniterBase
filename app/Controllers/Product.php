@@ -81,6 +81,7 @@ class Product extends BaseController
         'description'  => $this->request->getPost('description'),
         'file' => $upload->getName(),
         'type' => $upload->getClientMimeType(),
+        'stock'  => $this->request->getPost('stock'),
         'created_by'  => $sessionData['username'],
       );
       $model->save_product($data);
