@@ -26,7 +26,7 @@
                                 <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
                                     <img src="../assets/images/logos/logo3.png" width="180" alt="">
                                 </a>
-                                <p class="text-center">Masuk Akun</p>
+                                <h4 class="text-center"> Masuk ke Akun</h4><br>
                                 <form id="loginForm">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Nama Pengguna</label>

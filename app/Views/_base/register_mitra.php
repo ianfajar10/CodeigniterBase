@@ -21,7 +21,7 @@
                                 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
                                     <img src="../assets/home/ogani/img/logo3.png" width="180" alt="">
                                 </a>
-                                <h3 class="text-center">Daftar sebagai Pembeli</h3><br>
+                                <h3 class="text-center">Registrasi sebagai Pembeli</h3><br>
                                 <form id="ajax_form">
                                     <div class="mb-3">
                                         <label for="exampleNama" class="form-label">Nama Mitra</label>
