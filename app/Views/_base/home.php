@@ -36,8 +36,9 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-     align-items: center;
+      align-items: center;
     }
+
     .payment-methods img {
       width: 70px;
       height: auto;
@@ -53,12 +54,13 @@
       gap: 15px;
       align-items: center;
     }
+
     .shipping-services img {
       width: 100px;
       height: auto;
     }
-    </style>
-    <!-- Akhir Style Session layanan pengiriman -->
+  </style>
+  <!-- Akhir Style Session layanan pengiriman -->
 
 </head>
 
@@ -101,14 +103,6 @@
       <ul>
         <li class="active"><a href="./home">Home</a></li>
         <li><a href="./shop-grid.html">Shop</a></li>
-        <li><a href="#">Pages</a>
-          <ul class="header__menu__dropdown">
-            <li><a href="./shop-details.html">Shop Details</a></li>
-            <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-            <li><a href="./checkout.html">Check Out</a></li>
-            <li><a href="./blog-details.html">Blog Details</a></li>
-          </ul>
-        </li>
         <li><a href="./blog.html">Blog</a></li>
         <li><a href="./contact.html">Contact</a></li>
       </ul>
@@ -138,37 +132,29 @@
             <a href="./home"><img src="../assets/home/ogani/img/logo3.png" alt=""></a>
           </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-7">
           <nav class="header__menu">
             <ul>
               <li class="active"><a href="./home"><i class="fa fa-home"></i> Beranda </a></li>
               <li><a href="./blog.html"><i class="fa fa-fire"></i> Terlaris </a></li>
               <li><a href="./contact.html"><i class="fa fa-plus-circle"></i> Terbaru </a></li>
-              <li><a href="#"> Pages</a>
-                <ul class="header__menu__dropdown">
-                  <li><a href="./shop-details.html">Shop Details</a></li>
-                  <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                  <li><a href="./checkout.html">Check Out</a></li>
-                  <li><a href="./blog-details.html">Blog Details</a></li>
-                </ul>
-              </li>
             </ul>
           </nav>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-2">
           <div class="header__menu">
             <ul>
               <?php if (isset($session['username']) && $session['username'] != null): ?>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="#"><i class="fa fa-heart"></i><span id="favorite-count"><?php echo $favorite_count ?></span></a></li>
+              <?php else: ?>
+                <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Daftar</a>
+                  <ul class="header__menu__dropdown">
+                    <li><a href="/register">Pengguna</a></li>
+                    <li><a href="/register-mitra">Penjual</a></li>
+                  </ul>
+                </li>
               <?php endif; ?>
-              <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>Daftar</a>
-                <ul class="header__menu__dropdown">
-                  <li><a href="/register">Pengguna</a></li>
-                  <li><a href="/register-mitra">Penjual</a></li>
-                </ul>
-              </li>
-              <li><a href="<?= base_url() . 'dashboard' ?>" style="text-decoration: none"><i class="fa fa-user"></i> <?php echo $session['name'] ?? 'Login' ?></a></li>
+              <li><a href="<?= base_url() . 'dashboard' ?>" style="text-decoration: none"><i class="fa fa-user"></i> <?= $firstName = explode(' ', $session['name'] ?? 'Login')[0]; ?></a></li>
             </ul>
           </div>
         </div>
@@ -276,12 +262,16 @@
               <div class="featured__item">
                 <div class="featured__item__pic set-bg" data-setbg="../public/assets/images/<?= $product->file ?>">
                   <ul class="featured__item__pic__hover">
-                  <?php if (!isset($session['role']) || ($session['role'] != 1 && $session['role'] != 2)): ?>
+                    <?php if (!isset($session['role']) || ($session['role'] != 1 && $session['role'] != 2)): ?>
                       <li><a href="/home/details/<?php echo $product->id ?>"><i class="fa fa-info"></i></a></li>
                       <?php if (isset($session['username']) && $session['username'] != null): ?>
-                      <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                      <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                    <?php endif; ?>
+                        <li>
+                          <a href="javascript:void(0);" id="love-button" data-product-id="<?php echo $product->id; ?>">
+                            <i class="fa <?php echo $product->love == 1 ? 'fa-heart' : 'fa-heart-o'; ?>"></i>
+                          </a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                      <?php endif; ?>
                     <?php endif; ?>
                   </ul>
                 </div>
@@ -327,47 +317,19 @@
               <img src="../assets/home/ogani/img/bank/dana.png" alt="Dana">
               <img src="../assets/home/ogani/img/bank/gopay.png" alt="Gopay">
             </div>
-
-            <!-- <ul>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">About Our Shop</a></li>
-              <li><a href="#">Secure Shopping</a></li>
-              <li><a href="#">Delivery infomation</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Our Sitemap</a></li>
-            </ul>
-            <ul>
-              <li><a href="#">Who We Are</a></li>
-              <li><a href="#">Our Services</a></li>
-              <li><a href="#">Projects</a></li>
-              <li><a href="#">Contact</a></li>
-              <li><a href="#">Innovation</a></li>
-              <li><a href="#">Testimonials</a></li>
-            </ul> -->
           </div>
         </div>
         <div class="col-lg-4 col-md-12">
           <div class="footer__widget">
             <h6>Layanan Pengiriman</h6>
-              <div class="payment-methods">
-                <img src="../assets/home/ogani/img/pengiriman/jne.png" alt="JNE">
-                <img src="../assets/home/ogani/img/pengiriman/anteraja.png" alt="Anteraja">
-                <img src="../assets/home/ogani/img/pengiriman/gosend.png" alt="Gosend">
-                <img src="../assets/home/ogani/img/pengiriman/grabexpress.png" alt="Grabexpress">
-                <img src="../assets/home/ogani/img/bank/dana1.png" alt="Dana">
-                <img src="../assets/home/ogani/img/bank/gopay1.png" alt="Gopay">
-              </div>
-            <!-- <p>Get E-mail updates about our latest shop and special offers.</p>
-            <form action="#">
-              <input type="text" placeholder="Enter your mail">
-              <button type="submit" class="site-btn">Subscribe</button>
-            </form>
-            <div class="footer__widget__social">
-              <a href="#"><i class="fa fa-facebook"></i></a>
-              <a href="#"><i class="fa fa-instagram"></i></a>
-              <a href="#"><i class="fa fa-twitter"></i></a>
-              <a href="#"><i class="fa fa-pinterest"></i></a>
-            </div> -->
+            <div class="payment-methods">
+              <img src="../assets/home/ogani/img/pengiriman/jne.png" alt="JNE">
+              <img src="../assets/home/ogani/img/pengiriman/anteraja.png" alt="Anteraja">
+              <img src="../assets/home/ogani/img/pengiriman/gosend.png" alt="Gosend">
+              <img src="../assets/home/ogani/img/pengiriman/grabexpress.png" alt="Grabexpress">
+              <img src="../assets/home/ogani/img/bank/dana1.png" alt="Dana">
+              <img src="../assets/home/ogani/img/bank/gopay1.png" alt="Gopay">
+            </div>
           </div>
         </div>
       </div>
@@ -384,6 +346,42 @@
   <script src="../assets/home/ogani/js/mixitup.min.js"></script>
   <script src="../assets/home/ogani/js/owl.carousel.min.js"></script>
   <script src="../assets/home/ogani/js/main.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(document).on('click', '#love-button', function() {
+        var productId = $(this).data('product-id');
+        console.log('Product ID:', productId); // Cek apakah product_id benar
+        $.ajax({
+          url: '/home/love', // Pastikan URL benar
+          type: 'POST',
+          data: {
+            product_id: productId
+          },
+          success: function(response) {
+            if (response.status === 'success') {
+              alert(response.additional_status);
+            } else {
+              alert('Failed to update the product status');
+            }
+          },
+          error: function() {
+            alert('Error occurred while liking the product');
+          },
+        });
+        var icon = $(this).find('i');
+        var favoriteCountElement = $('#favorite-count');
+        if (icon.hasClass('fa-heart-o')) {
+          icon.removeClass('fa-heart-o').addClass('fa-heart');
+          var currentCount = parseInt(favoriteCountElement.text());
+          favoriteCountElement.text(currentCount + 1);
+        } else {
+          icon.removeClass('fa-heart').addClass('fa-heart-o');
+          var currentCount = parseInt(favoriteCountElement.text());
+          favoriteCountElement.text(currentCount - 1);
+        }
+      });
+    });
+  </script>
 
 </body>
 
