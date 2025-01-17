@@ -73,6 +73,8 @@ class Home extends BaseController
       
         if (!$session->get('isLogin')) {
             return redirect()->to('/login');
+        } else {
+            return view('_base/checkout_product');
         }
     }
 }
