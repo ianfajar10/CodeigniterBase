@@ -49,24 +49,26 @@
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputProvinsi" class="form-label">Provinsi</label>
-                                        <select class="form-control" name="provinsi" id="provinsi">
+                                        <select class="form-control" name="provinsi_mitra" id="provinsi_mitra">
                                             <option value="">Pilih Provinsi</option>
-                                            <?php foreach ($provinces as $provinsi): ?>
-                                                <option value="<?= $provinsi['id'] ?>"><?= $provinsi['name'] ?></option>
+                                            <?php foreach ($provinces as $province): ?>
+                                                <option value="<?= $province->province_id; ?>">
+                                                    <?= $province->province; ?>
+                                                </option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="mb-4">
-                                        <label for="exampleInputKabupaten" class="form-label">Kabupaten</label>
-                                        <select class="form-control" name="kabupaten" id="kabupaten" disabled>
+                                        <label for="exampleInputKabupaten" class="form-label">Kabupaten/Kota</label>
+                                        <select class="form-control" name="kabupaten_mitra" id="kabupaten_mitra">
                                             <option value="">Pilih Kabupaten/Kota</option>
                                         </select>
                                     </div>
+                                    <input type="hidden" class="form-control" name="origin" id="origin" value="">
                                     <div class="mb-4">
-                                        <label for="exampleInputKecamatan" class="form-label">Kecamatan</label>
-                                        <select class="form-control" name="kecamatan" id="kecamatan" disabled>
-                                            <option value="">Pilih Kecamatan</option>
-                                        </select>
+                                        <label for="district">Kecamatan</label>
+                                        <input type="text" class="form-control" id="district" name="district" value="" placeholder="Kecamatan">
+                                        <div class="invalid-feedback">Kecamatan is required.</div>
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputAlamat" class="form-label">Alamat</label>

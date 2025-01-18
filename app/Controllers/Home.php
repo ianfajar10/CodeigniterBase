@@ -3,13 +3,15 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Libraries\MidtransLibrary;
 use App\Models\FavoriteModel;
 use App\Models\ProductcategoryModel;
 use App\Models\ProductModel;
+use App\Models\RajaOngkirModel;
 
 class Home extends BaseController
 {
-    protected $session, $product, $products_category, $favorite;
+    protected $session, $product, $products_category, $favorite, $raja_ongkir;
 
     public function __construct()
     {
@@ -17,6 +19,7 @@ class Home extends BaseController
         $this->product = new ProductModel();
         $this->products_category = new ProductcategoryModel();
         $this->favorite = new FavoriteModel();
+        $this->raja_ongkir = new RajaOngkirModel();
     }
 
     public function index()
@@ -25,10 +28,14 @@ class Home extends BaseController
 
         $products = $this->product->get();
 
+        $favorite = [];
+
         $products_category = $this->products_category->get();
 
-        $favorite = $this->favorite->get($sessionData['username']);
-
+        if (isset($sessionData['username'])) {
+            $favorite = $this->favorite->get($sessionData['username']);
+        }
+        
         $data = [
             'session' => $sessionData,
             'products' => $products,
@@ -49,7 +56,11 @@ class Home extends BaseController
 
         $products_category = $this->products_category->get();
 
-        $favorite = $this->favorite->get($sessionData['username']);
+        $favorite = [];
+
+        if (isset($sessionData['username'])) {
+            $favorite = $this->favorite->get($sessionData['username']);
+        }
 
         $data = [
             'session' => $sessionData,
@@ -76,12 +87,39 @@ class Home extends BaseController
 
     public function checkout(){
         $session = session();
+        $data = $this->request->getPost();
       
         if (!$session->get('isLogin')) {
             return redirect()->to('/login');
         } else {
-            return view('_base/checkout_product');
+            $products = $this->product->get($data['product_id']);
+
+            $provinces = $this->raja_ongkir->getProvinces();
+
+            return view('_base/checkout_product', ['provinces' => $provinces, 'user' => $session->get(), 'products' => $products, 'qty' => $data['quantity']]);
         }
+    }
+
+    public function processPayment()
+    {
+        $midtrans = new MidtransLibrary();
+
+        $orderData = [
+            'transaction_details' => [
+                'order_id' => $this->request->getPost('orderNo'),
+                'gross_amount' => $this->request->getPost('total_payment'),
+            ],
+            'customer_details' => [
+                'first_name' => $this->request->getPost('firstName'),
+                'last_name' => $this->request->getPost('lastName'),
+                'email' => $this->request->getPost('email'),
+                'phone' => $this->request->getPost('telepon'),
+            ],
+        ];
+
+        $snapToken = $midtrans->createSnapToken($orderData);
+
+        return view('_base/payment', ['snaptoken' => $snapToken]);
     }
 
     public function love()
@@ -116,5 +154,26 @@ class Home extends BaseController
         }
 
         return $this->response->setJSON(['status' => 'error']);
+    }
+
+    public function getCities($provinceId)
+    {
+        $rajaOngkirModel = new RajaOngkirModel();
+        $cities = $rajaOngkirModel->getCities($provinceId);
+
+        return json_encode($cities);
+    }
+
+    public function calculateShipping()
+    {
+        $rajaOngkirModel = new RajaOngkirModel();
+        $origin = $this->request->getPost('origin');
+        $destination = $this->request->getPost('destination');
+        $weight = $this->request->getPost('weight');
+        $courier = $this->request->getPost('courier');
+
+        $shippingCost = $rajaOngkirModel->getShippingCost($origin, $destination, $weight, $courier);
+
+        return json_encode($shippingCost);
     }
 }

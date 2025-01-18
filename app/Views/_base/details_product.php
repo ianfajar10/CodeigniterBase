@@ -31,7 +31,7 @@
             <p><?= $product->description ?></p>
 
             <!-- Pilihan Quantity dan Tombol -->
-            <form action="../checkout/<?php echo $product->id ?>" method="post">
+            <form action="../checkout" method="post">
               <div class="form-group">
                 <label for="quantity">Quantity:</label>
                 <input type="number" id="quantity" class="form-control" name="quantity" value="1" min="1" max="<?= $product->stock ?>">
@@ -42,7 +42,10 @@
                   <a href="../" class="btn btn-danger btn-block">Batal</a>
                 </div>
                 <div class="col-md-6">
-                  <button type="submit" class="btn btn-primary btn-block">Tambah ke Keranjang</button>
+                  <button type="submit" class="btn btn-primary btn-block"
+                    <?php if ($product->stock == 0) echo 'disabled'; ?>>
+                    <?php echo ($product->stock == 0) ? 'Stok habis' : 'Tambah ke Keranjang'; ?>
+                  </button>
                 </div>
               </div>
             </form>

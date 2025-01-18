@@ -11,6 +11,7 @@
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^7.9",
         "laminas/laminas-escaper": "^2.9",
+        "midtrans/midtrans-php": "^2.6",
         "phpmailer/phpmailer": "^6.9",
         "psr/log": "^1.1"
     },

@@ -1,10 +1,21 @@
 var $submitButton = $("#submitButton");
 
+var path = window.location.pathname.split('/'); // Memisahkan URL berdasarkan '/'
+var lastSegment = path[path.length - 1]; // Mendapatkan bagian terakhir URL
+
+if (lastSegment === 'register-mitra') {
+    console.log('URL adalah register-mitra');
+} else if (lastSegment === 'register') {
+    console.log('URL adalah register');
+} else {
+    console.log('URL tidak cocok');
+}
+
 $("#ajax_form").validate({
     submitHandler: function (form) {
         $('#send_form').html('Sending..');
         $.ajax({
-            url: "auth/valid_register",
+            url: lastSegment === 'register-mitra' ? "auth/valid_register_mitra" : "auth/valid_register",
             type: "POST",
             data: $('#ajax_form').serialize(),
             dataType: "json",
@@ -83,6 +94,29 @@ $('#provinsi').on('change', function () {
         kabupatenSelect.prop('disabled', true).html('<option value="">Pilih Kabupaten/Kota</option>');
     }
 });
+
+$('#provinsi_mitra').change(function () {
+    var provinceId = $(this).val();
+    if (provinceId) {
+        $.get('auth/getCities/' + provinceId, function (data) {
+            let cities = JSON.parse(data);
+            $('#kabupaten_mitra').empty().append('<option value="">Pilih Kabupaten/Kota</option>');
+            cities.forEach(function (city) {
+                $('#kabupaten_mitra').append('<option value="' + city.city_id + '">' + city.city_name + '</option>');
+            });
+        });
+    }
+});
+
+$('#kabupaten_mitra').change(function () {
+    var cityId = $(this).val();
+    if (cityId) {
+        $('#origin').val(cityId);
+    } else {
+        $('#origin').val('');
+    }
+});
+
 
 $('#kabupaten').on('change', function () {
     const kabupatenId = $(this).val();

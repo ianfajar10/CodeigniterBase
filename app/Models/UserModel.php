@@ -22,7 +22,8 @@ class UserModel extends Model
         "provinsi",
         "kabupaten",
         "kecamatan",
-        "alamat"
+        "alamat",
+        "origin",
     ];
 
     protected $useTimestamps = true;
