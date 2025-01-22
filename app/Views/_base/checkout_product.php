@@ -97,6 +97,10 @@
                 $lastName = end($nameParts);
                 ?>
 
+                <input type="hidden" class="form-control" name="product_id" id="product_id" value="<?= $product->id; ?>">
+                <input type="hidden" class="form-control" name="qty" id="qty" value="<?= $qty; ?>">
+                <input type="hidden" class="form-control" name="price" id="price" value="<?= $product->price * $qty; ?>">
+
                 <div class="col-md-6">
                   <label for="firstName">Nama Awal</label>
                   <input type="text" class="form-control" name="firstName" id="firstName" value="<?= htmlspecialchars($firstName); ?>" required="">
@@ -108,7 +112,6 @@
                   <input type="text" class="form-control" name="lastName" id="lastName" value="<?= htmlspecialchars($lastName); ?>" required="">
                   <div class="invalid-feedback">Nama akhir yang benar diperlukan</div>
                 </div>
-
               </div>
 
             </div>
@@ -117,7 +120,7 @@
               <input type="text" class="form-control" name="telepon" id="telepon" value="<?= $user['telepon']; ?>" placeholder="Nomor telepon">
             </div>
             <div class="mb-3">
-              <label for="phone">Telepon</label>
+              <label for="phone">Email</label>
               <input type="text" class="form-control" name="email" id="email" value="<?= $user['email']; ?>" placeholder="Nomor telepon">
             </div>
 
@@ -173,7 +176,7 @@
 
             <hr class="mb-4" style="border-top: 2px solid #333;">
 
-            <input type="hidden" class="form-control" name="orderNo" id="orderNo2" required="">
+            <input type="hidden" class="form-control" name="orderNo2" id="orderNo2" required="">
             <input type="hidden" class="form-control" name="total_payment" id="total_payment" value="">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Lanjut Bayar</button>
           </form>

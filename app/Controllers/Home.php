@@ -7,11 +7,12 @@ use App\Libraries\MidtransLibrary;
 use App\Models\FavoriteModel;
 use App\Models\ProductcategoryModel;
 use App\Models\ProductModel;
+use App\Models\TransactionModel;
 use App\Models\RajaOngkirModel;
 
 class Home extends BaseController
 {
-    protected $session, $product, $products_category, $favorite, $raja_ongkir;
+    protected $session, $product, $products_category, $favorite, $raja_ongkir, $order;
 
     public function __construct()
     {
@@ -20,6 +21,7 @@ class Home extends BaseController
         $this->products_category = new ProductcategoryModel();
         $this->favorite = new FavoriteModel();
         $this->raja_ongkir = new RajaOngkirModel();
+        $this->order = new TransactionModel();
     }
 
     public function index()
@@ -103,10 +105,12 @@ class Home extends BaseController
     public function processPayment()
     {
         $midtrans = new MidtransLibrary();
+        $session = session();
+        $username = $session->get('username');
 
         $orderData = [
             'transaction_details' => [
-                'order_id' => $this->request->getPost('orderNo'),
+                'order_id' => $this->request->getPost('orderNo2'),
                 'gross_amount' => $this->request->getPost('total_payment'),
             ],
             'customer_details' => [
@@ -117,9 +121,55 @@ class Home extends BaseController
             ],
         ];
 
+        $dataOrder = [
+            'transaction_details_local' => [
+                'id' => $this->request->getPost('orderNo2'),
+                'username' => $username,
+                'product_id' => $this->request->getPost('product_id'),
+                'qty' => $this->request->getPost('qty'),
+                'price' => $this->request->getPost('price'),
+            ],
+        ];
+
+        $transaction_details = json_encode($dataOrder);
+
         $snapToken = $midtrans->createSnapToken($orderData);
 
-        return view('_base/payment', ['snaptoken' => $snapToken]);
+        return view('_base/payment', ['snaptoken' => $snapToken, 'transaction_details' => $transaction_details]);
+    }
+
+    public function store_transaction()
+    {
+        $session = session();
+        if ($session->has('username')) {
+            $order_id = $this->request->getPost('order_id');
+            $price = $this->request->getPost('price');
+            $product_id = $this->request->getPost('product_id');
+            $quantity = $this->request->getPost('quantity');
+            $username = $session->get('username');
+
+            $data = array(
+                'id'  => $order_id,
+                'username'  => $username,
+                'product_id'  => $product_id,
+                'qty'  => $quantity,
+                'price'  => $price,
+            );
+
+            $store = $this->order->store($data);
+
+            if ($store) {
+                return $this->response->setJSON([
+                    'status' => 'success',
+                ]);
+            } else {
+                return $this->response->setJSON([
+                    'status' => 'failed',
+                ]);
+            }
+        }
+
+        return view('_base/home');
     }
 
     public function love()

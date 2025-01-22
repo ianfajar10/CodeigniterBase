@@ -46,7 +46,7 @@
   </style>
   <!-- Akhir Style Session metode pembayaran -->
 
-  <!-- Awal Style Session layanan pengiriman -->
+  <!-- awal style session layanan logistik -->
   <style>
     .shipping-services {
       display: flex;
@@ -60,7 +60,7 @@
       height: auto;
     }
   </style>
-  <!-- Akhir Style Session layanan pengiriman -->
+  <!-- akhir style session layanan logistik -->
 
 </head>
 
@@ -188,18 +188,36 @@
             <div class="hero__search__form">
               <form action="#">
                 <input type="text" placeholder="Apa yang kamu cari ?">
-                <button type="submit" class="site-btn">SEARCH</button>
+                <button type="submit" class="site-btn"> Cari</button>
               </form>
             </div>
           </div>
-          <div class="hero__item set-bg" data-setbg="../assets/home/ogani/img/hero/banner.jpg">
+
+          <!-- awal session bagian carousel -->
+          <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="../assets/home/ogani/img/hero/banner1.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="../assets/home/ogani/img/hero/banner.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="../assets/home/ogani/img/hero/banner1.png" class="d-block w-100" alt="...">
+              </div>
+            </div>
+          </div>
+          <!-- akhir session bagian carousel -->
+
+          <!-- <div class="hero__item set-bg" data-setbg="../assets/home/ogani/img/hero/banner1.png">
+            
             <div class="hero__text">
               <span>FRUIT FRESH</span>
               <h2>Vegetable <br />100% Organic</h2>
               <p>Free Pickup and Delivery Available</p>
               <a href="#" class="primary-btn">SHOP NOW</a>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -308,34 +326,51 @@
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
           <div class="footer__widget">
-            <h6>Metode Pembayaran</h6>
+            <h6>Metode Pembayaran</h6><hr>
             <div class="payment-methods">
-              <img src="../assets/home/ogani/img/bank/bca.png" alt="BCA">
-              <img src="../assets/home/ogani/img/bank/bni.png" alt="BNI">
-              <img src="../assets/home/ogani/img/bank/bri.png" alt="BRI">
-              <img src="../assets/home/ogani/img/bank/mandiri.png" alt="Mandiri">
-              <img src="../assets/home/ogani/img/bank/dana.png" alt="Dana">
-              <img src="../assets/home/ogani/img/bank/gopay.png" alt="Gopay">
+              <img src="../assets/home/ogani/img/payment/bni.png" alt="BNI">  
+              <img src="../assets/home/ogani/img/payment/bca.png" alt="BCA">
+              <img src="../assets/home/ogani/img/payment/mandiri.png" alt="Mandiri">
+              <img src="../assets/home/ogani/img/payment/brivabri.png" alt="BRIVA">
+              <img src="../assets/home/ogani/img/payment/alto.png" alt="Alto">
+              <img src="../assets/home/ogani/img/payment/prima.png" alt="Prima">
+              <img src="../assets/home/ogani/img/payment/atmbersama.png" alt="Atm Bersama">
+              <img src="../assets/home/ogani/img/payment/permata.png" alt="Permata">
+              <img src="../assets/home/ogani/img/payment/cimbniaga.png" alt="Cimb Niaga">
+              <img src="../assets/home/ogani/img/payment/shopeepay.png" alt="Shopeepay">
+              <img src="../assets/home/ogani/img/payment/qris.png" alt="Qris">
+              <img src="../assets/home/ogani/img/payment/dana.png" alt="Dana">
+              <img src="../assets/home/ogani/img/payment/gopay.png" alt="Gopay">
+              <img src="../assets/home/ogani/img/payment/indomaret.png" alt="Indomaret">
+              <img src="../assets/home/ogani/img/payment/alfamart.png" alt="Alfamart">
+              <img src="../assets/home/ogani/img/payment/alfamidi.png" alt="Alfamidi">
+              <img src="../assets/home/ogani/img/payment/dandan.png" alt="DanDan">
             </div>
           </div>
         </div>
+
+        <!-- awal session layanan pengiriman -->
         <div class="col-lg-4 col-md-12">
           <div class="footer__widget">
-            <h6>Layanan Pengiriman</h6>
+            <h6>Layanan Pengiriman</h6><hr>
             <div class="payment-methods">
-              <img src="../assets/home/ogani/img/pengiriman/jne.png" alt="JNE">
-              <img src="../assets/home/ogani/img/pengiriman/anteraja.png" alt="Anteraja">
-              <img src="../assets/home/ogani/img/pengiriman/gosend.png" alt="Gosend">
-              <img src="../assets/home/ogani/img/pengiriman/grabexpress.png" alt="Grabexpress">
-              <img src="../assets/home/ogani/img/bank/dana1.png" alt="Dana">
-              <img src="../assets/home/ogani/img/bank/gopay1.png" alt="Gopay">
+              <img src="../assets/home/ogani/img/logistik/posind.png" alt="POSIND">
+              <img src="../assets/home/ogani/img/logistik/tiki.png" alt="TIKI">
+              <img src="../assets/home/ogani/img/logistik/jne.png" alt="JNE">
             </div>
           </div>
         </div>
+        <!-- akhir session layanan pengiriman -->
       </div>
     </div>
   </footer>
   <!-- Footer Section End -->
+  <footer class="bg-primary text-white text-center py-3">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 Nama Perusahaan. Semua Hak Dilindungi.</p>
+            <p>Desain oleh <a href="https://www.example.com" class="text-white">Nama Anda</a></p>
+        </div>
+    </footer>
 
   <!-- Js Plugins -->
   <script src="../assets/home/ogani/js/jquery-3.3.1.min.js"></script>
