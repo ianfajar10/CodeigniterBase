@@ -51,7 +51,12 @@
                                     </button>
                                     <div class="d-flex align-items-center justify-content-center">
                                         <p class="fs-4 mb-0 fw-bold">Belum memiliki akun ?</p>
-                                        <a class="text-primary fw-bold ms-2" href="<?php echo (base_url() . 'register') ?>">Buat akun</a>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <a class="text-primary fw-bold ms-2" href="<?php echo (base_url() . 'register') ?>">Buat akun pelanggan</a>
+                                        <span class="mx-2">||</span>
+                                        <a class="text-primary fw-bold ms-2" href="<?php echo (base_url() . 'register-mitra') ?>">Buat akun penjual</a>
+
                                     </div>
                                 </form>
                             </div>

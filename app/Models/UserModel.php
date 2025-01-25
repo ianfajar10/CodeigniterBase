@@ -28,6 +28,16 @@ class UserModel extends Model
 
     protected $useTimestamps = true;
 
+    public function get($params = null)
+    {
+        if ($params == null) {
+            return $this->findAll();
+        } else {
+            $query = $this->where('role', $params);
+            return $query->findAll();
+        }
+    }
+
     public function check_login($data)
     {
         $query = $this->where('username', $data['username'])->find();

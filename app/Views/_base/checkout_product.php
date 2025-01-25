@@ -165,7 +165,7 @@
             <div class="row">
               <div class="col-md-12 mb-3">
                 <label for="courier">Pilih Kurir</label>
-                <select class="custom-select d-block w-100" id="courier" required="true">
+                <select class="custom-select d-block w-100" id="courier" name="courier" required="true">
                   <option value="">-Pilih Kurir-</option>
                   <option value="jne">JNE</option>
                   <option value="pos">POS Indonesia</option>

@@ -14,6 +14,9 @@ class Modules extends BaseController
             [
                 'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
                 'product-category' => ['Kategori', 'ti ti-archive'],
+                'user' => ['Data Pengguna', 'ti ti-user'],
+                'user-mitra' => ['Data Penjual', 'ti ti-user'],
+                'report' => ['Laporan Statistik', 'ti ti-book'],
                 // 'sample-page' => ['Halaman Contoh', 'ti ti-file-broken'],
                 // 'sample-data-tables' => ['Data Tables Contoh', 'ti ti-layout-columns'],
             ]
@@ -22,6 +25,7 @@ class Modules extends BaseController
                 'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
                 'profile' => ['Profil', 'ti ti-user-circle'],
                 'product' => ['Produk', 'ti ti-gift'],
+                'order' => ['Pesanan', 'ti ti-gift'],
                 
                 // 'sample-crud' => ['Produk', 'ti ti-plus'],
             ]
@@ -29,7 +33,7 @@ class Modules extends BaseController
             [
                 'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
                 'profile' => ['Profil', 'ti ti-user-circle'],
-                'history' => ['Riwayat Pesanan', 'bi bi-book'],
+                'history' => ['Riwayat Transaksi', 'ti ti-shopping-cart'],
                 // 'filelist' => ['Daftar File', 'bi bi-book"'],
             ];
 

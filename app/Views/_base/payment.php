@@ -34,6 +34,7 @@
         var productId = transactionDetails.transaction_details_local.product_id;
         var quantity = transactionDetails.transaction_details_local.qty;
         var username = transactionDetails.transaction_details_local.username;
+        var receipt_number = transactionDetails.transaction_details_local.receipt_number;
         
             document.getElementById('pay-button').onclick = function() {
 
@@ -53,6 +54,7 @@
                             product_id: productId,
                             quantity: quantity,
                             username: username,
+                            receipt_number: receipt_number,
                         },
                         success: function(response) {
                             if (response.status === 'success') {
@@ -64,17 +66,17 @@
                                 alert('Transaksi Gagal');
                             }
                         },
-                        error: function() {
-                            alert('Error occurred while liking the product');
-                        },
                     });
                 },
                 
                 onPending: function(result) {
+                    console.log(1);
+                    
                     document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                 },
                 
                 onError: function(result) {
+                    console.log(2);
                     document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                 }
             });

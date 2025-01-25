@@ -1,6 +1,18 @@
 // HASIL QUERY HARUS SAMA DENGAN COLUMNIDS
-
 async function getDataAndPopulateTable(url, columnIDs) {
+  // Cek apakah elemen dengan id 'downloadButton' ada
+  var downloadButton = document.getElementById('downloadButton');
+
+  if (downloadButton) {
+    downloadButton.addEventListener('click', function() {
+      var parts = url.split('/'); // Gantilah dengan nilai yang sesuai
+      window.open('/' + parts[0] + '/generate_pdf', '_blank');
+    });
+  } else {
+    console.log('Download button tidak ditemukan!');
+  }
+
+  
   var columnIDsLength = (columnIDs.length + 1);
 
   const apiUrl = url; // Ganti URL_API dengan URL endpoint API Anda
@@ -28,27 +40,70 @@ async function getDataAndPopulateTable(url, columnIDs) {
 
       // Iterate through each property (column) ID in columnIDs array
       $.each(columnIDs, function (key, value) {
-        var col = item[value]; // Use value as the key to access the property value
-        if (typeof col === 'undefined') {
-          col = ' - '; // Replace undefined value with ' - '
-        } else if (typeof col === 'string' && (col.endsWith('.jpeg') || col.endsWith('.png') || col.endsWith('.jpg'))) {
-          row += `<td><img src="public/assets/images/${col}" alt="Image" style="max-width: 100px; max-height: 100px;"></td>`;
-        } else if (typeof col === 'string' && col.length > 100) {
-          const truncatedString = col.substring(0, 100) + '..'; // Ambil 100 karakter pertama dan tambahkan ..
-          row += `<td>${truncatedString}</td>`;
-        }
-        else{
-          row += `<td>${col}</td>`;
-        }
+          var col = item[value]; // Use value as the key to access the property value
+          if (typeof col === 'undefined') {
+              col = ' - '; // Replace undefined value with ' - '
+          } else if (typeof col === 'string' && (col.endsWith('.jpeg') || col.endsWith('.png') || col.endsWith('.jpg'))) {
+              row += `<td><img src="public/assets/images/${col}" alt="Image" style="max-width: 100px; max-height: 100px;"></td>`;
+          } else if (typeof col === 'string' && col.length > 100) {
+              const truncatedString = col.substring(0, 100) + '..'; // Ambil 100 karakter pertama dan tambahkan ..
+              row += `<td>${truncatedString}</td>`;
+          } else {
+              row += `<td>${col}</td>`;
+          }
       });
+      
+      let buttons = '';
+      if (document.querySelector('[id^="action-"]')) {
+          const actionElement = document.querySelector('[id^="action-"]');
+          
+          if (actionElement) {
+              const actionIdSuffix = actionElement.id.split('action-')[1];
+      
+              if (actionIdSuffix.includes('d')) {
+                  buttons += `
+                      <a href="/${rootApiUrl}/delete/${item.id}" class="btn btn-danger btn-sm">
+                        <i class="ti ti-trash"></i>
+                      </a>`;
+              }
+              
+              if (actionIdSuffix.includes('i')) {
+                  buttons += `
+                      <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#viewModal" onclick="fetchDataAndShowModal(${item.id})">
+                        <i class="ti ti-eye"></i>
+                      </button>`;
+              }
+      
+              if (actionIdSuffix.includes('a')) {
+                  buttons += `
+                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#viewModal" onclick="showConfirmModal(${item.id})">
+                        <i class="ti ti-checklist"></i>
+                    </button>`;
+              }
 
+              if (actionIdSuffix.includes('u')) {
+                buttons += `
+                <button type="button" class="btn btn-primary btn-sm" 
+                  data-bs-toggle="modal" data-bs-target="#exampleModal" 
+                  data-item="${encodeURIComponent(JSON.stringify({
+                    id: item.id,
+                    description: item.description,
+                    price: item.price,
+                    stock: item.stock,
+                    name: item.name,
+                    category: item.category
+                  }))}">
+                  <i class="ti ti-pencil"></i>
+                </button>`;
+
+            }
+          }
+      }
+      
+      // Pastikan tombol hanya ditambahkan di kolom aksi
+      row += `<td>${buttons}</td>`;    
+      
       var rootApiUrl = apiUrl.split('/')[0];
-
-      row += `<td>
-             <a href="/${rootApiUrl}/delete/${item.id}" class="btn btn-danger btn-sm">
-               <i class="ti ti-trash"></i>
-             </a>
-           </td>`;
 
       row += "</tr>";
       tableBody.append(row);

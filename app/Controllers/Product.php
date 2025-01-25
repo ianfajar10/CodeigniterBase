@@ -46,7 +46,9 @@ class Product extends BaseController
     $db->transStart(); // Memulai transaksi
 
     try {
-      $data = $this->productModel->get();
+      $sessionData = $this->session->get();
+      $params = null;
+      $data = $this->productModel->get($params, $sessionData['username']);
 
       $db->transCommit(); // Commit transaksi
       return $this->response->setJSON($data);
@@ -64,12 +66,37 @@ class Product extends BaseController
     if ($this->request->getMethod() !== 'post') {
       return redirect()->to('product');
     }
-    $validation = $this->validate([
-      'file_upload' => 'uploaded[file_upload]|mime_in[file_upload,image/jpg,image/jpeg,image/gif,image/png]|max_size[file_upload,4096]'
-    ]);
+    if ($this->request->getPost('id') === null) {
+      $validation = $this->validate([
+        'file_upload' => 'uploaded[file_upload]|mime_in[file_upload,image/jpg,image/jpeg,image/gif,image/png]|max_size[file_upload,4096]'
+      ]); 
+    } else {
+      $validation = FALSE;
+    }
 
-    if ($validation == FALSE) {
+    if ($validation == FALSE && $this->request->getPost('id') === null) {
       return redirect()->to('product')->with('gagal', 'Periksa kembali isian formulir!');;
+    } else if ($this->request->getPost('id') !== null) {
+      $upload = $this->request->getFile('file_upload');
+      if ($upload->isValid() && !$upload->hasMoved() && $this->request->getFile('file_upload') !== null) {
+        $upload->move(WRITEPATH . '../public/assets/images/');
+        $fileName = $upload->getName();
+      }
+
+      $data = array(
+        'id' => $this->request->getPost('id'),
+        'name'  => $this->request->getPost('name'),
+        'category'  => $this->request->getPost('category'),
+        'price'  => $this->request->getPost('price'),
+        'description'  => $this->request->getPost('description'),
+        'stock'  => $this->request->getPost('stock'),
+        'file' => $fileName,
+        'type' => $upload->getClientMimeType(),
+      );
+
+      // Panggil method update atau save tergantung pada struktur model Anda
+      $model->update_product($data);
+      return redirect()->to('product')->with('berhasil', 'Data Berhasil di Update');
     } else {
       $price = str_replace(".", "", $this->request->getPost('price'));
       $upload = $this->request->getFile('file_upload');

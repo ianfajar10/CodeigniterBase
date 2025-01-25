@@ -128,6 +128,7 @@ class Home extends BaseController
                 'product_id' => $this->request->getPost('product_id'),
                 'qty' => $this->request->getPost('qty'),
                 'price' => $this->request->getPost('price'),
+                'receipt_number' => $this->request->getPost('courier') . '-',
             ],
         ];
 
@@ -147,6 +148,7 @@ class Home extends BaseController
             $product_id = $this->request->getPost('product_id');
             $quantity = $this->request->getPost('quantity');
             $username = $session->get('username');
+            $receipt_number = $this->request->getPost('receipt_number');
 
             $data = array(
                 'id'  => $order_id,
@@ -154,6 +156,8 @@ class Home extends BaseController
                 'product_id'  => $product_id,
                 'qty'  => $quantity,
                 'price'  => $price,
+                'paid_status'  => 'Sudah Bayar',
+                'receipt_number'  => $receipt_number,
             );
 
             $store = $this->order->store($data);

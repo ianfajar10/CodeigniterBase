@@ -91,7 +91,7 @@
                     <h6 id="name" class="fw-semibold mb-0">Nama</h6>
                 </th>
                 <th class="border-bottom-0">
-                    <h6 id="action" class="fw-semibold mb-0">Aksi</h6>
+                    <h6 id="action-d" class="fw-semibold mb-0">Aksi</h6>
                 </th>
             </tr>
         </thead>

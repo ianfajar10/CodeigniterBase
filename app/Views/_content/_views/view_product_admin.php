@@ -50,6 +50,7 @@
             </div>
           </div>
           <div class="col-lg-12">
+            <input type="hidden" name="id">
             <div class="row">
               <div class="col-md-6">
                 <label>Nama</label>
@@ -95,7 +96,7 @@
         <?= form_close() ?>
       </div>
     </div>
-  </div>
+    </div>
   <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0px;">
     <div style="display: flex; align-items: center;" class="col-md-4">
       <div class="btn-entries">
@@ -121,31 +122,66 @@
     <thead class="text-dark fs-4">
       <tr>
         <th class="border-bottom-0">
-          <h6 class="fw-semibold mb-0">#</h6>
+          <h6 class="fw-semibold mb-0"> No</h6>
         </th>
         <th class="border-bottom-0">
           <h6 id="name" class="fw-semibold mb-0">Nama</h6>
         </th>
         <th class="border-bottom-0">
-          <h6 id="description" class="fw-semibold mb-0">Deskripsi</h6>
+          <h6 id="file" class="fw-semibold mb-0">Gambar</h6>
         </th>
         <th class="border-bottom-0">
           <h6 id="price" class="fw-semibold mb-0">Harga</h6>
         </th>
         <th class="border-bottom-0">
-          <h6 id="stock" class="fw-semibold mb-0">Stok</h6>
+          <h6 id="stock" class="fw-semibold mb-0"> Stok</h6>
         </th>
         <th class="border-bottom-0">
-          <h6 id="file" class="fw-semibold mb-0">Gambar</h6>
+          <h6 id="description" class="fw-semibold mb-0"> Deskripsi</h6>
         </th>
         <th class="border-bottom-0">
-          <h6 id="action" class="fw-semibold mb-0">Aksi</h6>
+          <h6 id="action-du" class="fw-semibold mb-0"> Aksi</h6>
         </th>
       </tr>
     </thead>
     <tbody></tbody>
   </table>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); 
+      
+      var itemData;
+      try {
+        var dataItem = button.data('item'); 
+        
+        if (dataItem) {
+          itemData = JSON.parse(decodeURIComponent(dataItem)); 
+        } else {
+        }
+      } catch (error) {
+        console.error("Error parsing data-item:", error);
+        itemData = null; 
+      }
+
+      if (itemData) {
+        var modal = $(this);
+        
+        modal.find('textarea[name="description"]').val(itemData.description); 
+        modal.find('input[name="price"]').val(itemData.price); 
+        modal.find('input[name="stock"]').val(itemData.stock); 
+        modal.find('input[name="name"]').val(itemData.name); 
+        modal.find('input[name="id"]').val(itemData.id); 
+        modal.find('select[name="category"]').val(itemData.category); 
+      } else {
+        console.log("Data tidak valid atau tidak tersedia.");
+      }
+    });
+
+
+  });
+</script>
 <script type="module">
   var columnIDs = $('thead h6').map(function() {
     return this.id;
