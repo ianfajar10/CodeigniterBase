@@ -17,9 +17,10 @@ class Profile extends BaseController
 
     public function index()
     {
+        helper('form');
         $modules = (new Modules)->index();
         $data = [
-            'title' => 'Profile',
+            'title' => 'Profil',
             'modules' => $modules
         ];
         return view('_content/_views/view_profile', $data);

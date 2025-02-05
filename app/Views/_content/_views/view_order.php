@@ -9,13 +9,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="viewModalLabel">Detil Pesanan</h5>
+        <h5 class="modal-title" id="viewModalLabel">Detail Pesanan</h5>
       </div>
       <div class="modal-body" id="modalContent">
         <!-- Konten dinamis akan muncul di sini -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="cancelButton" data-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-secondary" id="cancelButton" data-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>
@@ -41,7 +41,8 @@
     <!-- Tombol Download Data -->
     <div style="display: flex; align-items: center;" class="col-md-4">
       <button type="button" class="btn btn-success m-1" id="downloadButton">
-        Download Data
+        <i class="ti ti-download"></i>
+        Download
       </button>
     </div>
 
@@ -59,28 +60,28 @@
     <thead class="text-dark fs-4">
       <tr>
         <th class="border-bottom-0" style="text-align: center; vertical-align: middle;">
-          <h6 class="fw-semibold mb-0"> No</h6>
+          <h6 class="fw-semibold mb-0">No</h6>
         </th>
         <th class="border-bottom-0" style="text-align: center; vertical-align: middle;">
-          <h6 id="id" class="fw-semibold mb-0"> No Pesanan</h6>
+          <h6 id="id" class="fw-semibold mb-0">No. Pesanan</h6>
         </th>
         <th class="border-bottom-0" style="text-align: center; vertical-align: middle;">
-          <h6 id="user_name" class="fw-semibold mb-0"> Pelanggan</h6>
+          <h6 id="user_name" class="fw-semibold mb-0">Pelanggan</h6>
         </th>
         <th class="border-bottom-0" style="text-align: center; vertical-align: middle;">
-          <h6 id="product_name" class="fw-semibold mb-0"> Nama Produk</h6>
+          <h6 id="product_name" class="fw-semibold mb-0">Nama Produk</h6>
         </th>
         <th class="border-bottom-0" style="text-align: center; vertical-align: middle;">
-          <h6 id="qty" class="fw-semibold mb-0"> Qty</h6>
+          <h6 id="qty" class="fw-semibold mb-0">Qty</h6>
         </th>
         <th class="border-bottom-0" style="text-align: center; vertical-align: middle;">
-          <h6 id="price" class="fw-semibold mb-0"> Harga</h6>
+          <h6 id="price" class="fw-semibold mb-0">Harga</h6>
         </th>
         <th class="border-bottom-0" style="text-align: center; vertical-align: middle;">
-          <h6 id="paid_status" class="fw-semibold mb-0"> Status</h6>
+          <h6 id="paid_status" class="fw-semibold mb-0">Status</h6>
         </th>
         <th class="border-bottom-0" style="text-align: center; vertical-align: middle;">
-          <h6 id="action-i" class="fw-semibold mb-0"> Aksi</h6>
+          <h6 id="action-i" class="fw-semibold mb-0">Aksi</h6>
         </th>
       </tr>
     </thead>
@@ -121,13 +122,13 @@
         console.log(response[0]);
         
         modalContent.innerHTML = `
-          <h5>Detail Pesanan: ${itemId}</h5>
-          <p><strong>Nama:</strong> ${response[0].user_name}</p>
-          <p><strong>Alamat:</strong> ${response[0].alamat}, ${response[0].kecamatan} ${response[0].kabupaten} ${response[0].provinsi}</p>
+          <h5>No. Pesanan : ${itemId}</h5>
+          <p><strong>Nama :</strong> ${response[0].user_name}</p>
+          <p><strong>Alamat :</strong> ${response[0].alamat}, ${response[0].kecamatan}, ${response[0].kabupaten}, ${response[0].provinsi}</p>
 
           <!-- Kolom Input untuk Nomor Resi -->
           <div class="form-group">
-            <label for="receipt_number">Nomor Resi:</label>
+            <label for="receipt_number"><strong>Nomor Resi :</strong></label>
             <input type="text" id="receipt_number" name="receipt_number" class="form-control mb-3 mt-3" value="${response[0].receipt_number}">
           </div>
           

@@ -2,7 +2,7 @@
 async function getDataAndPopulateTable(url, columnIDs) {
   // Cek apakah elemen dengan id 'downloadButton' ada
   var downloadButton = document.getElementById('downloadButton');
-
+  
   if (downloadButton) {
     downloadButton.addEventListener('click', function() {
       var parts = url.split('/'); // Gantilah dengan nilai yang sesuai
@@ -11,11 +11,12 @@ async function getDataAndPopulateTable(url, columnIDs) {
   } else {
     console.log('Download button tidak ditemukan!');
   }
-
   
   var columnIDsLength = (columnIDs.length + 1);
 
   const apiUrl = url; // Ganti URL_API dengan URL endpoint API Anda
+
+  var rootApiUrl = apiUrl.split('/')[0];
 
   // Show loading indicator while fetching data
   var loadingIndicator = '<tr><td colspan="' + columnIDsLength + '" class="text-center"><div class="text-primary" role="status"><img src="assets/images/custom/custom-loading.gif" alt="Loading..." style="width: 50px; height: 50px;"></div></td></tr>';
@@ -102,8 +103,6 @@ async function getDataAndPopulateTable(url, columnIDs) {
       
       // Pastikan tombol hanya ditambahkan di kolom aksi
       row += `<td>${buttons}</td>`;    
-      
-      var rootApiUrl = apiUrl.split('/')[0];
 
       row += "</tr>";
       tableBody.append(row);

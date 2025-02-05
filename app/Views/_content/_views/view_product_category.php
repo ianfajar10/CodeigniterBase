@@ -32,7 +32,7 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <?= form_open_multipart(base_url('productcategory/process')); ?>
+            <?= form_open_multipart(base_url('productcategory/process'), ['id' => 'productForm']); ?>
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah <?php echo $title ?></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -43,17 +43,18 @@
                             <div class="col-md-12">
                                 <label>Nama Kategori</label>
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control">
+                                    <input type="text" name="name" id="name" class="form-control">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <?= form_submit('submit', 'Simpan', 'class="btn btn-primary"') ?>
+                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary btn_save">Simpan</button> <!-- Use native button for submit -->
                 </div>
                 <?= form_close() ?>
+
             </div>
         </div>
     </div>
@@ -98,6 +99,27 @@
         <tbody></tbody>
     </table>
 </div>
+<script>
+    $(document).ready(function() {
+        $('.btn_save').click(function(e) {
+            e.preventDefault();
+            var categoryName = $('#name').val().trim(); // Get the value and trim any extra spaces
+            if (categoryName === '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Nama kategori tidak boleh kosong!',
+                    timerProgressBar: true,
+                    confirmButtonColor: '#5D87FF',
+                });
+            } else {
+                // Submit the form if validation passes
+                $('#productForm').submit(); // Manually trigger form submission
+            }
+        });
+    });
+
+</script>
 <script type="module">
     var columnIDs = $('thead h6').map(function() {
         return this.id;

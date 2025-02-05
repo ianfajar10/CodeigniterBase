@@ -38,6 +38,13 @@ class UserModel extends Model
         }
     }
 
+    public function update_profile($username, $data)
+    {
+        return $this->db->table($this->table)
+            ->where('username', $username)
+            ->update($data);
+    }
+
     public function check_login($data)
     {
         $query = $this->where('username', $data['username'])->find();

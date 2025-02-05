@@ -109,7 +109,8 @@ class Order extends BaseController
       // Set judul dan konten PDF
       $no = 1;
       $pdf->SetFont('helvetica', '', 12);
-      $html = '<h1 style="text-align: center; color: #4CAF50;">Laporan Penjualan</h1>';
+      $html = '<h1 style="text-align: center; color: #000000;">Laporan Penjualan</h1>';
+
       // Set zona waktu ke Jakarta
       date_default_timezone_set('Asia/Jakarta');
 
@@ -117,39 +118,44 @@ class Order extends BaseController
       $formatter = new \IntlDateFormatter(
           'id_ID', 
           \IntlDateFormatter::FULL, 
-          \IntlDateFormatter::SHORT, 
+          \IntlDateFormatter::LONG, 
           'Asia/Jakarta'
       );
       $formattedDate = $formatter->format(new \DateTime());
 
+      // Menambahkan singkatan WIB manual
+      $formattedDate .= ' WIB';
+
       // Menampilkan tanggal
-      $html .= '<p style="text-align: center; font-size: 14px;">Tanggal Cetak: ' . $formattedDate . '</p>';
+      $html .= '<p style="text-align: left; font-size: 8px;">Tanggal Cetak : ' . $formattedDate . '</p>';
 
 
       $html .= '<table border="1" cellpadding="5" style="width: 100%; border-collapse: collapse; margin: 20px auto; font-family: Arial, sans-serif; background-color: #fafafa;">
-                      <thead>
-                          <tr style="background-color: #4CAF50; color: white; text-align: center;">
-                              <th style="border: 1px solid black; padding: 12px; width: 5%;">No</th>
-                              <th style="border: 1px solid black; padding: 12px; width: 20%;">No Pesanan</th>
-                              <th style="border: 1px solid black; padding: 12px; width: 16%;">Pelanggan</th>
-                              <th style="border: 1px solid black; padding: 12px; width: 27%;">Nama Produk</th>
-                              <th style="border: 1px solid black; padding: 12px; width: 7%;">Qty</th>
-                              <th style="border: 1px solid black; padding: 12px; width: 10%;">Harga</th>
-                              <th style="border: 1px solid black; padding: 12px; width: 15%;">Status</th>
-                          </tr>
-                      </thead>
-                      <tbody>';
+      
+      <thead>
+        <tr style="background-color: #eb8f34; color: white; text-align: center;">
+          <th style="border: 1px solid black; padding: 12px; width: 5%;">No</th>
+          <th style="border: 1px solid black; padding: 12px; width: 20%;">No Pesanan</th>
+          <th style="border: 1px solid black; padding: 12px; width: 17%;">Pelanggan</th>
+          <th style="border: 1px solid black; padding: 12px; width: 26%;">Nama Produk</th>
+          <th style="border: 1px solid black; padding: 12px; width: 6%;">Qty</th>
+          <th style="border: 1px solid black; padding: 12px; width: 14%;">Harga</th>
+          <th style="border: 1px solid black; padding: 12px; width: 12%;">Status</th>
+        </tr>
+      </thead>
+      
+      <tbody>';
 
             // Loop untuk menampilkan data dari database
             foreach ($data as $row) {
               $html .= '<tr style="text-align: center; border-bottom: 1px solid #ddd;">
                   <td style="width: 5%;">' . $no . '</td>
                   <td style="width: 20%;">' . $row->id . '</td>
-                  <td style="width: 16%;">' . $row->username . '</td>
-                  <td style="width: 27%;">' . $row->product_name . '</td>
-                  <td style="width: 7%;">' . $row->qty . '</td>
-                  <td style="width: 10%;">' . number_format($row->price, 2, ',', '.') . '</td>
-                  <td style="width: 15%;">' . $row->paid_status . '</td>
+                  <td style="width: 17%;">' . $row->username . '</td>
+                  <td style="width: 26%;">' . $row->product_name . '</td>
+                  <td style="width: 6%;">' . $row->qty . '</td>
+                  <td style="width: 14%;">' . number_format($row->price, 2, ',', '.') . '</td>
+                  <td style="width: 12%;">' . $row->paid_status . '</td>
               </tr>';
 
               $no++;

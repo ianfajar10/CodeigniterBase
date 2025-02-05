@@ -57,7 +57,7 @@
                                         </select>
                                     </div>
                                     <div class="mb-4">
-                                        <label for="exampleInputKabupaten" class="form-label">Kabupaten</label>
+                                        <label for="exampleInputKabupaten" class="form-label">Kabupaten/Kota</label>
                                         <select class="form-control" name="kabupaten" id="kabupaten" disabled>
                                             <option value="">Pilih Kabupaten/Kota</option>
                                         </select>
@@ -73,7 +73,7 @@
                                         <textarea class="mb-4 form-control" name="alamat" id="alamat" rows="3"></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" id="submitButton">
-                                        <span class="text-button" role="status" aria-hidden="true">Buat Akun</span>
+                                        <span class="text-button" role="status" aria-hidden="true">Buat akun Pembeli</span>
                                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                                     </button>
                                     <div class="d-flex align-items-center justify-content-center">

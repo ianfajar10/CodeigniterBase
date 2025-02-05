@@ -14,6 +14,9 @@
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
   <!-- Css Styles -->
   <link rel="stylesheet" href="../assets/home/ogani/css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="../assets/home/ogani/css/font-awesome.min.css" type="text/css">
@@ -48,6 +51,7 @@
 
   <!-- awal style session layanan logistik -->
   <style>
+    /* logistik */
     .shipping-services {
       display: flex;
       flex-wrap: wrap;
@@ -59,6 +63,13 @@
       width: 100px;
       height: auto;
     }
+
+    /* footer */
+    .spad {
+      padding-top: 10px; /* Atur padding atas  */
+      padding-bottom: 0; /* Sesuaikan padding bawah  */
+    }
+
   </style>
   <!-- akhir style session layanan logistik -->
 
@@ -136,8 +147,8 @@
           <nav class="header__menu">
             <ul>
               <li class="active"><a href="./home"><i class="fa fa-home"></i> Beranda </a></li>
-              <li><a href="./blog.html"><i class="fa fa-fire"></i> Terlaris </a></li>
-              <li><a href="./contact.html"><i class="fa fa-plus-circle"></i> Terbaru </a></li>
+              <!-- <li><a href="./blog.html"><i class="fa fa-fire"></i> Terlaris </a></li>
+              <li><a href="./contact.html"><i class="fa fa-plus-circle"></i> Terbaru </a></li> -->
             </ul>
           </nav>
         </div>
@@ -147,9 +158,10 @@
               <?php if (isset($session['username']) && $session['username'] != null): ?>
                 <li><a href="../profile/favorite"><i class="fa fa-heart"></i><span id="favorite-count"><?php echo $favorite_count ?></span></a></li>
               <?php else: ?>
-                <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Daftar</a>
+                <li>
+                  <a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Daftar</a>
                   <ul class="header__menu__dropdown">
-                    <li><a href="/register">Pengguna</a></li>
+                    <li><a href="/register">Pembeli</a></li>
                     <li><a href="/register-mitra">Penjual</a></li>
                   </ul>
                 </li>
@@ -269,7 +281,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="section-title">
-            <h2>Featured Product</h2>
+            <h2>Macam Produk</h2>
           </div>
         </div>
       </div>
@@ -316,15 +328,18 @@
   <footer class="footer spad">
     <div class="container">
       <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <!-- awal bagian about -->
+        <div class="col-lg-3 col-md-12 col-sm-12">
           <div class="footer__about">
             <div class="footer__about__logo">
               <a href="./home"><img src="../assets/home/ogani/img/logo3.png" alt=""></a>
             </div>
-            <p class="text-justify" style="color: black;">FreeZzemart merupakan platform online yang menghubungkan penjual dan pembeli produk makanan beku. Menyediakan berbagai pilihan jenis produk dan harga yang kompetitif, serta kemudahan dalam pencarian produk. Yuk Belanja Sekarang</p>
+            <p class="text-justify" style="color: black;">FreeZzemart merupakan platform online yang menghubungkan penjual dan pembeli produk makanan beku. Menyediakan berbagai pilihan jenis produk dan harga yang kompetitif, serta kemudahan dalam pencarian produk. <b>Yuk Belanja Sekarang </b></p>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+        <!-- akhir bagian about -->
+        <!-- awal bagian payment -->
+        <div class="col-lg-4 col-md-12 col-sm-12 offset-lg-1">
           <div class="footer__widget">
             <h6>Metode Pembayaran</h6><hr>
             <div class="payment-methods">
@@ -348,9 +363,9 @@
             </div>
           </div>
         </div>
-
-        <!-- awal session layanan pengiriman -->
-        <div class="col-lg-4 col-md-12">
+        <!-- akhir bagian payment -->
+        <!-- awal bagian logistik -->
+        <div class="col-lg-4 col-md-12 col-sm-12">
           <div class="footer__widget">
             <h6>Layanan Pengiriman</h6><hr>
             <div class="payment-methods">
@@ -360,17 +375,23 @@
             </div>
           </div>
         </div>
-        <!-- akhir session layanan pengiriman -->
+        <!-- akhir bagian logistik -->
       </div>
     </div>
   </footer>
   <!-- Footer Section End -->
+
+  <!-- awal footer copyright -->
   <footer class="bg-primary text-white text-center py-3">
-        <div class="container">
-            <p class="mb-0">&copy; 2025 Nama Perusahaan. Semua Hak Dilindungi.</p>
-            <p>Desain oleh <a href="https://www.example.com" class="text-white">Nama Anda</a></p>
-        </div>
-    </footer>
+    <div class="container">
+      <p class="mb-0">Copyright &copy; 2025 FreeZzeMart</p>
+    </div>
+    <!-- "Made with Love" message at the bottom -->
+    <div class="made-with-love" style="font-family: 'Arial', sans-serif; color: #e6007d; font-size: 16px;">
+      <p>Made with <i class="fas fa-heart" style="color: red;"></i> by You</p>
+    </div>
+  </footer>
+  <!-- akhir footer copyright -->
 
   <!-- Js Plugins -->
   <script src="../assets/home/ogani/js/jquery-3.3.1.min.js"></script>
@@ -381,6 +402,13 @@
   <script src="../assets/home/ogani/js/mixitup.min.js"></script>
   <script src="../assets/home/ogani/js/owl.carousel.min.js"></script>
   <script src="../assets/home/ogani/js/main.js"></script>
+
+  <!-- script untuk footer copyright -->
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- script untuk footer copyright -->
+
   <script>
     $(document).ready(function() {
       $(document).on('click', '#love-button', function() {

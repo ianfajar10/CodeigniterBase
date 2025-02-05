@@ -61,12 +61,11 @@ class Product extends BaseController
   public function process()
   {
     $sessionData = $this->session->get();
-
     $model = new ProductModel();
     if ($this->request->getMethod() !== 'post') {
       return redirect()->to('product');
     }
-    if ($this->request->getPost('id') === null) {
+    if ($this->request->getPost('id') === '') {
       $validation = $this->validate([
         'file_upload' => 'uploaded[file_upload]|mime_in[file_upload,image/jpg,image/jpeg,image/gif,image/png]|max_size[file_upload,4096]'
       ]); 
@@ -74,29 +73,41 @@ class Product extends BaseController
       $validation = FALSE;
     }
 
-    if ($validation == FALSE && $this->request->getPost('id') === null) {
+    if ($validation == FALSE && $this->request->getPost('id') === '') {
       return redirect()->to('product')->with('gagal', 'Periksa kembali isian formulir!');;
-    } else if ($this->request->getPost('id') !== null) {
+    } else if ($this->request->getPost('id') !== '') {
       $upload = $this->request->getFile('file_upload');
       if ($upload->isValid() && !$upload->hasMoved() && $this->request->getFile('file_upload') !== null) {
         $upload->move(WRITEPATH . '../public/assets/images/');
         $fileName = $upload->getName();
+        $data = array(
+          'id' => $this->request->getPost('id'),
+          'name'  => $this->request->getPost('name'),
+          'category'  => $this->request->getPost('category'),
+          'price'  => $this->request->getPost('price'),
+          'description'  => $this->request->getPost('description'),
+          'stock'  => $this->request->getPost('stock'),
+          'file' => $fileName,
+          'type' => $upload->getClientMimeType(),
+        );
+  
+        // Panggil method update atau save tergantung pada struktur model Anda
+        $model->update_product($data);
+        return redirect()->to('product')->with('berhasil', 'Data Berhasil di Update');
+      } else {
+        $data = array(
+          'id' => $this->request->getPost('id'),
+          'name'  => $this->request->getPost('name'),
+          'category'  => $this->request->getPost('category'),
+          'price'  => $this->request->getPost('price'),
+          'description'  => $this->request->getPost('description'),
+          'stock'  => $this->request->getPost('stock'),
+        );
+  
+        // Panggil method update atau save tergantung pada struktur model Anda
+        $model->update_product($data);
+        return redirect()->to('product')->with('berhasil', 'Data Berhasil di Update');
       }
-
-      $data = array(
-        'id' => $this->request->getPost('id'),
-        'name'  => $this->request->getPost('name'),
-        'category'  => $this->request->getPost('category'),
-        'price'  => $this->request->getPost('price'),
-        'description'  => $this->request->getPost('description'),
-        'stock'  => $this->request->getPost('stock'),
-        'file' => $fileName,
-        'type' => $upload->getClientMimeType(),
-      );
-
-      // Panggil method update atau save tergantung pada struktur model Anda
-      $model->update_product($data);
-      return redirect()->to('product')->with('berhasil', 'Data Berhasil di Update');
     } else {
       $price = str_replace(".", "", $this->request->getPost('price'));
       $upload = $this->request->getFile('file_upload');
@@ -118,7 +129,7 @@ class Product extends BaseController
 
   public function delete($id)
   {
-    $product = $this->productModel->find($id);
+    $product = $this->productModel->where('tbl_products.id', $id)->get();
 
     if (!$product) {
       return redirect()->to('/product')->with('gagal', 'Produk tidak ditemukan.');

@@ -12,7 +12,8 @@
 	<link rel="stylesheet" href="../assets/css/styles.min.css" />
 	<link rel="stylesheet" href="../assets/css/custom-datatables.min.css" />
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.20/dist/sweetalert2.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 

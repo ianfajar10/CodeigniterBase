@@ -4,36 +4,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="shortcut icon" type="image/x-icon" href="../assets/images/logos/favicon1.ico" />
+
   <?php if (!empty($products)): ?>
     <?php foreach ($products as $product): ?>
       <title><?php echo $product->name ?></title>
     <?php endforeach; ?>
   <?php endif; ?>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+
+  <style>
+        hr.dashed {
+            border: none;
+            border-top: 2px dashed gray;
+            margin: 20px 0;
+        }
+
+        
+
+    </style>
+
+    
+
 </head>
 
 <body>
   <div class="container mt-5">
     <div class="row">
       <!-- Bagian Gambar Produk -->
-      <div class="col-md-6">
-        <img src="/public/assets/images/<?= $product->file ?>" alt="images" class="img-fluid">
+      <div class="col-md-6" style="display: flex; justify-content: center; align-items: center;">
+        <img src="/public/assets/images/<?= $product->file ?>" alt="images" class="img-fluid" style="max-width: 80%; height: auto; border-radius: 20px;">
       </div>
+
+
+
+
       <!-- Bagian Informasi Produk -->
       <?php if (!empty($products)): ?>
         <?php foreach ($products as $product): ?>
           <div class="col-md-6">
-            <h1><?= $product->name ?></h1>
-            <h3 class="text-danger">Rp. <?= number_format($product->price, 0, ',', '.') ?></h3>
+            <h2><?= $product->name ?></h2>
+            <hr class="dashed">
+            <h3 class="text-danger">Rp<?= number_format($product->price, 0, ',', '.') ?></h3>
             <p><strong>Kategori:</strong> <?= $product->category_name ?></p>
-            <p><strong>Tersedia:</strong> <?= $product->stock ?></p>
+            <p><strong>Stok:</strong> <?= $product->stock ?></p>
             <p><strong>Penjual:</strong> <?= $product->mitra_name ?></p>
-            <p><?= $product->description ?></p>
+            <p style="color:grey">Deskripsi : </p>
+              <p style="text-align: justify; color:grey">**<?= $product->description ?></p>
 
             <!-- Pilihan Quantity dan Tombol -->
             <form action="../checkout" method="post">
               <div class="form-group">
-                <label for="quantity">Quantity:</label>
+                <label for="quantity"><strong>Quantity:</strong></label>
                 <input type="number" id="quantity" class="form-control" name="quantity" value="1" min="1" max="<?= $product->stock ?>">
               </div>
               <input type="hidden" name="product_id" value="<?= $product->id ?>">
@@ -44,7 +67,7 @@
                 <div class="col-md-6">
                   <button type="submit" class="btn btn-primary btn-block"
                     <?php if ($product->stock == 0) echo 'disabled'; ?>>
-                    <?php echo ($product->stock == 0) ? 'Stok habis' : 'Tambah ke Keranjang'; ?>
+                    <?php echo ($product->stock == 0) ? 'Stok habis' : 'Beli Sekarang'; ?>
                   </button>
                 </div>
               </div>

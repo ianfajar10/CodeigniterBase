@@ -200,7 +200,7 @@ class Home extends BaseController
                 $this->favorite->store($data);
                 return $this->response->setJSON([
                     'status' => 'success',
-                    'additional_status' => 'Produk berhasil ditambah dari favorit'
+                    'additional_status' => 'Produk berhasil ditambah ke favorit'
                 ]);
             }
 

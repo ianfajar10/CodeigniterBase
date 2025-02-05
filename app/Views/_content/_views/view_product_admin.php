@@ -32,7 +32,7 @@
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= form_open_multipart(base_url('product/process')); ?>
+        <?= form_open_multipart(base_url('product/process'), ['id' => 'productForm']); ?>
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Tambah <?php echo $title ?></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -59,7 +59,7 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <label>Foto</label>
+                <label>Gambar</label>
                 <div class="form-group">
                   <input type="file" name="file_upload" class="form-control">
                 </div>
@@ -90,8 +90,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <?= form_submit('submit', 'Simpan', 'class="btn btn-primary"') ?>
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary btn_save">Simpan</button> <!-- Use native button for submit -->
         </div>
         <?= form_close() ?>
       </div>
@@ -179,7 +179,68 @@
       }
     });
 
-
+    $('.btn_save').click(function(e) {
+      e.preventDefault();
+      
+      var category = $('#category').val().trim();
+      var name = $('input[name="name"]').val().trim();
+      var price = $('input[name="price"]').val().trim();
+      var stock = $('input[name="stock"]').val().trim();
+      var description = $('textarea[name="description"]').val().trim();
+      var fileUpload = $('input[name="file_upload"]').val().trim();
+      
+      if (category === '') {
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Kategori Produk tidak boleh kosong!',
+              timerProgressBar: true,
+              confirmButtonColor: '#5D87FF',
+          });
+      } else if (name === '') {
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Nama produk tidak boleh kosong!',
+              timerProgressBar: true,
+              confirmButtonColor: '#5D87FF',
+          });
+      } else if (price === '') {
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Harga produk tidak boleh kosong!',
+              timerProgressBar: true,
+              confirmButtonColor: '#5D87FF',
+          });
+      } else if (stock === '') {
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Stok produk tidak boleh kosong!',
+              timerProgressBar: true,
+              confirmButtonColor: '#5D87FF',
+          });
+      } else if (description === '') {
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Deskripsi produk tidak boleh kosong!',
+              timerProgressBar: true,
+              confirmButtonColor: '#5D87FF',
+          });
+      } else if (fileUpload === '') {
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Gambar produk tidak boleh kosong!',
+              timerProgressBar: true,
+              confirmButtonColor: '#5D87FF',
+          });
+      } else {
+          $('#productForm').submit();
+      }
+  });
   });
 </script>
 <script type="module">

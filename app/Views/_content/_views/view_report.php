@@ -21,9 +21,10 @@
     <!-- Tombol Download Data -->
     <div style="display: flex; align-items: center;" class="col-md-4">
       <button type="button" class="btn btn-success m-1" id="downloadButton">
-        Download Data
+        <i class="ti ti-download"></i> Download Data
       </button>
     </div>
+
     <div class="col-md-2">
       <div class="input-group">
         <input type="text" class="form-control col-2" id="searchInput" placeholder="Cari">

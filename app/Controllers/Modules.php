@@ -13,10 +13,11 @@ class Modules extends BaseController
         $data['sidebars'] = ($check_role == 1) ?
             [
                 'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
+                'profile' => ['Profil', 'ti ti-user-circle'],
                 'product-category' => ['Kategori', 'ti ti-archive'],
-                'user' => ['Data Pengguna', 'ti ti-user'],
+                'user' => ['Data Pembeli', 'ti ti-crown'],
                 'user-mitra' => ['Data Penjual', 'ti ti-user'],
-                'report' => ['Laporan Statistik', 'ti ti-book'],
+                'report' => ['Laporan', 'ti ti-file'],
                 // 'sample-page' => ['Halaman Contoh', 'ti ti-file-broken'],
                 // 'sample-data-tables' => ['Data Tables Contoh', 'ti ti-layout-columns'],
             ]
@@ -25,7 +26,7 @@ class Modules extends BaseController
                 'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
                 'profile' => ['Profil', 'ti ti-user-circle'],
                 'product' => ['Produk', 'ti ti-gift'],
-                'order' => ['Pesanan', 'ti ti-gift'],
+                'order' => ['Pesanan', 'ti ti-tag'],
                 
                 // 'sample-crud' => ['Produk', 'ti ti-plus'],
             ]
@@ -33,7 +34,7 @@ class Modules extends BaseController
             [
                 'dashboard' => ['Beranda', 'ti ti-layout-dashboard'],
                 'profile' => ['Profil', 'ti ti-user-circle'],
-                'history' => ['Riwayat Transaksi', 'ti ti-shopping-cart'],
+                'history' => ['Transaksi', 'ti ti-shopping-cart'],
                 // 'filelist' => ['Daftar File', 'bi bi-book"'],
             ];
 

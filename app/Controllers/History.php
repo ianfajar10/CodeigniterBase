@@ -22,7 +22,7 @@ class History extends BaseController
   {
     $modules = (new Modules)->index();
         $data = [
-            'title' => 'Riwayat Pesanan',
+            'title' => 'Riwayat Transaksi',
             'modules' => $modules
         ];
         return view('_content/_views/view_history', $data);

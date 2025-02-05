@@ -20,7 +20,7 @@ class User extends BaseController
   {
     $modules = (new Modules)->index();
     $data = [
-      'title' => 'Halaman Data Pengguna',
+      'title' => 'Data Pembeli',
       'modules' => $modules
     ];
     return view('_content/_views/view_user', $data);
@@ -30,7 +30,7 @@ class User extends BaseController
   {
     $modules = (new Modules)->index();
     $data = [
-      'title' => 'Halaman Data Penjual',
+      'title' => 'Data Penjual',
       'modules' => $modules
     ];
     return view('_content/_views/view_user_mitra', $data);

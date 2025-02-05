@@ -295,6 +295,46 @@ class Auth extends BaseController
         }
     }
 
+    public function update()
+    {
+        $sessionData = $this->session->get();
+        $model = new UserModel();
+
+        $username = $this->request->getPost('username_edit');
+        $email = $this->request->getPost('email_edit');
+        $telp = $this->request->getPost('telp_edit');
+        $name = $this->request->getPost('name_edit');
+        $role = $this->request->getPost('role_edit');
+        $bank = $this->request->getPost('bank_edit') ?? '';
+        $rekening = $this->request->getPost('rekening_edit') ?? '';
+        $rekening_name = $this->request->getPost('rekening_name_edit') ?? '';
+
+        if ($role == 2 || $role == '2')
+        {
+            $data = array(
+                'email' => $email,
+                'telepon' => $telp,
+                'name' => $name,
+                'bank' => $bank,
+                'rekening' => $rekening,
+                'rekening_name' => $rekening,
+            );
+        } else {
+            $data = array(
+                'email' => $email,
+                'telepon' => $telp,
+                'name' => $name,
+            );
+        }
+
+        $update = $model->update_profile($username, $data);
+        if ($update) {
+            return redirect()->to('profile')->with('berhasil', 'Data Berhasil di Update');
+        } else {
+            return redirect()->to('profile')->with('gagal', 'Data Gagal di Update');
+        }
+    }
+
     public function valid_register_mitra()
     {
         //tangkap data dari form

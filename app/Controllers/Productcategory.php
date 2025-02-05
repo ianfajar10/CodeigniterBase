@@ -57,8 +57,12 @@ class Productcategory extends BaseController
     $data = array(
       'name'  => $this->request->getPost('name'),
     );
-    $model->save_file($data);
-    return redirect()->to('product-category')->with('berhasil', 'Data Berhasil di Simpan');
+    if ($this->request->getPost('name') == '') {
+      return redirect()->to('product-category')->with('gagal', 'Nama kategori wajib diisi!');
+    } else {
+      $model->save_file($data);
+      return redirect()->to('product-category')->with('berhasil', 'Data Berhasil di Simpan');
+    }
   }
 
   public function delete($id)
